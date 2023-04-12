@@ -1,0 +1,11 @@
+$title-color: red;
+
+h1 {
+  img {
+    width: 500px;
+  }
+  img.test {
+    width: 1000px;
+  }
+  color: $title-color;
+}
