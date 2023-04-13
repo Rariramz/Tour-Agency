@@ -3,9 +3,10 @@ import { BuildOptions } from './types';
 
 const buildDevServer = (options: BuildOptions): DevServerConfiguration => {
   return {
-        port: options.port,
-        open: true,
-    };
+    port: options.port,
+    open: true,
+    historyApiFallback: true
+  };
 };
 
 export default buildDevServer;
