@@ -1,37 +1,48 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
+  "env": {
+      "browser": true,
+      "es2021": true,
+      "jest": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "prettier"
+  ],
+  "overrides": [
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+      "project": "tsconfig.json",
+      "ecmaFeatures": {
+          "jsx": true
+      },
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "react-hooks",
+    "@typescript-eslint",
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": ["error"],
+    "react/react-in-jsx-scope": "off",
+    "camelcase": "error",
+    "spaced-comment": "error",
+    "no-duplicate-imports": "error"
+  },
+  "ignorePatterns": ["dist/**/*", "node_modules/**/*", "webpack/**/*", "webpack.config.ts"],
+  "root": true,
+  "settings": {
+    "react": {
+      "version": "detect"
     },
-    "extends": [
-        "plugin:react/recommended",
-        "standard-with-typescript"
-    ],
-    "overrides": [
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "project": "tsconfig.json",
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "@typescript-eslint",
-        "react"
-    ],
-    "rules": {
-    },
-    "globals": {
-        "__IS_DEV__": true,
-    },
-    "ignorePatterns": ["dist/**/*", "node_modules/**/*", "webpack/**/*", "webpack.config.ts"],
-    "root": true,
-    "settings": {
-        "react": {
-          "version": "detect",
-        },
-    },
+    "import/resolver": {
+      "typescript": {}
+    }
+  }
 }
