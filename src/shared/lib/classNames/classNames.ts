@@ -2,11 +2,11 @@ type Mods = {
   [key: string]: boolean;
 };
 
-export function classNames(
+export const classNames = (
   cls: string,
   mods: Mods = {},
   additional: string[] = []
-): string {
+): string => {
   return [
     cls,
     ...additional.filter(Boolean),
@@ -16,4 +16,4 @@ export function classNames(
   ]
     .join(' ')
     .trim();
-}
+};
