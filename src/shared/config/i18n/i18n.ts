@@ -8,11 +8,18 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    debug: true,
-    fallbackLng: 'en',
+    fallbackLng: ['ru', 'en'],
+    debug: __IS_DEV__,
     interpolation: {
-      escapeValue: false,
+      escapeValue: false
     },
+    detection: {
+      order: ['localStorage'],
+      caches: ['localStorage']
+    }
+  })
+  .catch((error) => {
+    console.error('Failed to initialize i18n:', error);
   });
 
 export default i18n;

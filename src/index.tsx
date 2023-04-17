@@ -6,6 +6,4 @@ import { App } from './app/App';
 const rootDiv =
   document.getElementById('root') ?? document.createElement('div');
 const root = ReactDOM.createRoot(rootDiv);
-root.render(
-  <App />
-);
+root.render(<App />);

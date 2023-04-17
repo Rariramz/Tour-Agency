@@ -1,6 +1,11 @@
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 
-export const MainPageAsync = lazy(() => new Promise((resolve) => {
-  // @ts-ignore
-  setTimeout(() => resolve(import('./MainPage')), 1500);
-}));
+const MainPage = lazy(() => import('./MainPage'));
+
+const MainPageAsync = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <MainPage />
+  </Suspense>
+);
+
+export { MainPageAsync };

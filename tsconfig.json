@@ -10,7 +10,7 @@
     "moduleResolution": "node",
     "strictNullChecks": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": ["src/**/*", "index.tsx"],
   "ts-node": { "compilerOptions": { "module": "CommonJS" } },

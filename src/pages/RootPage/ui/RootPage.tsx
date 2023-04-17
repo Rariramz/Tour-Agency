@@ -1,6 +1,5 @@
 import { Suspense } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Outlet, NavLink, useNavigation } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { classNames } from '../../../shared/lib/classNames/classNames';
 import { useTheme } from '../../../app/providers/ThemeProvider';
 import { Sidebar } from '../../../widgets/Sidebar';
@@ -10,12 +9,12 @@ export const RootPage = () => {
 
   return (
     <div className={classNames('app', {}, [theme])}>
-      <Suspense fallback="loading...">
-          <Sidebar />
+      <Suspense fallback='loading...'>
+        <Sidebar />
 
-          <div className="content-page">
-            <Outlet />
-          </div>
+        <div>
+          <Outlet />
+        </div>
       </Suspense>
     </div>
   );

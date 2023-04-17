@@ -1,7 +1,6 @@
 /* eslint-disable indent */
-import { Theme, ThemeContext } from './ThemeContext';
+import { Theme, ThemeContext, ThemeContextProps } from './ThemeContext';
 import { useContext } from 'react';
-import { ThemeContextProps } from './ThemeContext';
 
 interface UseThemeResult {
   toggleTheme: () => void;
@@ -24,8 +23,6 @@ export function useTheme(): UseThemeResult {
         newTheme = Theme.LIGHT;
     }
     setTheme?.(newTheme);
-
-    document.body.className = newTheme;
   };
 
   return { toggleTheme, theme: Theme.LIGHT };

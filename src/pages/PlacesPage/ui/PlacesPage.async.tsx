@@ -1,6 +1,11 @@
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 
-export const PlacesPageAsync = lazy(() => new Promise((resolve) => {
-  // @ts-ignore
-  setTimeout(() => resolve(import('./PlacesPage')), 1500);
-}));
+const PlacesPage = lazy(() => import('./PlacesPage'));
+
+const PlacesPageAsync = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <PlacesPage />
+  </Suspense>
+);
+
+export { PlacesPageAsync };
