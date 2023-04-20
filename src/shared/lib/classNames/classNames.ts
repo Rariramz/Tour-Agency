@@ -14,6 +14,7 @@ export const classNames = (
       .filter(([_, value]) => Boolean(value))
       .map(([className]) => className)
   ]
+    .flat(1)
     .join(' ')
     .trim();
 };
