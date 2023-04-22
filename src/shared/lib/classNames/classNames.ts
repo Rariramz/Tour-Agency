@@ -1,5 +1,5 @@
-type Mods = {
-  [key: string]: boolean;
+export type Mods = {
+  [key: string]: boolean | undefined;
 };
 
 export const classNames = (

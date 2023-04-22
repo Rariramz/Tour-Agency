@@ -5,6 +5,10 @@ import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { RoutePath } from '../../../shared/config/route/route';
 import { useTheme } from '../../../app/providers/ThemeProvider';
+import { Button, ButtonTheme } from '../../../shared/ui/Button/Button';
+import { Text } from '../../../shared/ui/Text/Text';
+import { Input } from '../../../shared/ui/Input/Input';
+import { Select } from '../../../shared/ui/Select/Select';
 
 interface SidebarProps {
   className?: string;
@@ -35,23 +39,25 @@ const Sidebar = memo(({ className }: SidebarProps) => {
         className ? [className] : []
       )}
     >
+      <Text text={'HEY WELCOME HIIIII'} />
+      <Input />
+      <Select value={'selec1'} options={[ {value: 'select1', content: 'select1'}, {value: 'select2', content: 'select2'}]} />
       <div>
         {Object.keys(lngs).map((lng: string) => (
-          <button
+          <Button
             key={lng}
-            style={{
-              fontWeight: i18n.resolvedLanguage === lng ? 'bold' : 'normal'
-            }}
-            type='submit'
             onClick={() => {
               i18n.changeLanguage(lng).catch(console.log);
             }}
+            theme={ButtonTheme.BACKGROUND}
           >
             {lngs[lng].nativeName}
-          </button>
+          </Button>
         ))}
       </div>
-      <button onClick={toggleTheme}>{theme}</button>
+      <Button onClick={toggleTheme}>
+        {theme}
+      </Button>
       <ul>
         {Object.entries(RoutePath).map(([routeName, path]) => (
           <li key={path}>
