@@ -4,6 +4,7 @@ import { classNames } from '../../../shared/lib/classNames/classNames';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { RoutePath } from '../../../shared/config/route/route';
+import { useTheme } from '../../../app/providers/ThemeProvider';
 
 interface SidebarProps {
   className?: string;
@@ -24,6 +25,7 @@ const lngs: Languages = {
 
 const Sidebar = memo(({ className }: SidebarProps) => {
   const { i18n } = useTranslation();
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <div
@@ -49,6 +51,7 @@ const Sidebar = memo(({ className }: SidebarProps) => {
           </button>
         ))}
       </div>
+      <button onClick={toggleTheme}>{theme}</button>
       <ul>
         {Object.entries(RoutePath).map(([routeName, path]) => (
           <li key={path}>
