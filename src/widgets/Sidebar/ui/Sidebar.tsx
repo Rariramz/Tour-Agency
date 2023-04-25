@@ -39,7 +39,7 @@ const Sidebar = memo(({ className }: SidebarProps) => {
         className ? [className] : []
       )}
     >
-      <Text text={'HEY WELCOME HIIIII'} />
+      <Text title="TITLE" text={'HEY WELCOME HIIIII'} />
       <Input />
       <Select value={'selec1'} options={[ {value: 'select1', content: 'select1'}, {value: 'select2', content: 'select2'}]} />
       <div>
@@ -49,7 +49,7 @@ const Sidebar = memo(({ className }: SidebarProps) => {
             onClick={() => {
               i18n.changeLanguage(lng).catch(console.log);
             }}
-            theme={ButtonTheme.BACKGROUND}
+            theme={ButtonTheme.CONTAIN}
           >
             {lngs[lng].nativeName}
           </Button>

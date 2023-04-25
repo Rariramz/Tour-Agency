@@ -1,12 +1,11 @@
 .Input {
+  background-color: var(--bg-color);
+  color: var(--on-bg-color);
+  width: 100%;
+  outline: none;
+  border: none;
 }
 
 .readonly {
   opacity: 0.5;
-}
-
-.input {
-  width: 100%;
-  outline: none;
-  border: none;
 }

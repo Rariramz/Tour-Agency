@@ -3,12 +3,9 @@ import cls from './Button.module.scss';
 import { classNames, Mods } from '../../../shared/lib/classNames/classNames';
 
 export enum ButtonTheme {
-    CLEAR = 'clear',
-    CLEAR_INVERTED = 'clearInverted',
+    TEXT = 'text',
     OUTLINE = 'outline',
-    OUTLINE_RED = 'outline_red',
-    BACKGROUND = 'background',
-    BACKGROUND_INVERTED = 'backgroundInverted'
+    CONTAIN = 'contain',
 }
 
 export enum ButtonSize {

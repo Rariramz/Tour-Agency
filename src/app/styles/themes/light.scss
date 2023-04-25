@@ -1,8 +1,11 @@
 :root {
-  --bg-color: #cacadb;
-  --inverted-bg-color: #0e0e75;
-  --primary-color: #073a6c;
-  --secondary-color: #088eac;
-  --inverted-primary-color: #04ff04;
-  --inverted-secondary-color: #049604;
+  --bg-color: #ffffff;
+  --surface-color: #f7f7f7;
+  --on-bg-color: #0c111f; //60%
+
+  --primary-color: #f5b100;
+  --on-primary-color: #ffffff;
+
+  --secondary-color: #7723fe;
+  --on-secondary-color: #ffffff;
 }

@@ -10,11 +10,12 @@
 
 .error {
   .title {
-    color: var(--red-light);
+    color: var(--error-color);
   }
 
   .text {
-    color: var(--red-dark);
+    color: var(--error-color);
+    opacity: 0.6;
   }
 }
 
