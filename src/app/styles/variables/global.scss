@@ -10,6 +10,8 @@
   --font-line-xl: 40px;
   --font-xl: var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
 
+  //h1,h2,h3
+
   // Размеры
   --navbar-height: 50px;
   --sidebar-width: 300px;
@@ -18,7 +20,13 @@
   // index
   --modal-z-index: 10;
 
-  // Цвета дополнительные
-  --error-color: #b00020;
-  --on-error-color: #ffffff;
+  --primary-color: #00cccb;
+  --secondary-color: #6c6c6c;
+  --red-color: #ff3d3d;
+  --white-color: #ffffff;
+  --black-color: #000000;
+  --mustard-color: #ffd910;
+  --light-blue-color: #deffff;
+
+  --button-text-color: var(--white-color);
 }

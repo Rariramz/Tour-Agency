@@ -6,9 +6,10 @@ import { useTranslation } from 'react-i18next';
 import { RoutePath } from '../../../shared/config/route/route';
 import { useTheme } from '../../../app/providers/ThemeProvider';
 import { Button, ButtonTheme } from '../../../shared/ui/Button/Button';
-import { Text } from '../../../shared/ui/Text/Text';
 import { Input } from '../../../shared/ui/Input/Input';
 import { Select } from '../../../shared/ui/Select/Select';
+import { Heading } from '../../../shared/ui/Heading/Heading';
+import { Paragraph } from '../../../shared/ui/Paragraph/Paragraph';
 
 interface SidebarProps {
   className?: string;
@@ -39,7 +40,8 @@ const Sidebar = memo(({ className }: SidebarProps) => {
         className ? [className] : []
       )}
     >
-      <Text title="TITLE" text={'HEY WELCOME HIIIII'} />
+      <Heading>HEADING here!</Heading>
+      <Paragraph>PARAGRAPH here!</Paragraph>
       <Input />
       <Select value={'selec1'} options={[ {value: 'select1', content: 'select1'}, {value: 'select2', content: 'select2'}]} />
       <div>
@@ -50,6 +52,7 @@ const Sidebar = memo(({ className }: SidebarProps) => {
               i18n.changeLanguage(lng).catch(console.log);
             }}
             theme={ButtonTheme.CONTAIN}
+            square={true}
           >
             {lngs[lng].nativeName}
           </Button>

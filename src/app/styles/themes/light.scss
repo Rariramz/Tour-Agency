@@ -1,11 +1,16 @@
 :root {
-  --bg-color: #ffffff;
-  --surface-color: #f7f7f7;
-  --on-bg-color: #0c111f; //60%
+  --mustard-light-color: #ffdf34;
+  --gray-lightest-color: #f4f5f7;
+  --gray-light-color: #f0f0f0;
+  --gray-color: #d9d9d9;
+  --gray-dark-color: #7e818c;
+  --neutral-grey-color: #848a85;
 
-  --primary-color: #f5b100;
-  --on-primary-color: #ffffff;
+  --bg-color: var(--gray-lightest-color);
+  --sidebar-color: var(--white-color);
+  --card-color: var(--white-color);
+  --search-color: var(--white-color);
 
-  --secondary-color: #7723fe;
-  --on-secondary-color: #ffffff;
+  --heading-color: var(--black-color);
+  --paragraph-color: var(--secondary-color);
 }

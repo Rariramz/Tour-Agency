@@ -1,13 +1,24 @@
 .Button {
   cursor: pointer;
   color: var(--primary-color);
-  padding: 4px 16px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 16px;
+  gap: 10px;
+  border-radius: 12px;
 }
 
 .contain {
   background: var(--primary-color);
-  color: var(--on-primary-color);
+  color: var(--button-text-color);
   border: none;
+}
+
+.fullwidth {
+  width: 100%;
 }
 
 .text {
@@ -23,22 +34,7 @@
 }
 
 .square {
-  padding: 0;
-}
-
-.square.size_m {
-  width: var(--font-line-m);
-  height: var(--font-line-m);
-}
-
-.square.size_l {
-  width: var(--font-line-l);
-  height: var(--font-line-l);
-}
-
-.square.size_xl {
-  width: var(--font-line-xl);
-  height: var(--font-line-xl);
+  border-radius: 0;
 }
 
 .size_m {

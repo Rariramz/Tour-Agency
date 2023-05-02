@@ -1,8 +1,8 @@
 .Sidebar {
   height: calc(100vh - var(--navbar-height));
   width: var(--sidebar-width);
-  background: var(--surface-color);
-  color: var(--on-bg-color);
+  background: var(--sidebar-color);
+  color: var(--heading-color);
   position: relative;
   transition: width 0.3s;
 }
