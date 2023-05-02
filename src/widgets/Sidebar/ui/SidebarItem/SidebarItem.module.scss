@@ -1,0 +1,32 @@
+.item {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.link {
+  opacity: 1;
+  color: var(--heading-color);
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.item.active .link {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.icon path {
+  stroke: var(--icon-color);
+  fill: var(--icon-color);
+}
+
+.item.active .icon path {
+  stroke: var(--primary-color);
+  fill: var(--primary-color);
+}

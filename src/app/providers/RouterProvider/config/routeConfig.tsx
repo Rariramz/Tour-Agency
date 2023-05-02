@@ -4,21 +4,21 @@ import { MainPage } from '../../../../pages/MainPage';
 import { PlacesPage } from '../../../../pages/PlacesPage';
 import { NotFoundPage } from '../../../../pages/NotFoundPage';
 import { ErrorPage } from '../../../../pages/ErrorPage';
-import { RoutePath } from '../../../../shared/config/route/route';
+import { AppRoutes, RoutePath } from '../../../../shared/config/route/route';
 
 export const routeConfig: RouteObject[] = [
   {
-    path: '/',
+    path: RoutePath[AppRoutes.HOME],
     element: <RootPage />,
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <MainPage /> },
       {
-        path: RoutePath.places,
+        path: RoutePath[AppRoutes.EXPLORE],
         element: <PlacesPage />
       },
       {
-        path: RoutePath.not_found,
+        path: RoutePath[AppRoutes.NOT_FOUND],
         element: <NotFoundPage />
       }
     ]

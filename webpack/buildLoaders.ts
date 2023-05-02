@@ -7,20 +7,29 @@ const buildLoaders = ({ isDev }: BuildOptions): webpack.RuleSetRule[] => {
     {
       test: /\.tsx?$/,
       exclude: /node_modules/,
-      use: ['ts-loader'],
+      use: ['ts-loader']
     },
     {
       test: /\.s[ac]ss$/i,
-      use: [isDev ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+      use: [
+        isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+        'css-loader',
+        'sass-loader'
+      ]
+    },
+    {
+      test: /\.svg$/i,
+      issuer: /\.[jt]sx?$/,
+      use: ['@svgr/webpack']
     },
     {
       test: /\.(?:ico|png|jpg|jpeg|gif)$/i,
-      type: 'asset/resource',
+      type: 'asset/resource'
     },
     {
-      test: /\.(woff(2)?|eot|ttf|otf|svg)$/i,
-      type: 'asset/inline',
-    },
+      test: /\.(woff(2)?|eot|ttf|otf)$/i,
+      type: 'asset/inline'
+    }
   ];
 };
 

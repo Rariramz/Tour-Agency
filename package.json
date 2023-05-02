@@ -53,6 +53,7 @@
     "webpack-dev-server": "^4.13.2"
   },
   "dependencies": {
+    "@svgr/webpack": "^7.0.0",
     "@types/react": "^18.0.35",
     "@types/react-dom": "^18.0.11",
     "i18next": "^22.4.14",
