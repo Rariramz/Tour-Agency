@@ -6,10 +6,8 @@ import { useTranslation } from 'react-i18next';
 import { RoutePath } from '../../../shared/config/route/route';
 import { useTheme } from '../../../app/providers/ThemeProvider';
 import { Button, ButtonTheme } from '../../../shared/ui/Button/Button';
-import { Input } from '../../../shared/ui/Input/Input';
 import { Select } from '../../../shared/ui/Select/Select';
-import { Heading } from '../../../shared/ui/Heading/Heading';
-import { Paragraph } from '../../../shared/ui/Paragraph/Paragraph';
+import { Logo } from '../../Logo';
 
 interface SidebarProps {
   className?: string;
@@ -40,9 +38,7 @@ const Sidebar = memo(({ className }: SidebarProps) => {
         className ? [className] : []
       )}
     >
-      <Heading>HEADING here!</Heading>
-      <Paragraph>PARAGRAPH here!</Paragraph>
-      <Input />
+      <Logo />
       <Select value={'selec1'} options={[ {value: 'select1', content: 'select1'}, {value: 'select2', content: 'select2'}]} />
       <div>
         {Object.keys(lngs).map((lng: string) => (

@@ -1,8 +1,8 @@
 import { memo, useState } from 'react';
-import cls from './Search.module.scss';
 import { classNames } from '../../../shared/lib/classNames/classNames';
 import { SearchIcon } from '../assets/SearchIcon';
 import { Input } from '../../../shared/ui/Input/Input';
+import cls from './Search.module.scss';
 
 interface SearchProps {
   className?: string;

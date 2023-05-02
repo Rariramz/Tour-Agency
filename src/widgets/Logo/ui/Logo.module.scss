@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@600&display=swap');
+
+.Logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.brandName {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--primary-color);
+}
