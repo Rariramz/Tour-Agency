@@ -7,6 +7,7 @@ import { Logo } from '../../../Logo';
 import cls from './Sidebar.module.scss';
 import { SidebarItem } from '../SidebarItem/SidebarItem';
 import { getSidebarItems } from '../../model/selectors/getSidebarItems';
+import { Line } from '../../../../shared/ui/Line/Line';
 
 interface SidebarProps {
   className?: string;
@@ -38,8 +39,9 @@ const Sidebar = memo(({ className }: SidebarProps) => {
         className ? [className] : []
       )}
     >
-      <Logo />      
-      <div>
+      <Logo />
+      <Line />   
+      <div className={cls.items} >
         {sidebarItems.map((item) => (
           <SidebarItem
             key={item.path}
@@ -47,9 +49,11 @@ const Sidebar = memo(({ className }: SidebarProps) => {
           />
         ))}
       </div>
-      <Button onClick={toggleTheme}>
-        {theme}
-      </Button>
+      <div className={cls.items}>
+        <Button onClick={toggleTheme}>
+          {theme}
+        </Button>
+      </div>
     </div>
   );
 });

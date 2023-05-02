@@ -10,4 +10,10 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  padding-left: 7px;
+
+  .items {
+    width: 100%;
+    position: relative;
+  }
 }
