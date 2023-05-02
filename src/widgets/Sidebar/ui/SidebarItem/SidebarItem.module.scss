@@ -1,32 +1,35 @@
 .item {
+  width: 100%;
   margin-top: 10px;
   display: flex;
+  justify-content: flex-start;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  padding: 12px 16px;
   text-decoration: none;
+
+  .link {
+    opacity: 1;
+    color: var(--heading-color);
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .icon path {
+    stroke: var(--icon-color);
+  }
 }
 
-.link {
-  opacity: 1;
-  color: var(--heading-color);
-  font-family: 'Work Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 16px;
-}
+.item.active {
+  & .icon path {
+    stroke: var(--primary-color);
+  }
 
-.item.active .link {
-  font-weight: 600;
-  color: var(--primary-color);
-}
-
-.icon path {
-  stroke: var(--icon-color);
-  fill: var(--icon-color);
-}
-
-.item.active .icon path {
-  stroke: var(--primary-color);
-  fill: var(--primary-color);
+  & .link {
+    font-weight: 600;
+    color: var(--primary-color);
+  }
 }
