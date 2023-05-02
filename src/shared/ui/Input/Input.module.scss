@@ -7,6 +7,14 @@
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
   border-radius: 12px;
   padding: 12px;
+
+  &::placeholder {
+    color: var(--primary-color);
+  }
+
+  &::selection {
+    background: var(--primary-color);
+  }
 }
 
 .readonly {

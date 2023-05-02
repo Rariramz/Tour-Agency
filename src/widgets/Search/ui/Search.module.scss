@@ -1,0 +1,21 @@
+.Search {
+  width: 490px;
+  background: var(--sidebar-color);
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  gap: 12px;
+
+  svg path {
+    stroke: var(--icon-color);
+  }
+}
+
+.searchInput {
+  background: var(--sidebar-color);
+  box-shadow: none;
+  padding: 0;
+}
