@@ -1,6 +1,6 @@
 import { memo, useState } from 'react';
 import { classNames } from '../../../shared/lib/classNames/classNames';
-import { SearchIcon } from '../assets/SearchIcon';
+import SearchIcon from '../../../shared/assets/search.svg';
 import { Input } from '../../../shared/ui/Input/Input';
 import cls from './Search.module.scss';
 

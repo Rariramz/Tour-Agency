@@ -1,6 +1,6 @@
 import { AppRoutes, RoutePath } from '../../../../shared/config/route/route';
-import HomeIcon from '../../assets/routes/home.svg';
-import ExploreIcon from '../../assets/routes/explore.svg';
+import HomeIcon from '../../../../shared/assets/routes/home.svg';
+import ExploreIcon from '../../../../shared/assets/routes/explore.svg';
 import { SidebarItemType } from '../types/sidebar';
 
 export const getSidebarItems = () => {
