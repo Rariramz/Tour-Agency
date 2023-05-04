@@ -11,9 +11,8 @@ export const RootPage = () => {
   return (
     <div className={classNames('app', {}, [theme])}>
       <Suspense fallback='loading...'>
-        <Search onSubmit={(value) => console.log('SEARCH clicked', value)} />
+        {/* <Search onSubmit={(value) => console.log('SEARCH clicked', value)} /> */}
         <Sidebar />
-
         <div>
           <Outlet />
         </div>

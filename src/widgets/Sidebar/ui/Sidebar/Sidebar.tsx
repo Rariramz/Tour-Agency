@@ -2,12 +2,12 @@ import { memo } from 'react';
 import { classNames } from '../../../../shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../../../../app/providers/ThemeProvider';
-import { Button } from '../../../../shared/ui/Button/Button';
 import { Logo } from '../../../Logo';
 import cls from './Sidebar.module.scss';
 import { SidebarItem } from '../SidebarItem/SidebarItem';
 import { getSidebarItems } from '../../model/selectors/getSidebarItems';
 import { Line } from '../../../../shared/ui/Line/Line';
+import { ThemeSwitcher } from '../../../ThemeSwitcher';
 
 interface SidebarProps {
   className?: string;
@@ -28,7 +28,6 @@ const lngs: Languages = {
 
 const Sidebar = memo(({ className }: SidebarProps) => {
   const { i18n } = useTranslation();
-  const { theme, toggleTheme } = useTheme();
   const sidebarItems = getSidebarItems();
 
   return (
@@ -40,19 +39,23 @@ const Sidebar = memo(({ className }: SidebarProps) => {
       )}
     >
       <Logo />
-      <Line />   
+      <Line />
       <div className={cls.items} >
-        {sidebarItems.map((item) => (
+        {sidebarItems.slice(0, sidebarItems.length - 1).map((item) => (
           <SidebarItem
             key={item.path}
             item={item}
           />
         ))}
       </div>
-      <div className={cls.items}>
-        <Button onClick={toggleTheme}>
-          {theme}
-        </Button>
+      <div className={cls.options}>
+        <ThemeSwitcher />
+        {sidebarItems.slice(sidebarItems.length - 1).map((item) => (
+          <SidebarItem
+            key={item.path}
+            item={item}
+          />
+        ))}
       </div>
     </div>
   );

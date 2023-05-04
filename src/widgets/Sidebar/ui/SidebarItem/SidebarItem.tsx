@@ -13,7 +13,7 @@ const SidebarItem = memo(({ item }: SidebarItemProps) => {
   return (
     <NavLink
       to={path}
-      className={({ isActive, isPending }) => classNames(cls.tab, { }, [
+      className={({ isActive, isPending }) => classNames(cls.Tab, { }, [
         isActive
           ? cls.active
           : isPending

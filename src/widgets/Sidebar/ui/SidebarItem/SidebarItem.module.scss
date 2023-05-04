@@ -1,21 +1,18 @@
-.tab {
+.Tab {
   width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 12px;
-  padding: 12px 16px;
   text-decoration: none;
 
   .rectangle {
     display: none;
     width: 5px;
     height: 20px;
-    position: absolute;
-    left: 0;
     background: var(--primary-color);
     border-radius: 5px;
-    margin-right: 12px;
+    position: absolute;
   }
 
   .item {
@@ -24,6 +21,7 @@
     align-items: center;
     padding: 12px 16px;
     gap: 12px;
+    margin-left: 12px;
   }
 
   .link {
