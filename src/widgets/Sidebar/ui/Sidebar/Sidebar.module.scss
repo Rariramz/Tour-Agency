@@ -1,7 +1,7 @@
 .Sidebar {
   box-sizing: border-box;
   padding-top: 30px;
-  width: 170px;
+  width: var(--sidebar-width);
   height: 100%;
   position: fixed;
   background: var(--sidebar-color);

@@ -6,12 +6,13 @@ import cls from './Search.module.scss';
 
 interface SearchProps {
   className?: string;
-  onSubmit: (value: string) => void;
+  value: string,
+  onChange: (value: string) => void;
+  submit?: boolean;
+  onSubmit?: (value: string) => void;
 }
 
-const Search = memo(({ className, onSubmit }: SearchProps) => {
-  const [value, setValue] = useState<string>('');
-
+const Search = memo(({ className, value, onChange, submit, onSubmit }: SearchProps) => {
   return (
     <div
       className={classNames(
@@ -20,8 +21,8 @@ const Search = memo(({ className, onSubmit }: SearchProps) => {
         [className ?? '']
       )}
     >
-      <SearchIcon onClick={() => onSubmit(value)} />
-      <Input placeholder='Festival Yuki Matsuri is coming...' className={cls.searchInput} value={value} onChange={(value) => setValue(value)} />
+      {submit && onSubmit && <SearchIcon onClick={() => onSubmit(value)} />}
+      <Input placeholder='Festival Yuki Matsuri is coming...' className={cls.searchInput} value={value} onChange={onChange} />
     </div>
   );
 });
