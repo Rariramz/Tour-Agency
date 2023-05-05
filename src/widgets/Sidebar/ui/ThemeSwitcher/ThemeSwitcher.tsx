@@ -1,8 +1,8 @@
 import { memo } from 'react';
+import { classNames } from '../../../../shared/lib/classNames/classNames';
+import ThemeSwitcherIcon from '../../../../shared/assets/toggle-off-circle.svg';
+import { useTheme } from '../../../../app/providers/ThemeProvider';
 import cls from './ThemeSwitcher.module.scss';
-import { classNames } from '../../../shared/lib/classNames/classNames';
-import ThemeSwitcherIcon from '../../../shared/assets/toggle-off-circle.svg';
-import { useTheme } from '../../../app/providers/ThemeProvider';
 
 interface ThemeSwitcherProps {
   className?: string;

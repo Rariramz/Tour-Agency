@@ -1,3 +1,3 @@
-import { Searchbar } from './ui/Searchbar';
+import { Searchbar } from './ui/Searchbar/Searchbar';
 
 export { Searchbar };

@@ -1,8 +1,8 @@
 import { memo, useMemo, useState } from 'react';
-import { classNames } from '../../../shared/lib/classNames/classNames';
-import { Search } from '../../Search/ui/Search';
-import { PreviewCard } from '../../PreviewCard';
-import { getTours } from '../model/selectors/getTours';
+import { classNames } from '../../../../shared/lib/classNames/classNames';
+import { Search } from '../Search/Search';
+import { getTours } from '../../model/selectors/getTours';
+import { PreviewCard } from '../PreviewCard/PreviewCard';
 import cls from './Searchbar.module.scss';
 
 interface SearchbarProps {
@@ -28,7 +28,7 @@ const Searchbar = memo(({ className }: SearchbarProps) => {
         [className ?? '']
       )}
     >
-      <Search value={searchValue} onChange={setSearchValue} submit={false} className={cls.search} />
+      <Search value={searchValue} onChange={setSearchValue} />
       <div className={cls.results}>
         {filteredTours.map((item) => <PreviewCard key={item.id} item={item} className={cls.card} />)}
       </div>

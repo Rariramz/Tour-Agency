@@ -1,18 +1,17 @@
 import { memo, useState } from 'react';
-import { classNames } from '../../../shared/lib/classNames/classNames';
-import SearchIcon from '../../../shared/assets/search.svg';
-import { Input } from '../../../shared/ui/Input/Input';
+import { classNames } from '../../../../shared/lib/classNames/classNames';
+import SearchIcon from '../../../../shared/assets/search.svg';
+import { Input } from '../../../../shared/ui/Input/Input';
 import cls from './Search.module.scss';
 
 interface SearchProps {
   className?: string;
   value: string,
   onChange: (value: string) => void;
-  submit?: boolean;
   onSubmit?: (value: string) => void;
 }
 
-const Search = memo(({ className, value, onChange, submit, onSubmit }: SearchProps) => {
+const Search = memo(({ className, value, onChange, onSubmit }: SearchProps) => {
   return (
     <div
       className={classNames(
@@ -21,7 +20,7 @@ const Search = memo(({ className, value, onChange, submit, onSubmit }: SearchPro
         [className ?? '']
       )}
     >
-      {submit && onSubmit && <SearchIcon onClick={() => onSubmit(value)} />}
+      {onSubmit && <SearchIcon onClick={() => onSubmit(value)} />}
       <Input placeholder='Festival Yuki Matsuri is coming...' className={cls.searchInput} value={value} onChange={onChange} />
     </div>
   );

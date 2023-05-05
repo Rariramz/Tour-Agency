@@ -1,13 +1,12 @@
 import { memo } from 'react';
 import { classNames } from '../../../../shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { useTheme } from '../../../../app/providers/ThemeProvider';
-import { Logo } from '../../../Logo';
-import cls from './Sidebar.module.scss';
+import { Logo } from '../Logo/Logo';
 import { SidebarItem } from '../SidebarItem/SidebarItem';
 import { getSidebarItems } from '../../model/selectors/getSidebarItems';
 import { Line } from '../../../../shared/ui/Line/Line';
-import { ThemeSwitcher } from '../../../ThemeSwitcher';
+import { ThemeSwitcher } from '../ThemeSwitcher/ThemeSwitcher';
+import cls from './Sidebar.module.scss';
 
 interface SidebarProps {
   className?: string;

@@ -6,9 +6,6 @@
   position: fixed;
 }
 
-.search {
-}
-
 .results {
   width: calc(100%);
   display: flex;
@@ -22,7 +19,7 @@
   overflow: hidden;
 }
 .results:hover {
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .card {
