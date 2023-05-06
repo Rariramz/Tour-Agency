@@ -5,6 +5,16 @@ import { BuildOptions } from './types';
 const buildLoaders = ({ isDev }: BuildOptions): webpack.RuleSetRule[] => {
   return [
     {
+      test: /\.(gltf)$/,
+      loader: 'gltf-loader',
+      /**
+       * @type {import("gltf-loader").GLTFLoaderOptions}
+       */
+      options: {
+        // ...
+      }
+    },
+    {
       test: /\.tsx?$/,
       exclude: /node_modules/,
       use: ['ts-loader']

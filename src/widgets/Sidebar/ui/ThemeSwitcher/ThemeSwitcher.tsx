@@ -10,21 +10,17 @@ interface ThemeSwitcherProps {
 }
 
 const ThemeSwitcher = memo((props: ThemeSwitcherProps) => {
-    const {
-        className,
-        disabled,
-        ...otherProps
-    } = props;
+  const { className, disabled, ...otherProps } = props;
   const { toggleTheme } = useTheme();
 
   return (
     <div
-        className={classNames(cls.ThemeSwitcher, {}, [className ?? ''])}
-        {...otherProps}
-        onClick={toggleTheme}
+      className={classNames(cls.ThemeSwitcher, {}, [className ?? ''])}
+      {...otherProps}
+      onClick={toggleTheme}
     >
-     <ThemeSwitcherIcon /> 
-     <span>Dark mode</span>
+      <ThemeSwitcherIcon />
+      <span>Dark mode</span>
     </div>
   );
 });

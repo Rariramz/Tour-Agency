@@ -9,13 +9,7 @@ interface CardProps {
 
 const Card = memo(({ children, className }: CardProps) => {
   return (
-    <div
-      className={classNames(
-        cls.Card,
-        { },
-        [className ?? '']
-      )}
-    >
+    <div className={classNames(cls.Card, {}, [className ?? ''])}>
       {children}
     </div>
   );

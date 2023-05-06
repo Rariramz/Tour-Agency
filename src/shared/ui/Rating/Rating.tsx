@@ -10,14 +10,11 @@ interface RatingProps {
 
 const Rating = memo(({ rating, className }: RatingProps) => {
   return (
-    <div
-      className={classNames(
-        cls.Rating,
-        { },
-        [className ?? '']
-      )}
-    >
-      <span>(</span><Star /><span>{rating}</span><span>)</span>
+    <div className={classNames(cls.Rating, {}, [className ?? ''])}>
+      <span>(</span>
+      <Star />
+      <span>{rating}</span>
+      <span>)</span>
     </div>
   );
 });

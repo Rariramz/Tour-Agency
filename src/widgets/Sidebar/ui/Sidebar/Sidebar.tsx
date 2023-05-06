@@ -39,7 +39,7 @@ const Sidebar = memo(({ className }: SidebarProps) => {
     >
       <Logo />
       <Line />
-      <div className={cls.items} >
+      <div className={cls.items}>
         {sidebarItems.slice(0, sidebarItems.length - 1).map((item) => (
           <SidebarItem
             key={item.path}

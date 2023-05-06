@@ -12,15 +12,4 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-
-  .content {
-    position: relative;
-    margin-left: var(--sidebar-width);
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 20px 10px;
-  }
 }

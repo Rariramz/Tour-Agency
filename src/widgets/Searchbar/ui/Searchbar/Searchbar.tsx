@@ -14,23 +14,28 @@ const Searchbar = memo(({ className }: SearchbarProps) => {
   const [searchValue, setSearchValue] = useState('');
 
   const filterTours = () => {
-    const filtered = tours.filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase()));
+    const filtered = tours.filter((item) =>
+      item.name.toLowerCase().includes(searchValue.toLowerCase())
+    );
     return filtered;
   };
 
   const filteredTours = useMemo(() => filterTours(), [searchValue]);
 
   return (
-    <div
-      className={classNames(
-        cls.Searchbar,
-        { },
-        [className ?? '']
-      )}
-    >
-      <Search value={searchValue} onChange={setSearchValue} />
+    <div className={classNames(cls.Searchbar, {}, [className ?? ''])}>
+      <Search
+        value={searchValue}
+        onChange={setSearchValue}
+      />
       <div className={cls.results}>
-        {filteredTours.map((item) => <PreviewCard key={item.id} item={item} className={cls.card} />)}
+        {filteredTours.map((item) => (
+          <PreviewCard
+            key={item.id}
+            item={item}
+            className={cls.card}
+          />
+        ))}
       </div>
     </div>
   );

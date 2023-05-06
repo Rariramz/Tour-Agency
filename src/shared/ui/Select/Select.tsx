@@ -1,63 +1,58 @@
-import {
-    ChangeEvent, memo, useCallback, useMemo,
-} from 'react';
+import { ChangeEvent, memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import cls from './Select.module.scss';
 import { classNames } from '../../lib/classNames/classNames';
 
 export interface SelectOption {
-    value: string;
-    content: string;
+  value: string;
+  content: string;
 }
 
 interface SelectProps {
-    className?: string;
-    label?: string;
-    options?: SelectOption[];
-    value?: string;
-    onChange?: (value: string) => void;
-    readonly?: boolean;
+  className?: string;
+  label?: string;
+  options?: SelectOption[];
+  value?: string;
+  onChange?: (value: string) => void;
+  readonly?: boolean;
 }
 
 export const Select = memo((props: SelectProps) => {
-    const {
-        className,
-        label,
-        options,
-        value,
-        onChange,
-        readonly,
-    } = props;
-    const { t } = useTranslation();
+  const { className, label, options, value, onChange, readonly } = props;
+  const { t } = useTranslation();
 
-    const optionsList = useMemo(() => options?.map((opt) => (
+  const optionsList = useMemo(
+    () =>
+      options?.map((opt) => (
         <option
-            key={opt.value}
-            className={cls.option}
-            value={opt.value}
+          key={opt.value}
+          className={cls.option}
+          value={opt.value}
         >
-            {opt.content}
+          {opt.content}
         </option>
-    )), [options]);
+      )),
+    [options]
+  );
 
-    const onChangeHandler = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
-        onChange?.(e.target.value);
-    }, [onChange]);
+  const onChangeHandler = useCallback(
+    (e: ChangeEvent<HTMLSelectElement>) => {
+      onChange?.(e.target.value);
+    },
+    [onChange]
+  );
 
-    return (
-        <div className={classNames(cls.Wrapper, {}, [className ?? ''])}>
-            {label && (
-                <span className={cls.label}>{label}</span>
-            )}
-            <select
-                onChange={onChangeHandler}
-                className={cls.select}
-                value={value}
-                disabled={readonly}
-            >
-                {optionsList}
-            </select>
-
-        </div>
-    );
+  return (
+    <div className={classNames(cls.Wrapper, {}, [className ?? ''])}>
+      {label && <span className={cls.label}>{label}</span>}
+      <select
+        onChange={onChangeHandler}
+        className={cls.select}
+        value={value}
+        disabled={readonly}
+      >
+        {optionsList}
+      </select>
+    </div>
+  );
 });

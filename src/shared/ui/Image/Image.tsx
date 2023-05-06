@@ -9,13 +9,7 @@ interface ImageProps {
 
 const Image = memo(({ src, className }: ImageProps) => {
   return (
-    <div
-      className={classNames(
-        cls.Image,
-        { },
-        [className ?? '']
-      )}
-    >
+    <div className={classNames(cls.Image, {}, [className ?? ''])}>
       <img src={src} />
     </div>
   );

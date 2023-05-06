@@ -13,20 +13,16 @@ const SidebarItem = memo(({ item }: SidebarItemProps) => {
   return (
     <NavLink
       to={path}
-      className={({ isActive, isPending }) => classNames(cls.Tab, { }, [
-        isActive
-          ? cls.active
-          : isPending
-          ? cls.pending
-          : ''
-      ])}
+      className={({ isActive, isPending }) =>
+        classNames(cls.Tab, {}, [
+          isActive ? cls.active : isPending ? cls.pending : ''
+        ])
+      }
     >
       <div className={cls.rectangle} />
       <div className={cls.item}>
         <Icon className={cls.icon} />
-        <span className={cls.link}>
-          {text}
-        </span>
+        <span className={cls.link}>{text}</span>
       </div>
     </NavLink>
   );

@@ -7,14 +7,11 @@ interface LineProps {
 }
 
 const Line = memo((props: LineProps) => {
-    const {
-        className,
-        ...otherProps
-    } = props;
+  const { className, ...otherProps } = props;
 
   return (
     <div
-      className={classNames(cls.Line, { }, [className ?? ''])}
+      className={classNames(cls.Line, {}, [className ?? ''])}
       {...otherProps}
     />
   );

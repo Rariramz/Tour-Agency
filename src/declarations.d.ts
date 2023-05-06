@@ -1,3 +1,8 @@
+declare module '*.gltf' {
+  const content: Record<string, unknown>; // Or a glTF interface if you have/need one
+  export default content;
+}
+
 declare module '*.png' {
   const value: string;
   export default value;
