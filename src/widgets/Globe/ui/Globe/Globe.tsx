@@ -1,19 +1,34 @@
 import { memo, useRef, useState, RefObject } from 'react';
 import { useFrame, ThreeElements } from '@react-three/fiber';
 import { Model } from '../Model/Model';
+import { OrbitControls } from '@react-three/drei';
+import { Group } from 'three';
 
-const Globe = memo((props: ThreeElements['mesh']) => {
-  const ref = useRef<THREE.Mesh>(null);
-  const [hovered, hover] = useState(false);
-  const [clicked, click] = useState(false);
-  // useFrame((state, delta) => (ref.current!.rotation.x += delta));
+const Globe = memo((props: ThreeElements['group']) => {
+  const modelRef: RefObject<Group> = useRef(null);
+  // const [hovered, hover] = useState(false);
+  // const [clicked, click] = useState(false);
+  useFrame(() => {
+    if (modelRef.current) {
+      modelRef.current.rotation.y += 0.001;
+    }
+  });
 
   return (
-    <>
+    <group {...props} ref={modelRef}>
       <ambientLight />
-      <pointLight position={[10, 10, 10]} />
-      <Model url={"./little_planet_earth/scene.gltf"}/>
-    </>
+      <directionalLight position={[85.0, 80.0, 70.0]} />
+      <Model
+        url={"./little_planet_earth/scene.gltf"}
+        // url={"./earth_terrain_and_sea_map/scene.gltf"}
+      />
+      <OrbitControls
+        minPolarAngle={Math.PI / 3}
+        maxPolarAngle={Math.PI - Math.PI / 3}
+        maxDistance={2000}
+        minDistance={800}
+      />
+    </group>
     // <mesh
     //   {...props}
     //   ref={ref}
