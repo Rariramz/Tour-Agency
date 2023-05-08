@@ -1,13 +1,26 @@
 import { memo, useRef, useState, RefObject } from 'react';
-import { useFrame, ThreeElements } from '@react-three/fiber';
+import { useFrame, ThreeElements, useLoader, ThreeEvent } from '@react-three/fiber';
 import { Model } from '../Model/Model';
 import { OrbitControls } from '@react-three/drei';
-import { Group } from 'three';
+import { Group, Vector3 } from 'three';
+import { Marker } from '../Marker/Marker';
 
 const Globe = memo((props: ThreeElements['group']) => {
   const modelRef: RefObject<Group> = useRef(null);
-  // const [hovered, hover] = useState(false);
-  // const [clicked, click] = useState(false);
+  const [markers, setMarkers] = useState<Vector3[]>([]);
+
+  const handleGlobeClick = (event: ThreeEvent<MouseEvent>) => {
+    const { x, y, z } = event.point;
+
+  // Get the position of the globe in world space
+  const globeWorldPos = new Vector3();
+  modelRef.current!.getWorldPosition(globeWorldPos);
+
+  // Move the marker to the clicked point relative to the globe's world position
+  const markerPos = new Vector3(x, y, z).sub(globeWorldPos);
+  setMarkers([...markers, markerPos]);
+  };
+  
   useFrame(() => {
     if (modelRef.current) {
       modelRef.current.rotation.y += 0.001;
@@ -15,7 +28,7 @@ const Globe = memo((props: ThreeElements['group']) => {
   });
 
   return (
-    <group {...props} ref={modelRef}>
+    <group {...props} ref={modelRef} onClick={handleGlobeClick}>
       <ambientLight />
       <directionalLight position={[85.0, 80.0, 70.0]} />
       <Model
@@ -28,18 +41,15 @@ const Globe = memo((props: ThreeElements['group']) => {
         maxDistance={2000}
         minDistance={800}
       />
+      {markers.map((marker, index) => (
+        <Marker
+          key={index}
+          position={[marker.x, marker.y, marker.z]}
+          globePosition={[modelRef.current!.position.x, modelRef.current!.position.y, modelRef.current!.position.x]}
+          onClick={() => console.log(`Marker ${index} clicked!`)}
+        />
+      ))}
     </group>
-    // <mesh
-    //   {...props}
-    //   ref={ref}
-    //   scale={clicked ? 1.5 : 1}
-    //   onClick={(event) => click(!clicked)}
-    //   onPointerOver={(event) => hover(true)}
-    //   onPointerOut={(event) => hover(false)}
-    // >
-    //   <boxGeometry args={[1, 1, 1]} />
-    //   <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
-    // </mesh>
   );
 });
 
