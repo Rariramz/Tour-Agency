@@ -1,13 +1,12 @@
-import { Globe } from './ui/Globe/Globe';
+import { classNames } from '../../shared/lib/classNames/classNames';
+import cls from './index.module.scss';
 import { ReactGlobe } from './ui/ReactGlobe/ReactGlobe';
-import { ThreeCanvas } from './ui/ThreeCanvas/ThreeCanvas';
 
 const ThreeGlobe = () => {
   return (
-    <ThreeCanvas>
-        {/* <Globe /> */}
+    <div className={classNames(cls.GlobeContainer)}>
         <ReactGlobe />
-    </ThreeCanvas>
+    </div>
   );
 };
 
