@@ -6,7 +6,7 @@ import cls from './ThreeCanvas.module.scss';
 const ThreeCanvas = memo(({ children }: ThreeElements['mesh']) => {
   return (
     <div className={classNames(cls.CanvasContainer)}>
-      <Canvas camera={{fov: 75, near: 0.1, far: 100000, position: [0, 0, 1000]}}>{children}</Canvas>
+      <Canvas camera={{fov: 75, near: 0.1, far: 100000, position: [0, 0, 1.5]}}>{children}</Canvas>
     </div>
   );
 });
