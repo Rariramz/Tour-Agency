@@ -1,0 +1,25 @@
+.PreviewRoute {
+  border: 1px solid var(--secondary-color);
+  border-radius: 8px;
+  width: 100%;
+  padding: 2px 8px;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 4px;
+}
+
+.FromTo {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  width: calc(100% - 28px);
+
+  strong {
+    font-weight: 500;
+    color: var(--primary-color);
+  }
+}

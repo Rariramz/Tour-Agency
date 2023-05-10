@@ -16,7 +16,7 @@ const Search = memo(({ className, value, onChange, onSubmit }: SearchProps) => {
     <div className={classNames(cls.Search, {}, [className ?? ''])}>
       {onSubmit && <SearchIcon onClick={() => onSubmit(value)} />}
       <Input
-        placeholder='Festival Yuki Matsuri is coming...'
+        placeholder='Throne Beach Resort & SPA...'
         className={cls.searchInput}
         value={value}
         onChange={onChange}

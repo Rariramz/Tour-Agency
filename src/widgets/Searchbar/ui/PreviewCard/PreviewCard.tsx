@@ -7,6 +7,8 @@ import { Rating } from '../../../../shared/ui/Rating/Rating';
 import { TourType } from '../../model/types/searchbar';
 import { Card } from '../../../../shared/ui/Card/Card';
 import cls from './PreviewCard.module.scss';
+import { PreviewRoute } from '../PreviewRoute/PreviewRoute';
+import { PreviewDate } from '../PreviewDate/PreviewDate';
 
 interface PreviewCardProps {
   item: TourType;
@@ -14,20 +16,38 @@ interface PreviewCardProps {
 }
 
 const PreviewCard = memo(({ item, className }: PreviewCardProps) => {
-  const { name, date, img } = item;
+  const {
+    id,
+    cityDeparture,
+    cityArrival,
+    hotel,
+    dateDeparture,
+    dateArrival,
+    price,
+    currency,
+    description,
+    image,
+    guests,
+    rating,
+  } = item;
 
   return (
     <Card className={classNames(cls.PreviewCard, {}, [className ?? ''])}>
       <Image
-        src={img}
+        src={image}
         className={cls.previewImage}
       />
       <div className={cls.previewContent}>
         <div className={cls.previewHeader}>
-          <Heading className={cls.previewTitle}>{name}</Heading>
-          <Rating rating={5} />
+          <Heading className={cls.previewTitle}>{hotel}</Heading>
+          <Rating rating={rating} />
         </div>
-        <Paragraph>{date}</Paragraph>
+        <PreviewDate dateDeparture={dateDeparture} dateArrival={dateArrival} />
+        <PreviewRoute cityDeparture={cityDeparture} cityArrival={cityArrival} />
+        <div className={cls.previewFooter}>
+          <Paragraph className={cls.previewGuests}>{guests} guests</Paragraph>
+          <Heading className={cls.previewPrice}>{currency} {price}</Heading>
+        </div>
       </div>
     </Card>
   );

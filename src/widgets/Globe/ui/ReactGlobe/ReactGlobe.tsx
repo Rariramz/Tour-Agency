@@ -39,7 +39,6 @@ export const ReactGlobe = () => {
                 el.innerHTML = markerIcon;
                 el.style.color = d.color;
                 el.style.width = `${d.size}px`;
-                console.log(d.size)
         
                 el.style.cursor = 'pointer';
                 el.onclick = () => console.info(d);

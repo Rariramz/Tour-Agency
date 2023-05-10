@@ -14,8 +14,10 @@ const Searchbar = memo(({ className }: SearchbarProps) => {
   const [searchValue, setSearchValue] = useState('');
 
   const filterTours = () => {
-    const filtered = tours.filter((item) =>
-      item.name.toLowerCase().includes(searchValue.toLowerCase())
+    const filtered = tours.filter((tour) =>
+      Object.values(tour).filter(x => isNaN(x)).some((field) =>
+        field.toLowerCase().includes(searchValue.toLowerCase())
+      )
     );
     return filtered;
   };
