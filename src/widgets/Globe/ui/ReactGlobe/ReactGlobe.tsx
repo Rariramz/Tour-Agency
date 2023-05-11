@@ -6,6 +6,8 @@ import { Color, MeshPhongMaterial } from 'three';
 import { getTourMarkers } from '../../model/selectors/getTourMarkers';
 import { TourMarkerType } from '../../model/types/tourMarker';
 import { markerIcon } from './mapPin';
+import { classNames } from '../../../../shared/lib/classNames/classNames';
+import cls from './ReactGlobe.module.scss';
 
 export const ReactGlobe = () => {
     const globeRef = useRef<GlobeMethods>();
@@ -27,28 +29,30 @@ export const ReactGlobe = () => {
     ];
 
     return (
-        <Globe
-            ref={globeRef}
-            backgroundColor={'rgba(0,0,0,0)'}
-            globeImageUrl={earthMap}
-            bumpImageUrl={earthBump}
-            globeMaterial={globeMaterial}
-            htmlElementsData={tourMarkers}
-            htmlElement={(d: TourMarkerType) => {
-                const el = document.createElement('div');
-                el.innerHTML = markerIcon;
-                el.style.color = d.color;
-                el.style.width = `${d.size}px`;
-        
-                el.style.cursor = 'pointer';
-                el.onclick = () => console.info(d);
-                return el;
-            }}
-            // arcsData={arcsData}
-            // arcColor={'color'}
-            // arcDashLength={() => Math.random()}
-            // arcDashGap={() => Math.random()}
-            // arcDashAnimateTime={() => Math.random() * 4000 + 500}
-        />
+        <div className={classNames(cls.GlobeContainer)}>
+            <Globe
+                ref={globeRef}
+                backgroundColor={'rgba(0,0,0,0)'}
+                globeImageUrl={earthMap}
+                bumpImageUrl={earthBump}
+                globeMaterial={globeMaterial}
+                htmlElementsData={tourMarkers}
+                htmlElement={(d: TourMarkerType) => {
+                    const el = document.createElement('div');
+                    el.innerHTML = markerIcon;
+                    el.style.color = d.color;
+                    el.style.width = `${d.size}px`;
+            
+                    el.style.cursor = 'pointer';
+                    el.onclick = () => console.info(d);
+                    return el;
+                }}
+                // arcsData={arcsData}
+                // arcColor={'color'}
+                // arcDashLength={() => Math.random()}
+                // arcDashGap={() => Math.random()}
+                // arcDashAnimateTime={() => Math.random() * 4000 + 500}
+            />
+        </div>
     );
 };

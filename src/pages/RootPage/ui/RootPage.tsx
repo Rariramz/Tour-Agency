@@ -11,8 +11,8 @@ export const RootPage = () => {
   return (
     <div className={classNames('app', {}, [theme])}>
       <Suspense fallback='loading...'>
-        <Sidebar />
-        <div className={classNames(cls.content)}>
+        <Sidebar className={cls.sidebar} />
+        <div className={cls.content}>
           <Outlet />
         </div>
       </Suspense>
