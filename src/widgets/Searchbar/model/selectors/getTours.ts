@@ -1,5 +1,5 @@
 import image1 from '../../../../shared/assets/hotels/1.jpg';
-import image11 from '../../../../shared/assets/hotels/11.jpg';
+import image111 from '../../../../shared/assets/hotels/111.jpg';
 import image2 from '../../../../shared/assets/hotels/2.jpg';
 import image22 from '../../../../shared/assets/hotels/22.jpg';
 import image3 from '../../../../shared/assets/hotels/3.jpg';
@@ -10,6 +10,7 @@ export const getTours = () => {
   const toursList: TourType[] = [
     {
       id: 1,
+      name: 'AKTEA BEACH VILLAGE',
       cityDeparture: 'Moscow',
       cityArrival: 'Ayia Napa',
       hotel: 'AKTEA BEACH VILLAGE',
@@ -20,11 +21,12 @@ export const getTours = () => {
       guests: 2,
       description:
         'Modern cozy apartment hotel. Located in a picturesque secluded bay, close to the golden beaches of Sandy Bay and Nissi. Nearby are bars, restaurants and shops. Here you will find peace and solitude along with the hectic life of an international resort. Recommended for a relaxing family holiday, as well as for beach lovers.',
-      image: image11,
+      image: image111,
       rating: 5
     },
     {
       id: 2,
+      name: 'THRONE BEACH RESORT & SPA',
       cityDeparture: 'Moscow',
       cityArrival: 'Orensehir, Side',
       hotel: 'THRONE BEACH RESORT & SPA',
@@ -40,6 +42,7 @@ export const getTours = () => {
     },
     {
       id: 3,
+      name: 'BELLIS DELUXE HOTEL',
       cityDeparture: 'Moscow',
       cityArrival: 'Belek',
       hotel: 'BELLIS DELUXE HOTEL',
@@ -55,6 +58,7 @@ export const getTours = () => {
     },
     {
       id: 4,
+      name: 'AKTEA BEACH VILLAGE',
       cityDeparture: 'Moscow',
       cityArrival: 'Ayia Napa',
       hotel: 'AKTEA BEACH VILLAGE',
@@ -70,6 +74,7 @@ export const getTours = () => {
     },
     {
       id: 5,
+      name: 'THRONE BEACH RESORT & SPA',
       cityDeparture: 'Warsaw',
       cityArrival: 'Side',
       hotel: 'THRONE BEACH RESORT & SPA',
@@ -85,6 +90,7 @@ export const getTours = () => {
     },
     {
       id: 6,
+      name: 'BELLIS DELUXE HOTEL',
       cityDeparture: 'Vilnus',
       cityArrival: 'Belek',
       hotel: 'BELLIS DELUXE HOTEL',

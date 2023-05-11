@@ -18,6 +18,7 @@ interface PreviewCardProps {
 const PreviewCard = memo(({ item, className }: PreviewCardProps) => {
   const {
     id,
+    name,
     cityDeparture,
     cityArrival,
     hotel,
@@ -40,10 +41,10 @@ const PreviewCard = memo(({ item, className }: PreviewCardProps) => {
       <div className={cls.previewContent}>
         <div className={cls.previewHeader}>
           <Heading className={cls.previewTitle}>{hotel}</Heading>
-          <Rating rating={rating} />
+          <Rating rating={rating} shorten={true} />
         </div>
         <PreviewDate dateDeparture={dateDeparture} dateArrival={dateArrival} />
-        <PreviewRoute cityDeparture={cityDeparture} cityArrival={cityArrival} />
+        <PreviewRoute cityDeparture={cityDeparture} cityArrival={cityArrival} shorten={true} />
         <div className={cls.previewFooter}>
           <Paragraph className={cls.previewGuests}>{guests} guests</Paragraph>
           <Heading className={cls.previewPrice}>{currency} {price}</Heading>

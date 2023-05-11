@@ -2,6 +2,7 @@ import React from 'react';
 
 export interface TourType {
   id: number;
+  name: string;
   cityDeparture: string;
   cityArrival: string;
   hotel: string;

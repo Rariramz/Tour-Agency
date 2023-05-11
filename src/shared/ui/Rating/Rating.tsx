@@ -6,15 +6,16 @@ import cls from './Rating.module.scss';
 interface RatingProps {
   className?: string;
   rating: number;
+  shorten?: boolean;
 }
 
-const Rating = memo(({ rating, className }: RatingProps) => {
+const Rating = memo(({ rating, className, shorten }: RatingProps) => {
   return (
     <div className={classNames(cls.Rating, {}, [className ?? ''])}>
-      <span>(</span>
-      <Star />
+      {shorten && <span>(</span>}
+      <Star width={shorten ? 14 : 16} height={shorten ? 14 : 16} />
       <span>{rating}</span>
-      <span>)</span>
+      {shorten && <span>)</span>}
     </div>
   );
 });

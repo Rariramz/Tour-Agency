@@ -8,13 +8,20 @@ interface PreviewRouteProps {
   cityDeparture: string;
   cityArrival: string;
   className?: string;
+  shorten?: boolean;
 }
 
-const PreviewRoute = memo(({ cityDeparture, cityArrival, className }: PreviewRouteProps) => {
+const PreviewRoute = memo(({ cityDeparture, cityArrival, className, shorten }: PreviewRouteProps) => {
   return (
     <div className={classNames(cls.PreviewRoute, {}, [className ?? ''])}>
       <PlaneIcon />
-      <Paragraph className={cls.FromTo} ><strong>{cityDeparture}</strong> - <strong>{cityArrival}</strong></Paragraph>
+      {
+        shorten ? (
+          <Paragraph className={cls.FromTo}><strong>{cityDeparture}</strong> - <strong>{cityArrival}</strong></Paragraph>
+        ) : (
+          <Paragraph className={cls.FromTo}>From <strong>{cityDeparture} (Russia)</strong> to <strong>{cityArrival} (Russia)</strong></Paragraph>
+        )
+      }
     </div>
   );
 });
