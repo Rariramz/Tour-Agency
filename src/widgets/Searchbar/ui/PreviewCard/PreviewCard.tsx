@@ -6,9 +6,9 @@ import { Paragraph } from '../../../../shared/ui/Paragraph/Paragraph';
 import { Rating } from '../../../../shared/ui/Rating/Rating';
 import { TourType } from '../../model/types/searchbar';
 import { Card } from '../../../../shared/ui/Card/Card';
+import { TourRoute } from '../../../../shared/ui/TourRoute/TourRoute';
+import { TourDates } from '../../../../shared/ui/TourDates';
 import cls from './PreviewCard.module.scss';
-import { PreviewRoute } from '../PreviewRoute/PreviewRoute';
-import { PreviewDate } from '../PreviewDate/PreviewDate';
 
 interface PreviewCardProps {
   item: TourType;
@@ -43,8 +43,8 @@ const PreviewCard = memo(({ item, className }: PreviewCardProps) => {
           <Heading className={cls.previewTitle}>{hotel}</Heading>
           <Rating rating={rating} shorten={true} />
         </div>
-        <PreviewDate dateDeparture={dateDeparture} dateArrival={dateArrival} />
-        <PreviewRoute cityDeparture={cityDeparture} cityArrival={cityArrival} shorten={true} />
+        <TourDates dateDeparture={dateDeparture} dateArrival={dateArrival} />
+        <TourRoute cityDeparture={cityDeparture} cityArrival={cityArrival} shorten={true} />
         <div className={cls.previewFooter}>
           <Paragraph className={cls.previewGuests}>{guests} guests</Paragraph>
           <Heading className={cls.previewPrice}>{currency} {price}</Heading>

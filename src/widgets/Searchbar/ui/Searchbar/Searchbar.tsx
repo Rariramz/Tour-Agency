@@ -1,6 +1,6 @@
 import { memo, useMemo, useState } from 'react';
 import { classNames } from '../../../../shared/lib/classNames/classNames';
-import { Search } from '../Search/Search';
+import { Search } from '../../../../features/search/Search/ui/Search';
 import { getTours } from '../../model/selectors/getTours';
 import { PreviewCard } from '../PreviewCard/PreviewCard';
 import cls from './Searchbar.module.scss';

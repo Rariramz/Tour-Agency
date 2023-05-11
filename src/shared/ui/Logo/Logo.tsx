@@ -1,6 +1,6 @@
 import { memo } from 'react';
-import { classNames } from '../../../../shared/lib/classNames/classNames';
-import logo from '../../../../shared/assets/logo.png';
+import { classNames } from '../../lib/classNames/classNames';
+import logo from '../../../shared/assets/logo.png';
 import cls from './Logo.module.scss';
 
 interface LogoProps {

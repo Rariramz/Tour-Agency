@@ -1,0 +1,30 @@
+.Row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.left {
+  justify-content: flex-start;
+}
+
+.right {
+  justify-content: flex-end;
+}
+
+.center {
+  justify-content: center;
+}
+
+.gap_m {
+  gap: 2px;
+}
+
+.gap_l {
+  gap: 4px;
+}
+
+.gap_xl {
+  gap: 8px;
+}

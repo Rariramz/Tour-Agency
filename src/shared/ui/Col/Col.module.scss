@@ -1,0 +1,30 @@
+.Col {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.left {
+  align-items: flex-start;
+}
+
+.right {
+  align-items: flex-end;
+}
+
+.center {
+  align-items: center;
+}
+
+.gap_m {
+  gap: 2px;
+}
+
+.gap_l {
+  gap: 4px;
+}
+
+.gap_xl {
+  gap: 8px;
+}

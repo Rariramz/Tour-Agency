@@ -7,11 +7,10 @@ import LikeIcon from '../../../shared/assets/like.svg';
 import PinIcon from '../../../shared/assets/pin.svg';
 import { Paragraph } from '../../../shared/ui/Paragraph/Paragraph';
 import { Rating } from '../../../shared/ui/Rating/Rating';
-import { PreviewDate } from '../../Searchbar/ui/PreviewDate/PreviewDate';
-import { PreviewRoute } from '../../Searchbar/ui/PreviewRoute/PreviewRoute';
-import cls from './TourCard.module.scss';
-import calendarImage from '../../../shared/assets/calendarImage.png';
+import { TourRoute } from '../../../shared/ui/TourRoute/TourRoute';
 import { Button, ButtonTheme } from '../../../shared/ui/Button/Button';
+import { TourDates } from '../../../shared/ui/TourDates';
+import cls from './TourCard.module.scss';
 
 interface TourCardProps {
   className?: string;
@@ -51,8 +50,8 @@ const TourCard = memo(({ className }: TourCardProps) => {
         </div>
       </div>
       <div className={cls.tourCardContent}>
-        <PreviewRoute cityDeparture={cityDeparture} cityArrival={cityArrival} />
-        <PreviewDate dateDeparture={dateDeparture} dateArrival={dateArrival} />
+        <TourRoute cityDeparture={cityDeparture} cityArrival={cityArrival} />
+        <TourDates dateDeparture={dateDeparture} dateArrival={dateArrival} />
         <Paragraph>{description}</Paragraph>
         <div className={cls.tourCardPriceDiv}>
           <Heading>{currency} {price}</Heading>
