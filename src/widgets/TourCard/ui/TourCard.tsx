@@ -3,7 +3,6 @@ import { classNames } from '../../../shared/lib/classNames/classNames';
 import { getTour } from '../model/selectors/getTour';
 import { Image } from '../../../shared/ui/Image/Image';
 import { Heading } from '../../../shared/ui/Heading/Heading';
-import LikeIcon from '../../../shared/assets/like.svg';
 import PinIcon from '../../../shared/assets/pin.svg';
 import { Paragraph } from '../../../shared/ui/Paragraph/Paragraph';
 import { Rating } from '../../../shared/ui/Rating/Rating';
@@ -14,6 +13,7 @@ import { Card, CardLandscape } from '../../../shared/ui/Card/Card';
 import { Row, RowAlign, RowGapSize } from '../../../shared/ui/Row/Row';
 import { Col, ColGapSize } from '../../../shared/ui/Col/Col';
 import cls from './TourCard.module.scss';
+import { AddToWishlistButton } from '../../../features/wishlist/AddToWishlist/ui/AddToWishlistButton';
 
 interface TourCardProps {
   className?: string;
@@ -42,7 +42,7 @@ const TourCard = memo(({ className }: TourCardProps) => {
       <Card className={classNames(cls.TourCard, {}, [className ?? ''])} landscape={CardLandscape.VERTICAL}>
         <Col className={cls.tourCardImageContainer}>
           <div className={cls.tourCardLikeDiv}>
-            <LikeIcon />
+            <AddToWishlistButton tourId={id} />
           </div>
           <Image src={image} />
           <Row className={cls.tourCardRatingDiv} align={RowAlign.BETWEEN}>
