@@ -1,2 +1,9 @@
 .AddToWishlistButton {
+  cursor: pointer;
+}
+
+.on {
+  svg path {
+    fill: var(--red-color);
+  }
 }
