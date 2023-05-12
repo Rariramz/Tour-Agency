@@ -31,8 +31,8 @@ export const Row = memo((props: RowProps) => {
     children
   } = props;
   return (
-    <p className={classNames(cls.Row, {}, [className ?? '', cls[align], cls[gapSize]])}>
+    <div className={classNames(cls.Row, {}, [className ?? '', cls[align], cls[gapSize]])}>
       {children}
-    </p>
+    </div>
   );
 });

@@ -30,8 +30,8 @@ export const Col = memo((props: ColProps) => {
     children
   } = props;
   return (
-    <p className={classNames(cls.Col, {}, [className ?? '', cls[align], cls[gapSize]])}>
+    <div className={classNames(cls.Col, {}, [className ?? '', cls[align], cls[gapSize]])}>
       {children}
-    </p>
+    </div>
   );
 });
