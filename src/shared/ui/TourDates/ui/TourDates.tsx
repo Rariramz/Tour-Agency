@@ -3,6 +3,7 @@ import { classNames } from '../../../../shared/lib/classNames/classNames';
 import CalendarIcon from '../../../../shared/assets/calendar.svg';
 import cls from './TourDates.module.scss';
 import { Paragraph } from '../../../../shared/ui/Paragraph/Paragraph';
+import { Row, RowGapSize } from '../../Row/Row';
 
 interface TourDatesProps {
   dateDeparture: string;
@@ -12,10 +13,10 @@ interface TourDatesProps {
 
 const TourDates = memo(({ dateDeparture, dateArrival, className }: TourDatesProps) => {
   return (
-    <div className={classNames(cls.TourDates, {}, [className ?? ''])}>
+    <Row className={classNames(cls.TourDates, {}, [className ?? ''])} gapSize={RowGapSize.L} >
       <CalendarIcon />
       <Paragraph className={cls.FromTo} >{dateDeparture} - {dateArrival}</Paragraph>
-    </div>
+    </Row>
   );
 });
 

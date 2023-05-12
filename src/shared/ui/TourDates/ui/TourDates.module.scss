@@ -1,11 +1,11 @@
 .TourDates {
-  background: #f4f5f7;
+  background: var(--icon-bg-color);
   border-radius: 4px;
   padding: 4px 4px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 4px;
+
+  svg path {
+    fill: var(--icon-color);
+  }
 }
 
 .FromTo {
@@ -14,5 +14,4 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
-  color: var(--black-color);
 }
