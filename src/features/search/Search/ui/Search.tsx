@@ -14,7 +14,7 @@ interface SearchProps {
 const Search = memo(({ className, value, onChange, onSubmit }: SearchProps) => {
   return (
     <div className={classNames(cls.Search, {}, [className ?? ''])}>
-      {onSubmit && <SearchIcon onClick={() => onSubmit(value)} />}
+      <SearchIcon className={cls.SearchIcon} onClick={onSubmit ? (() => onSubmit(value)) : (() => false)} />
       <Input
         placeholder='Throne Beach Resort & SPA...'
         className={cls.searchInput}

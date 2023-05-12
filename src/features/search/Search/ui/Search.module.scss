@@ -9,12 +9,15 @@
   padding: 12px;
   gap: 12px;
   height: 48px;
+}
 
-  svg path {
+.SearchIcon {
+  cursor: pointer;
+
+  path {
     stroke: var(--icon-color);
   }
-
-  svg:hover {
+  &:hover {
     opacity: 0.7;
   }
 }
