@@ -17,22 +17,11 @@
 }
 
 .previewContent {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 5px;
-  position: relative;
-  height: 100%;
+  height: 120px;
 }
 
 .previewHeader {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 2px;
 }
 
 .previewTitle {
@@ -61,8 +50,6 @@
 
 .previewFooter {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
   position: absolute;
   bottom: 0;
 }

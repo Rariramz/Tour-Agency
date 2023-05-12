@@ -10,6 +10,9 @@ import { Rating } from '../../../shared/ui/Rating/Rating';
 import { TourRoute } from '../../../shared/ui/TourRoute/TourRoute';
 import { Button, ButtonTheme } from '../../../shared/ui/Button/Button';
 import { TourDates } from '../../../shared/ui/TourDates';
+import { Card, CardLandscape } from '../../../shared/ui/Card/Card';
+import { Row, RowAlign, RowGapSize } from '../../../shared/ui/Row/Row';
+import { Col, ColGapSize } from '../../../shared/ui/Col/Col';
 import cls from './TourCard.module.scss';
 
 interface TourCardProps {
@@ -35,30 +38,32 @@ const TourCard = memo(({ className }: TourCardProps) => {
   } = tour;
 
   return (
-    <div className={classNames(cls.TourCard, {}, [className ?? ''])}>
-      <div className={cls.tourCardImageContainer}>
-        <div className={cls.tourCardLikeDiv}>
-          <LikeIcon />
-        </div>
-        <Image src={image} className={cls.tourCardImage} />
-        <div className={cls.tourCardRatingDiv}>
-          <div className={cls.tourCardHotelDiv}>
-            <PinIcon />
-            <Heading>{hotel}</Heading>
+    <div className={classNames(cls.ScrollDiv, {}, [className ?? ''])}>
+      <Card className={classNames(cls.TourCard, {}, [className ?? ''])} landscape={CardLandscape.VERTICAL}>
+        <Col className={cls.tourCardImageContainer}>
+          <div className={cls.tourCardLikeDiv}>
+            <LikeIcon />
           </div>
-          <Rating rating={rating} />
-        </div>
-      </div>
-      <div className={cls.tourCardContent}>
-        <TourRoute cityDeparture={cityDeparture} cityArrival={cityArrival} />
-        <TourDates dateDeparture={dateDeparture} dateArrival={dateArrival} />
-        <Paragraph>{description}</Paragraph>
-        <div className={cls.tourCardPriceDiv}>
-          <Heading>{currency} {price}</Heading>
-          <Paragraph>({guests} guests)</Paragraph>
-        </div>
-        <Button theme={ButtonTheme.CONTAIN} fullwidth={true}>BUY</Button>
-      </div>
+          <Image src={image} />
+          <Row className={cls.tourCardRatingDiv} align={RowAlign.BETWEEN}>
+            <Row gapSize={RowGapSize.XL}>
+              <PinIcon />
+              <Heading>{hotel}</Heading>
+            </Row>
+            <Rating rating={rating} />
+          </Row>
+        </Col>
+        <Col className={cls.tourCardContent} gapSize={ColGapSize.XL}>
+          <TourRoute cityDeparture={cityDeparture} cityArrival={cityArrival} />
+          <TourDates dateDeparture={dateDeparture} dateArrival={dateArrival} />
+          <Paragraph>{description}</Paragraph>          
+          <Row gapSize={RowGapSize.XL}>
+            <Heading>{currency} {price}</Heading>
+            <Paragraph>({guests} guests)</Paragraph>
+          </Row>
+          <Button theme={ButtonTheme.CONTAIN} fullwidth={true}>BUY</Button>
+        </Col>
+      </Card>
     </div>
   );
 });

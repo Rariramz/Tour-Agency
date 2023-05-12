@@ -17,6 +17,10 @@
   justify-content: center;
 }
 
+.between {
+  justify-content: space-between;
+}
+
 .gap_m {
   gap: 2px;
 }
@@ -27,4 +31,8 @@
 
 .gap_xl {
   gap: 8px;
+}
+
+.gap_xxl {
+  gap: 16px;
 }

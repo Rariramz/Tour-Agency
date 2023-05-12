@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  position: relative;
 }
 
 .left {
@@ -27,4 +28,8 @@
 
 .gap_xl {
   gap: 8px;
+}
+
+.gap_xxl {
+  gap: 16px;
 }

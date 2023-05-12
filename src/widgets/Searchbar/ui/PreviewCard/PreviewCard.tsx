@@ -8,6 +8,9 @@ import { TourType } from '../../model/types/searchbar';
 import { Card } from '../../../../shared/ui/Card/Card';
 import { TourRoute } from '../../../../shared/ui/TourRoute/TourRoute';
 import { TourDates } from '../../../../shared/ui/TourDates';
+import { Col } from '../../../../shared/ui/Col/Col';
+import { ColGapSize } from '../../../../shared/ui/Col/Col';
+import { Row, RowAlign } from '../../../../shared/ui/Row/Row';
 import cls from './PreviewCard.module.scss';
 
 interface PreviewCardProps {
@@ -38,18 +41,20 @@ const PreviewCard = memo(({ item, className }: PreviewCardProps) => {
         src={image}
         className={cls.previewImage}
       />
-      <div className={cls.previewContent}>
-        <div className={cls.previewHeader}>
+      <Col className={cls.previewContent} gapSize={ColGapSize.XL}>
+        <Row className={cls.previewHeader} align={RowAlign.BETWEEN}>
           <Heading className={cls.previewTitle}>{hotel}</Heading>
           <Rating rating={rating} shorten={true} />
-        </div>
-        <TourDates dateDeparture={dateDeparture} dateArrival={dateArrival} />
-        <TourRoute cityDeparture={cityDeparture} cityArrival={cityArrival} shorten={true} />
-        <div className={cls.previewFooter}>
+        </Row>
+        <Col gapSize={ColGapSize.L}>
+          <TourDates dateDeparture={dateDeparture} dateArrival={dateArrival} />
+          <TourRoute cityDeparture={cityDeparture} cityArrival={cityArrival} shorten={true} />
+        </Col>
+        <Row className={cls.previewFooter} align={RowAlign.BETWEEN}>
           <Paragraph className={cls.previewGuests}>{guests} guests</Paragraph>
           <Heading className={cls.previewPrice}>{currency} {price}</Heading>
-        </div>
-      </div>
+        </Row>
+      </Col>
     </Card>
   );
 });

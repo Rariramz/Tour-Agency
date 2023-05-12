@@ -2,10 +2,11 @@ import { ReactNode, memo } from 'react';
 import { classNames } from '../../lib/classNames/classNames';
 import cls from './Col.module.scss';
 
-export enum GapSize {
+export enum ColGapSize {
   M = 'gap_m',
   L = 'gap_l',
-  XL = 'gap_xl'
+  XL = 'gap_xl',
+  XXL = 'gap_xxl'
 }
 
 export enum ColAlign {
@@ -18,14 +19,14 @@ interface ColProps {
   className?: string;
   children?: ReactNode;
   align?: ColAlign;
-  gapSize?: GapSize;
+  gapSize?: ColGapSize;
 }
 
 export const Col = memo((props: ColProps) => {
   const {
     className,
     align = ColAlign.LEFT,
-    gapSize = GapSize.M,
+    gapSize = ColGapSize.M,
     children
   } = props;
   return (

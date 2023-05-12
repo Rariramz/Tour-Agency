@@ -2,30 +2,32 @@ import { ReactNode, memo } from 'react';
 import { classNames } from '../../lib/classNames/classNames';
 import cls from './Row.module.scss';
 
-export enum GapSize {
+export enum RowGapSize {
   M = 'gap_m',
   L = 'gap_l',
-  XL = 'gap_xl'
+  XL = 'gap_xl',
+  XXL = 'gap_xxl'
 }
 
 export enum RowAlign {
   RIGHT = 'right',
   LEFT = 'left',
-  CENTER = 'center'
+  CENTER = 'center',
+  BETWEEN = 'between',
 }
 
 interface RowProps {
   className?: string;
   children?: ReactNode;
   align?: RowAlign;
-  gapSize?: GapSize;
+  gapSize?: RowGapSize;
 }
 
 export const Row = memo((props: RowProps) => {
   const {
     className,
     align = RowAlign.LEFT,
-    gapSize = GapSize.M,
+    gapSize = RowGapSize.M,
     children
   } = props;
   return (
