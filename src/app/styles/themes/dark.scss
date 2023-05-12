@@ -14,4 +14,9 @@
   --icon-color: var(--darkmode-color);
   --icon-bg-color: var(--black-light-color);
   --switcher-color: var(--darkmode-color);
+
+  --gradient-color: linear-gradient(to top, #cc208e 0%, #6713d2 100%);
+  // --gradient-color: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+  // --gradient-color: linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%);
+  // --gradient-color: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #35eb93 100%);
 }
