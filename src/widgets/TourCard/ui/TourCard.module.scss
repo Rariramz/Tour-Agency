@@ -36,6 +36,12 @@
   bottom: 0;
 }
 
+.PinIcon {
+  path {
+    fill: var(--icon-color);
+  }
+}
+
 .tourCardContent {
   padding: 12px;
 }

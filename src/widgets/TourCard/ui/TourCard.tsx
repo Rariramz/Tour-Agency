@@ -47,7 +47,7 @@ const TourCard = memo(({ className }: TourCardProps) => {
           <Image src={image} />
           <Row className={cls.tourCardRatingDiv} align={RowAlign.BETWEEN}>
             <Row gapSize={RowGapSize.XL}>
-              <PinIcon />
+              <PinIcon className={cls.PinIcon}/>
               <Heading>{hotel}</Heading>
             </Row>
             <Rating rating={rating} />
