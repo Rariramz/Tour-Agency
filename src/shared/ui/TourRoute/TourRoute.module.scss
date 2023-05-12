@@ -1,13 +1,16 @@
 .TourRoute {
   border: 1px solid var(--secondary-color);
   border-radius: 8px;
-  width: 100%;
   padding: 2px 8px;
 
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 4px;
+  svg path {
+    fill: var(--icon-color);
+  }
+}
+
+.PlaneIcon {
+  width: 24px;
+  height: 24px;
 }
 
 .FromTo {
