@@ -1,4 +1,4 @@
-import { memo, useMemo, useState } from 'react';
+import { memo, useEffect, useMemo, useState } from 'react';
 import { classNames } from '../../../shared/lib/classNames/classNames';
 import { getTour } from '../model/selectors/getTour';
 import { Image } from '../../../shared/ui/Image/Image';
@@ -14,6 +14,7 @@ import { Row, RowAlign, RowGapSize } from '../../../shared/ui/Row/Row';
 import { Col, ColGapSize } from '../../../shared/ui/Col/Col';
 import cls from './TourCard.module.scss';
 import { AddToWishlistButton } from '../../../features/wishlist/AddToWishlist/ui/AddToWishlistButton';
+import { Counter } from '../../../shared/ui/Counter/Counter';
 
 interface TourCardProps {
   className?: string;
@@ -36,6 +37,12 @@ const TourCard = memo(({ className }: TourCardProps) => {
     guests,
     rating,
   } = tour;
+  const [guestsAmount, setGuestsAmount] = useState<number>(guests);
+  const [tourPrice, setTourPrice] = useState<number>(price);
+
+  useEffect(() => {
+    setTourPrice(price / 2 * guestsAmount);
+  }, [guestsAmount]);
 
   return (
     <div className={classNames(cls.ScrollDiv, {}, [className ?? ''])}>
@@ -58,8 +65,8 @@ const TourCard = memo(({ className }: TourCardProps) => {
           <TourDates dateDeparture={dateDeparture} dateArrival={dateArrival} />
           <Paragraph>{description}</Paragraph>          
           <Row gapSize={RowGapSize.XL}>
-            <Heading>{currency} {price}</Heading>
-            <Paragraph>({guests} guests)</Paragraph>
+            <Heading>{currency} {tourPrice}</Heading>
+            <Counter count={guestsAmount} setCount={setGuestsAmount} unit={'guest(s)'} min={1} />
           </Row>
           <Button theme={ButtonTheme.CONTAIN} fullwidth={true}>BUY</Button>
         </Col>
