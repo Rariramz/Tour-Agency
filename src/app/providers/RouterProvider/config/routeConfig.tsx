@@ -1,6 +1,6 @@
 import { RouteObject } from 'react-router-dom';
 import { RootPage } from '../../../../pages/RootPage/index';
-import { MainPage } from '../../../../pages/MainPage';
+import { HomePage } from '../../../../pages/HomePage';
 import { ExplorePage } from '../../../../pages/ExplorePage';
 import { NotFoundPage } from '../../../../pages/NotFoundPage';
 import { ErrorPage } from '../../../../pages/ErrorPage';
@@ -13,7 +13,7 @@ export const routeConfig: RouteObject[] = [
     element: <RootPage />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <MainPage /> },
+      { index: true, element: <HomePage /> },
       {
         path: RoutePath[AppRoutes.EXPLORE],
         element: <ExplorePage />
