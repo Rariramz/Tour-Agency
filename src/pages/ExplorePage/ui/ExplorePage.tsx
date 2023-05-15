@@ -14,7 +14,9 @@ const ExplorePage = () => {
       {/* <div className={cls.mapDiv}>
         {t('Страница туров')}
       </div> */}
-      <TourCard />
+      <div className={cls.ScrollDiv}>
+        <TourCard className={cls.exploreTourCard}/>
+      </div>
       <Globe />
     </div>
   );

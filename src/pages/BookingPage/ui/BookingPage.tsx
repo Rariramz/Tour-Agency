@@ -1,21 +1,23 @@
 import { classNames } from '../../../shared/lib/classNames/classNames';
-import { ReactCalendar } from '../../../widgets/ReactCalendar/ui/ReactCalendar';
 import { Col, ColGapSize } from '../../../shared/ui/Col/Col';
 import { Heading } from '../../../shared/ui/Heading/Heading';
+import { TourCard } from '../../../widgets/TourCard';
+import { Wishlist } from '../../../widgets/Wishlist';
 import cls from './BookingPage.module.scss';
 
-const ExplorePage = () => {
+const BookingPage = () => {
   return (
-    <div className={classNames(cls.explorePage)}>
+    <div className={classNames(cls.bookingPage)}>
       <Col className={cls.leftCol} gapSize={ColGapSize.XXL}>
-        Booking Page
+        <Heading>Liked tours</Heading>
+        <Wishlist className={cls.bookingWishlist} />
       </Col>
       <Col className={cls.rightCol} gapSize={ColGapSize.XXL}>
-        <Heading>Calendar</Heading>
-        <ReactCalendar />
+        <Heading>Chosen tour</Heading>
+        <TourCard className={cls.bookingTourCard}/>
       </Col>
     </div>
   );
 };
 
-export default ExplorePage;
+export default BookingPage;

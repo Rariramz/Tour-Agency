@@ -8,3 +8,19 @@
   padding: 10px;
   position: relative;
 }
+
+.ScrollDiv {
+  z-index: 10;
+  width: calc(450px + 6px);
+  height: calc(100% - 20px);
+  position: fixed;
+  right: 4px;
+  overflow: hidden;
+  &:hover {
+    overflow-y: auto;
+  }
+}
+
+.exploreTourCard {
+  width: 450px;
+}

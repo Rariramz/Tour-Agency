@@ -45,33 +45,31 @@ const TourCard = memo(({ className }: TourCardProps) => {
   }, [guestsAmount]);
 
   return (
-    <div className={classNames(cls.ScrollDiv, {}, [className ?? ''])}>
-      <Card className={classNames(cls.TourCard, {}, [className ?? ''])} landscape={CardLandscape.VERTICAL}>
-        <Col className={cls.tourCardImageContainer}>
-          <div className={cls.tourCardLikeDiv}>
-            <AddToWishlistButton tourId={id} />
-          </div>
-          <Image src={image} />
-          <Row className={cls.tourCardRatingDiv} align={RowAlign.BETWEEN}>
-            <Row gapSize={RowGapSize.XL}>
-              <PinIcon className={cls.PinIcon}/>
-              <Heading>{hotel}</Heading>
-            </Row>
-            <Rating rating={rating} />
-          </Row>
-        </Col>
-        <Col className={cls.tourCardContent} gapSize={ColGapSize.XL}>
-          <TourRoute cityDeparture={cityDeparture} cityArrival={cityArrival} />
-          <TourDates dateDeparture={dateDeparture} dateArrival={dateArrival} />
-          <Paragraph>{description}</Paragraph>          
+    <Card className={classNames(cls.TourCard, {}, [className ?? ''])} landscape={CardLandscape.VERTICAL}>
+      <Col className={cls.tourCardImageContainer}>
+        <div className={cls.tourCardLikeDiv}>
+          <AddToWishlistButton tourId={id} />
+        </div>
+        <Image src={image} />
+        <Row className={cls.tourCardRatingDiv} align={RowAlign.BETWEEN}>
           <Row gapSize={RowGapSize.XL}>
-            <Heading>{currency} {tourPrice}</Heading>
-            <Counter count={guestsAmount} setCount={setGuestsAmount} unit={'guest(s)'} min={1} />
+            <PinIcon className={cls.PinIcon}/>
+            <Heading>{hotel}</Heading>
           </Row>
-          <Button theme={ButtonTheme.CONTAIN} fullwidth={true}>BUY</Button>
-        </Col>
-      </Card>
-    </div>
+          <Rating rating={rating} />
+        </Row>
+      </Col>
+      <Col className={cls.tourCardContent} gapSize={ColGapSize.XL}>
+        <TourRoute cityDeparture={cityDeparture} cityArrival={cityArrival} />
+        <TourDates dateDeparture={dateDeparture} dateArrival={dateArrival} />
+        <Paragraph>{description}</Paragraph>          
+        <Row gapSize={RowGapSize.XL}>
+          <Heading>{currency} {tourPrice}</Heading>
+          <Counter count={guestsAmount} setCount={setGuestsAmount} unit={'guest(s)'} min={1} />
+        </Row>
+        <Button theme={ButtonTheme.CONTAIN} fullwidth={true}>BUY</Button>
+      </Col>
+    </Card>
   );
 });
 

@@ -1,4 +1,4 @@
-.bookingPage {
+.homePage {
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -10,19 +10,9 @@
 }
 
 .leftCol {
-  width: 400px;
-}
-
-.bookingWishlist {
-  box-sizing: border-box;
-  position: relative;
-  width: 400px;
+  width: 70%;
 }
 
 .rightCol {
-  width: 100%;
-}
-
-.bookingTourCard {
-  width: 100%;
+  width: 30%;
 }
