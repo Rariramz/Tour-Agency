@@ -4,6 +4,7 @@ import { MainPage } from '../../../../pages/MainPage';
 import { ExplorePage } from '../../../../pages/ExplorePage';
 import { NotFoundPage } from '../../../../pages/NotFoundPage';
 import { ErrorPage } from '../../../../pages/ErrorPage';
+import { BookingPage } from '../../../../pages/BookingPage';
 import { AppRoutes, RoutePath } from '../../../../shared/config/route/route';
 
 export const routeConfig: RouteObject[] = [
@@ -16,6 +17,10 @@ export const routeConfig: RouteObject[] = [
       {
         path: RoutePath[AppRoutes.EXPLORE],
         element: <ExplorePage />
+      },
+      {
+        path: RoutePath[AppRoutes.BOOKING],
+        element: <BookingPage />
       },
       {
         path: RoutePath[AppRoutes.NOT_FOUND],

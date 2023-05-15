@@ -20,6 +20,10 @@ const buildLoaders = ({ isDev }: BuildOptions): webpack.RuleSetRule[] => {
       use: ['ts-loader']
     },
     {
+      test: /\.css$/i,
+      use: [isDev ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader']
+    },
+    {
       test: /\.s[ac]ss$/i,
       use: [
         isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
