@@ -140,6 +140,7 @@
 }
 .react-calendar__tile:enabled:focus {
   background-color: var(--mustard-color);
+  color: var(--black-color);
 }
 
 .react-calendar__tile--now {
