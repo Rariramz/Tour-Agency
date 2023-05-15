@@ -33,6 +33,7 @@
   margin: 0;
   border: 0;
   outline: none;
+  border-radius: 12px;
 }
 
 .react-calendar button:enabled:hover {
@@ -135,6 +136,7 @@
 
 .react-calendar__tile:enabled:hover {
   background: var(--light-blue-color);
+  color: var(--black-color);
 }
 .react-calendar__tile:enabled:focus {
   background-color: var(--mustard-color);
