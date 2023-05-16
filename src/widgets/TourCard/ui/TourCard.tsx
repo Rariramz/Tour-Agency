@@ -15,6 +15,7 @@ import { Col, ColGapSize } from '../../../shared/ui/Col/Col';
 import cls from './TourCard.module.scss';
 import { AddToWishlistButton } from '../../../features/wishlist/AddToWishlist/ui/AddToWishlistButton';
 import { Counter } from '../../../shared/ui/Counter/Counter';
+import { Link } from 'react-router-dom';
 
 interface TourCardProps {
   className?: string;
@@ -68,7 +69,7 @@ const TourCard = memo(({ className }: TourCardProps) => {
             <Heading>{currency} {tourPrice}</Heading>
             <Counter count={guestsAmount} setCount={setGuestsAmount} unit={'guest(s)'} min={1} />
           </Row>
-          <Button theme={ButtonTheme.CONTAIN} fullwidth={true}>BUY</Button>
+          <Link className={cls.Link} to={`${id}`}><Button fullwidth={true}>Read more</Button></Link>
         </Col>
       </Col>
     </Card>
