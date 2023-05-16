@@ -37,24 +37,26 @@ const PreviewCard = memo(({ item, className }: PreviewCardProps) => {
 
   return (
     <Card className={classNames(cls.PreviewCard, {}, [className ?? ''])}>
-      <Image
-        src={image}
-        className={cls.previewImage}
-      />
-      <Col className={cls.previewContent} gapSize={ColGapSize.XL}>
-        <Row className={cls.previewHeader} align={RowAlign.BETWEEN}>
-          <Heading className={cls.previewTitle}>{hotel}</Heading>
-          <Rating rating={rating} shorten={true} />
-        </Row>
-        <Col gapSize={ColGapSize.L}>
-          <TourDates dateDeparture={dateDeparture} dateArrival={dateArrival} />
-          <TourRoute cityDeparture={cityDeparture} cityArrival={cityArrival} shorten={true} />
+      <Row className={cls.PreviewCardRow}>
+        <Image
+          src={image}
+          className={cls.previewImage}
+        />
+        <Col className={cls.previewContent} gapSize={ColGapSize.XL}>
+          <Row className={cls.previewHeader} align={RowAlign.BETWEEN}>
+            <Heading className={cls.previewTitle}>{hotel}</Heading>
+            <Rating rating={rating} shorten={true} />
+          </Row>
+          <Col gapSize={ColGapSize.L}>
+            <TourDates dateDeparture={dateDeparture} dateArrival={dateArrival} />
+            <TourRoute cityDeparture={cityDeparture} cityArrival={cityArrival} shorten={true} />
+          </Col>
+          <Row className={cls.previewFooter} align={RowAlign.BETWEEN}>
+            <Paragraph className={cls.previewGuests}>{guests} guests</Paragraph>
+            <Heading className={cls.previewPrice}>{currency} {price}</Heading>
+          </Row>
         </Col>
-        <Row className={cls.previewFooter} align={RowAlign.BETWEEN}>
-          <Paragraph className={cls.previewGuests}>{guests} guests</Paragraph>
-          <Heading className={cls.previewPrice}>{currency} {price}</Heading>
-        </Row>
-      </Col>
+      </Row>
     </Card>
   );
 });

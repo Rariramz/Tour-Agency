@@ -4,19 +4,8 @@
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
   border-radius: 12px;
   padding: 12px;
-  gap: 12px;
-}
 
-.vertical {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.horizontal {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
 }
