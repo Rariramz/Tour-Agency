@@ -3,6 +3,13 @@
   padding: 8px;
 }
 
+.TourCard.horizontal {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
 .tourCardImageContainer {
   max-height: 400px;
   position: relative;

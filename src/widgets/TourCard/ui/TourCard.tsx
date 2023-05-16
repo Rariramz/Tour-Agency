@@ -16,11 +16,17 @@ import cls from './TourCard.module.scss';
 import { AddToWishlistButton } from '../../../features/wishlist/AddToWishlist/ui/AddToWishlistButton';
 import { Counter } from '../../../shared/ui/Counter/Counter';
 
-interface TourCardProps {
-  className?: string;
+export enum TourCardLandscape {
+  HORIZONTAL = 'horizontal',
+  VERTICAL = 'vertical',
 }
 
-const TourCard = memo(({ className }: TourCardProps) => {
+interface TourCardProps {
+  className?: string;
+  landscape?: TourCardLandscape;
+}
+
+const TourCard = memo(({ className, landscape = TourCardLandscape.VERTICAL }: TourCardProps) => {
   const tour = getTour();
   const {
     id,
@@ -45,7 +51,7 @@ const TourCard = memo(({ className }: TourCardProps) => {
   }, [guestsAmount]);
 
   return (
-    <Card className={classNames(cls.TourCard, {}, [className ?? ''])} landscape={CardLandscape.VERTICAL}>
+    <Card className={classNames(cls.TourCard, { }, [className ?? '', cls[landscape]])} landscape={CardLandscape.VERTICAL}>
       <Col className={cls.tourCardImageContainer}>
         <div className={cls.tourCardLikeDiv}>
           <AddToWishlistButton tourId={id} />

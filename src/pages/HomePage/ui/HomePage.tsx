@@ -4,6 +4,8 @@ import { ReactCalendar } from '../../../widgets/ReactCalendar/ui/ReactCalendar';
 import { Col, ColGapSize } from '../../../shared/ui/Col/Col';
 import { Heading } from '../../../shared/ui/Heading/Heading';
 import cls from './HomePage.module.scss';
+import { TourCard } from '../../../widgets/TourCard';
+import { TourCardLandscape } from '../../../widgets/TourCard/ui/TourCard';
 
 const HomePage = () => {
   const { t } = useTranslation('main');
@@ -11,7 +13,7 @@ const HomePage = () => {
   return (
     <div className={classNames(cls.homePage)}>
       <Col className={cls.leftCol} gapSize={ColGapSize.XXL}>
-        Home Page
+        <TourCard landscape={TourCardLandscape.HORIZONTAL} />
       </Col>
       <Col className={cls.rightCol} gapSize={ColGapSize.XXL}>
         <Heading>Upcoming trips</Heading>
