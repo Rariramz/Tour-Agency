@@ -16,6 +16,7 @@ import cls from './TourCard.module.scss';
 import { AddToWishlistButton } from '../../../features/wishlist/AddToWishlist/ui/AddToWishlistButton';
 import { Counter } from '../../../shared/ui/Counter/Counter';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 interface TourCardProps {
   className?: string;
@@ -29,8 +30,8 @@ const TourCard = memo(({ className }: TourCardProps) => {
     cityDeparture,
     cityArrival,
     hotel,
-    dateDeparture,
-    dateArrival,
+    datesDeparture,
+    nightsAmounts,
     price,
     currency,
     description,
@@ -63,7 +64,7 @@ const TourCard = memo(({ className }: TourCardProps) => {
         </Col>
         <Col className={cls.tourCardContent} gapSize={ColGapSize.XL}>
           <TourRoute cityDeparture={cityDeparture} cityArrival={cityArrival} />
-          <TourDates dateDeparture={dateDeparture} dateArrival={dateArrival} />
+          <TourDates dateDeparture={datesDeparture[0]} dateArrival={moment(datesDeparture[0]).add('days', nightsAmounts[0]).format('YYYY-MM-DD')} />
           <Paragraph>{description}</Paragraph>          
           <Row gapSize={RowGapSize.XL}>
             <Heading>{currency} {tourPrice}</Heading>

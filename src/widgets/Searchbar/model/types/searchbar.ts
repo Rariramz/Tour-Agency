@@ -6,8 +6,8 @@ export interface TourType {
   cityDeparture: string;
   cityArrival: string;
   hotel: string;
-  dateDeparture: string;
-  dateArrival: string;
+  datesDeparture: string[];
+  nightsAmounts: number[];
   price: number;
   currency: string;
   description: string;

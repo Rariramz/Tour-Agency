@@ -4,16 +4,16 @@ import cls from './Select.module.scss';
 import { classNames } from '../../lib/classNames/classNames';
 
 export interface SelectOption {
-  value: string;
-  content: string;
+  value: string | number;
+  content: string | number;
 }
 
 interface SelectProps {
   className?: string;
   label?: string;
-  options?: SelectOption[];
-  value?: string;
-  onChange?: (value: string) => void;
+  options: SelectOption[];
+  value: string | number;
+  onChange?: (value: string | number) => void;
   readonly?: boolean;
 }
 
@@ -23,7 +23,7 @@ export const Select = memo((props: SelectProps) => {
 
   const optionsList = useMemo(
     () =>
-      options?.map((opt) => (
+      options.map((opt) => (
         <option
           key={opt.value}
           className={cls.option}

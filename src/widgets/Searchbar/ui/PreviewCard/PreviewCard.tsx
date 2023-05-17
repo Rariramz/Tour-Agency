@@ -12,6 +12,7 @@ import { Col } from '../../../../shared/ui/Col/Col';
 import { ColGapSize } from '../../../../shared/ui/Col/Col';
 import { Row, RowAlign } from '../../../../shared/ui/Row/Row';
 import cls from './PreviewCard.module.scss';
+import moment from 'moment';
 
 interface PreviewCardProps {
   item: TourType;
@@ -25,8 +26,8 @@ const PreviewCard = memo(({ item, className }: PreviewCardProps) => {
     cityDeparture,
     cityArrival,
     hotel,
-    dateDeparture,
-    dateArrival,
+    datesDeparture,
+    nightsAmounts,
     price,
     currency,
     description,
@@ -48,7 +49,7 @@ const PreviewCard = memo(({ item, className }: PreviewCardProps) => {
             <Rating rating={rating} shorten={true} />
           </Row>
           <Col gapSize={ColGapSize.L}>
-            <TourDates dateDeparture={dateDeparture} dateArrival={dateArrival} />
+            <TourDates dateDeparture={datesDeparture[0]} dateArrival={moment(datesDeparture[0]).add('days', nightsAmounts[0]).format('YYYY-MM-DD')} />
             <TourRoute cityDeparture={cityDeparture} cityArrival={cityArrival} shorten={true} />
           </Col>
           <Row className={cls.previewFooter} align={RowAlign.BETWEEN}>

@@ -9,6 +9,7 @@ import { Row, RowAlign } from '../../../../shared/ui/Row/Row';
 import { Col, ColGapSize } from '../../../../shared/ui/Col/Col';
 import { TourType } from '../../../Searchbar/model/types/searchbar';
 import cls from './DoneTourCard.module.scss';
+import moment from 'moment';
 
 interface DoneTourCardProps {
   className?: string;
@@ -22,8 +23,8 @@ const DoneTourCard = memo(({ item, className }: DoneTourCardProps) => {
     cityDeparture,
     cityArrival,
     hotel,
-    dateDeparture,
-    dateArrival,
+    datesDeparture,
+    nightsAmounts,
     price,
     currency,
     description,
@@ -39,7 +40,7 @@ const DoneTourCard = memo(({ item, className }: DoneTourCardProps) => {
           <Image className={cls.doneTourImage} src={image} />
           <Col gapSize={ColGapSize.L}>
             <Heading className={cls.doneTourHeading}>{cityArrival}</Heading>
-            <Paragraph className={cls.doneTourDates}>{dateDeparture} - {dateArrival}</Paragraph>
+            <Paragraph className={cls.doneTourDates}>{datesDeparture[0]} - {moment(datesDeparture[0]).add('day', nightsAmounts[0]).format('YYYY-MM-DD')}</Paragraph>
           </Col>
         </Row>
         <Button theme={ButtonTheme.CONTAIN}>Rate</Button>
