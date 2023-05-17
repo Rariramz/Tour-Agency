@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import { classNames } from '../../../shared/lib/classNames/classNames';
-import { ReactCalendar } from '../../../widgets/ReactCalendar/ui/ReactCalendar';
 import { Col, ColGapSize } from '../../../shared/ui/Col/Col';
 import { Heading } from '../../../shared/ui/Heading/Heading';
 import { DoneTours } from '../../../widgets/DoneTourCard';
@@ -17,7 +16,6 @@ const HomePage = () => {
       </Col>
       <Col className={cls.UpcomingTrips} gapSize={ColGapSize.XXL}>
         <Heading>Upcoming trips</Heading>
-        <ReactCalendar />
       </Col>
     </div>
   );
