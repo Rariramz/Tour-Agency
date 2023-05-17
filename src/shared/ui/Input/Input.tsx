@@ -7,7 +7,9 @@ import React, {
   useState
 } from 'react';
 import { classNames, Mods } from '../../lib/classNames/classNames';
+import CrossIcon from '../../assets/cross.svg';
 import cls from './Input.module.scss';
+import { Row, RowAlign } from '../Row/Row';
 
 type HTMLInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -16,8 +18,9 @@ type HTMLInputProps = Omit<
 
 interface InputProps extends HTMLInputProps {
   className?: string;
-  value?: string | number;
+  value: string | number;
   onChange?: (value: string) => void;
+  reset?: () => void;
   autofocus?: boolean;
   readonly?: boolean;
 }
@@ -27,6 +30,7 @@ export const Input = memo((props: InputProps) => {
     className,
     value,
     onChange,
+    reset,
     type = 'text',
     autofocus,
     readonly,
@@ -50,14 +54,17 @@ export const Input = memo((props: InputProps) => {
   const mods = useMemo(() => ({ [cls.readonly]: readonly }), [readonly]);
 
   return (
-    <input
-      ref={ref}
-      className={classNames(cls.Input, mods, [className ?? ''])}
-      value={value}
-      onChange={onChangeHandler}
-      type={type}
-      readOnly={readonly}
-      {...otherProps}
-    />
+    <Row className={classNames(cls.InputWrapper, mods, [className ?? ''])} align={RowAlign.BETWEEN}>
+      <input
+        className={cls.Input}
+        ref={ref}
+        value={value}
+        onChange={onChangeHandler}
+        type={type}
+        readOnly={readonly}
+        {...otherProps}
+      />
+      {value && <CrossIcon onClick={reset} />}
+    </Row>
   );
 });

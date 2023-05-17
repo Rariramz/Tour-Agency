@@ -49,7 +49,7 @@ const PreviewCard = memo(({ item, className }: PreviewCardProps) => {
             <Rating rating={rating} shorten={true} />
           </Row>
           <Col gapSize={ColGapSize.L}>
-            <TourDates dateDeparture={datesDeparture[0]} dateArrival={moment(datesDeparture[0]).add('days', nightsAmounts[0]).format('YYYY-MM-DD')} />
+            <TourDates dateDeparture={datesDeparture[0]} dateArrival={moment(datesDeparture[0]).add(nightsAmounts[0], 'days').format('YYYY-MM-DD')} />
             <TourRoute cityDeparture={cityDeparture} cityArrival={cityArrival} shorten={true} />
           </Col>
           <Row className={cls.previewFooter} align={RowAlign.BETWEEN}>

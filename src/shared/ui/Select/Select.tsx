@@ -10,7 +10,7 @@ export interface SelectOption {
 
 interface SelectProps {
   className?: string;
-  label?: string;
+  placeholder?: string;
   options: SelectOption[];
   value: string | number;
   onChange?: (value: string | number) => void;
@@ -18,7 +18,7 @@ interface SelectProps {
 }
 
 export const Select = memo((props: SelectProps) => {
-  const { className, label, options, value, onChange, readonly } = props;
+  const { className, options, value, onChange, readonly, placeholder } = props;
   const { t } = useTranslation();
 
   const optionsList = useMemo(
@@ -43,14 +43,14 @@ export const Select = memo((props: SelectProps) => {
   );
 
   return (
-    <div className={classNames(cls.Wrapper, {}, [className ?? ''])}>
-      {label && <span className={cls.label}>{label}</span>}
+    <div className={classNames(cls.SelectWrapper, {}, [className ?? ''])}>
       <select
         onChange={onChangeHandler}
-        className={cls.select}
+        className={cls.Select}
         value={value}
         disabled={readonly}
       >
+        {placeholder && <option value="">{placeholder}</option>}
         {optionsList}
       </select>
     </div>

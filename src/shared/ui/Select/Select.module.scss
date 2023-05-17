@@ -1,19 +1,16 @@
-.Wrapper {
+.SelectWrapper {
   display: flex;
+  width: 100%;
 }
 
-.label {
-  margin-right: 5px;
-  color: var(--heading-color);
-}
-
-.select {
-  background: var(--bg-color);
+.Select {
+  width: 100%;
+  background: var(--card-color);
   outline: none;
   color: var(--heading-color);
   border-radius: 12px;
   padding: 12px;
-  border: 1px solid var(--secondary-color);
+  border: none;
 }
 
 .option {

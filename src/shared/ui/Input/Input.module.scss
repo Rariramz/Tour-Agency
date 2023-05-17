@@ -1,12 +1,26 @@
+.InputWrapper {
+  width: 100%;
+  background-color: var(--card-color);
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  padding: 12px;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    path {
+      stroke: var(--red-color);
+    }
+  }
+}
+
 .Input {
   width: 100%;
   outline: none;
   border: none;
-  background-color: var(--bg-color);
+  background: none;
+
   color: var(--heading-color);
-  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
-  border-radius: 12px;
-  padding: 12px;
   font-family: 'Work Sans';
   font-style: normal;
   font-weight: 400;

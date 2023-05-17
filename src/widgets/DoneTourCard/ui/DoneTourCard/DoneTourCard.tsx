@@ -40,7 +40,7 @@ const DoneTourCard = memo(({ item, className }: DoneTourCardProps) => {
           <Image className={cls.doneTourImage} src={image} />
           <Col gapSize={ColGapSize.L}>
             <Heading className={cls.doneTourHeading}>{cityArrival}</Heading>
-            <Paragraph className={cls.doneTourDates}>{datesDeparture[0]} - {moment(datesDeparture[0]).add('day', nightsAmounts[0]).format('YYYY-MM-DD')}</Paragraph>
+            <Paragraph className={cls.doneTourDates}>{datesDeparture[0]} - {moment(datesDeparture[0]).add(nightsAmounts[0], 'days').format('YYYY-MM-DD')}</Paragraph>
           </Col>
         </Row>
         <Button theme={ButtonTheme.CONTAIN}>Rate</Button>

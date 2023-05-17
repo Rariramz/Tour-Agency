@@ -64,7 +64,7 @@ const TourCard = memo(({ className }: TourCardProps) => {
         </Col>
         <Col className={cls.tourCardContent} gapSize={ColGapSize.XL}>
           <TourRoute cityDeparture={cityDeparture} cityArrival={cityArrival} />
-          <TourDates dateDeparture={datesDeparture[0]} dateArrival={moment(datesDeparture[0]).add('days', nightsAmounts[0]).format('YYYY-MM-DD')} />
+          <TourDates dateDeparture={datesDeparture[0]} dateArrival={moment(datesDeparture[0]).add(nightsAmounts[0], 'days').format('YYYY-MM-DD')} />
           <Paragraph>{description}</Paragraph>          
           <Row gapSize={RowGapSize.XL}>
             <Heading>{currency} {tourPrice}</Heading>
