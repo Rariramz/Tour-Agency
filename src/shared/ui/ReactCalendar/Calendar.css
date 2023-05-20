@@ -144,7 +144,7 @@
 }
 
 .react-calendar__tile--now {
-  background: var(--primary-color);
+  border: 2px solid var(--primary-color) !important;
 }
 
 .react-calendar__tile--now:enabled:hover {}
@@ -165,8 +165,6 @@
 } */
 
 .react-calendar__tile--active {
-  background: aquamarine;
-  color: var(--black-color);
 }
 
 .react-calendar__tile--active:enabled:hover,

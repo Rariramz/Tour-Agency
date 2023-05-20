@@ -3,7 +3,11 @@
 }
 
 .datePickerInput {
-  background-color: var(--card-color);
+  width: 70%;
+}
+
+.datePickerSelect {
+  width: 30%;
 }
 
 .highlightedAvailable {

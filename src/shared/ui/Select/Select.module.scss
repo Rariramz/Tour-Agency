@@ -7,13 +7,19 @@
   width: 100%;
   background: var(--card-color);
   outline: none;
-  color: var(--heading-color);
   border-radius: 12px;
   padding: 12px;
   border: none;
-}
 
-.option {
-  color: var(--paragraph-color);
-  background: var(--bg-color);
+  color: var(--heading-color);
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+
+  option {
+    color: var(--secondary-color);
+    background: var(--card-color);
+  }
 }

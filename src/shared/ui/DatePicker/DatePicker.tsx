@@ -1,10 +1,11 @@
 import { memo, useState } from 'react';
-import Calendar from 'react-calendar';
 import { classNames } from '../../lib/classNames/classNames';
 import { ReactCalendar } from '../ReactCalendar/ReactCalendar';
 import { Input } from '../Input/Input';
 import moment from 'moment';
 import { Select } from '../Select/Select';
+import { Row, RowGapSize } from '../Row/Row';
+import { Col, ColGapSize } from '../Col/Col';
 import cls from './DatePicker.module.scss';
 
 interface DatePickerProps {
@@ -23,7 +24,11 @@ const DatePicker = memo((props: DatePickerProps) => {
   const [nights, setNights] = useState(availableNightsAmounts[0]);
 
   const onChange = (v: any) => {
-    setCurrentDate(moment(v).format('YYYY-MM-DD'));
+    console.log('availableDepartureDates', availableDepartureDates)
+      console.log('v', moment(v).format('YYYY-MM-DD'))
+    if (availableDepartureDates.includes(moment(v).format('YYYY.MM.DD'))) {
+      setCurrentDate(moment(v).format('YYYY-MM-DD'))
+    };
   }
 
   const tileClassName = ({ date }: { date: Date }) => {
@@ -31,6 +36,10 @@ const DatePicker = memo((props: DatePickerProps) => {
     if (!currentDate && availableDepartureDates.some((d) => moment(d).format('YYYY-MM-DD') === formattedDate)) {
       return cls.highlightedAvailable;
     } else {
+      if (formattedDate === currentDate) {
+        return cls.highlightedAvailable;
+      }
+
       const startDate = moment(currentDate);
       const endDate = moment(currentDate).add(nights, 'days');
       if (moment(date).isBetween(startDate, endDate)) {
@@ -43,11 +52,13 @@ const DatePicker = memo((props: DatePickerProps) => {
   };
 
   return (
-    <div className={classNames(cls.DatePicker)}>
-      <Input className={cls.datePickerInput} placeholder={'Choose departure date from available..'} value={currentDate} reset={() => setCurrentDate('')} />
-      <Select placeholder={'Select nights amount'} options={availableNightsAmounts.map(v => ({value: v, content: v}))} value={nights} onChange={(v: number) => setNights(v)} />
+    <Col className={classNames(cls.DatePicker)} gapSize={ColGapSize.L}>
+      <Row gapSize={RowGapSize.L}>
+        <Input className={cls.datePickerInput} placeholder={'Choose departure date..'} value={currentDate} reset={() => setCurrentDate('')} />
+        <Select className={cls.datePickerSelect} options={availableNightsAmounts.map(v => ({value: v, content: v}))} value={nights} onChange={(v: number) => setNights(v)} />
+      </Row>
       <ReactCalendar onChange={onChange} tileClassName={tileClassName} />
-    </div>
+    </Col>
   );
 });
 

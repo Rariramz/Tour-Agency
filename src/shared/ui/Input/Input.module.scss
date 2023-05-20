@@ -29,6 +29,11 @@
 
   &::placeholder {
     color: var(--primary-color);
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
   }
 
   &::selection {
