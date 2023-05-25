@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,SAAS,CAAC;EACR,KAAK,EAAE,IAAI;EACX,UAAU,EAAE,KAAK;EACjB,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,UAAU;EAC3B,WAAW,EAAE,UAAU;EACvB,GAAG,EAAE,IAAI;EACT,OAAO,EAAE,IAAI;EACb,QAAQ,EAAE,QAAQ;CACnB",
+    "sources": [
+        "TourPage.module.scss"
+    ],
+    "names": [],
+    "file": "TourPage.module.css"
+}

@@ -1,0 +1,64 @@
+.PreviewCard {
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
+  cursor: pointer;
+}
+
+.PreviewCardRow {
+  gap: 12px;
+}
+
+.previewImage {
+  height: 120px;
+  width: 200px;
+}
+
+.previewDate {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.previewContent {
+  height: 120px;
+}
+
+.previewHeader {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.previewTitle {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.previewGuests {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+}
+
+.previewPrice {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 18px;
+}
+
+.previewFooter {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+/*# sourceMappingURL=PreviewCard.module.css.map */

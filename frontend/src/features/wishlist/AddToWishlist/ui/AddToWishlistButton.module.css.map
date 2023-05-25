@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,oBAAoB,CAAC;EACnB,MAAM,EAAE,OAAO;CAChB;;AAED,AACE,GADC,CACD,GAAG,CAAC,IAAI,CAAC;EACP,IAAI,EAAE,gBAAgB;CACvB",
+    "sources": [
+        "AddToWishlistButton.module.scss"
+    ],
+    "names": [],
+    "file": "AddToWishlistButton.module.css"
+}

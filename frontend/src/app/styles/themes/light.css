@@ -1,0 +1,20 @@
+:root {
+  --mustard-light-color: #ffdf34;
+  --gray-lightest-color: #f4f5f7;
+  --gray-light-color: #f0f0f0;
+  --gray-color: #d9d9d9;
+  --gray-dark-color: #7e818c;
+  --neutral-grey-color: #848a85;
+  --bg-color: var(--gray-lightest-color);
+  --sidebar-color: var(--white-color);
+  --card-color: var(--white-color);
+  --search-color: var(--white-color);
+  --heading-color: var(--black-color);
+  --paragraph-color: var(--secondary-color);
+  --icon-color: #292d32;
+  --icon-bg-color: var(--gray-lightest-color);
+  --switcher-color: var(--gray-color);
+  --weekdays-color: var(--gray-dark-color);
+  --gradient-color: linear-gradient(to top, #00c6fb 0%, #005bea 100%);
+}
+/*# sourceMappingURL=light.css.map */

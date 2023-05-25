@@ -1,0 +1,29 @@
+.TourRoute {
+  border: 1px solid var(--secondary-color);
+  border-radius: 8px;
+  padding: 2px 8px;
+}
+
+.TourRoute svg path {
+  fill: var(--icon-color);
+}
+
+.PlaneIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.FromTo {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  width: calc(100% - 28px);
+}
+
+.FromTo strong {
+  font-weight: 500;
+  color: var(--primary-color);
+}
+/*# sourceMappingURL=TourRoute.module.css.map */

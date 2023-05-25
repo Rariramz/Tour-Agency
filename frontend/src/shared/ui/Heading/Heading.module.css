@@ -1,0 +1,30 @@
+.Heading {
+  font: var(--font-l);
+  color: var(--heading-color);
+  font-weight: 600;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.center {
+  text-align: center;
+}
+
+.h1 {
+  font: var(--font-h1);
+}
+
+.h2 {
+  font: var(--font-h2);
+}
+
+.h3 {
+  font: var(--font-h3);
+}
+/*# sourceMappingURL=Heading.module.css.map */

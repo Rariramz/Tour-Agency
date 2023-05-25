@@ -1,0 +1,79 @@
+.InputWrapper {
+  width: 100%;
+  background-color: var(--card-color);
+  -webkit-box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+          box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.InputWrapper svg {
+  width: 20px;
+  height: 20px;
+}
+
+.InputWrapper svg path {
+  stroke: var(--red-color);
+}
+
+.Input {
+  width: 100%;
+  outline: none;
+  border: none;
+  background: none;
+  color: var(--heading-color);
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.Input::-webkit-input-placeholder {
+  color: var(--primary-color);
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.Input:-ms-input-placeholder {
+  color: var(--primary-color);
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.Input::-ms-input-placeholder {
+  color: var(--primary-color);
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.Input::placeholder {
+  color: var(--primary-color);
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.Input::-moz-selection {
+  background: var(--primary-color);
+}
+
+.Input::selection {
+  background: var(--primary-color);
+}
+
+.readonly {
+  opacity: 0.5;
+}
+/*# sourceMappingURL=Input.module.css.map */

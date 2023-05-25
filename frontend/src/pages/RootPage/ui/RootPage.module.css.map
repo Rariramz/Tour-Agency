@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,QAAQ,CAAC;EACP,QAAQ,EAAE,QAAQ;EAClB,WAAW,EAAE,oBAAoB;EACjC,KAAK,EAAE,IAAI;EACX,UAAU,EAAE,KAAK;EACjB,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM;EACvB,WAAW,EAAE,UAAU;EACvB,QAAQ,EAAE,MAAM;CACjB",
+    "sources": [
+        "RootPage.module.scss"
+    ],
+    "names": [],
+    "file": "RootPage.module.css"
+}

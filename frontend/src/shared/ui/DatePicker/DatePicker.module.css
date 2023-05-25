@@ -1,0 +1,24 @@
+.DatePicker {
+  cursor: pointer;
+}
+
+.datePickerInput {
+  width: 70%;
+}
+
+.datePickerSelect {
+  width: 30%;
+}
+
+.highlightedAvailable {
+  background-color: aquamarine;
+}
+
+.highlightedNights {
+  background-color: rgba(127, 255, 212, 0.5);
+}
+
+.highlightedEnd {
+  background-color: aquamarine;
+}
+/*# sourceMappingURL=DatePicker.module.css.map */

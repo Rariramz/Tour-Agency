@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,UAAU,CAAC;EACT,IAAI,EAAE,aAAa;EACnB,KAAK,EAAE,sBAAsB;EAC7B,WAAW,EAAE,GAAG;CACjB;;AAED,AAAA,KAAK,CAAC;EACJ,UAAU,EAAE,IAAI;CACjB;;AAED,AAAA,MAAM,CAAC;EACL,UAAU,EAAE,KAAK;CAClB;;AAED,AAAA,OAAO,CAAC;EACN,UAAU,EAAE,MAAM;CACnB",
+    "sources": [
+        "Paragraph.module.scss"
+    ],
+    "names": [],
+    "file": "Paragraph.module.css"
+}

@@ -1,0 +1,55 @@
+.TourCard {
+  padding: 8px;
+}
+
+.TourCard.horizontal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.tourCardImageContainer {
+  max-height: 400px;
+  position: relative;
+}
+
+.tourCardLikeDiv {
+  position: absolute;
+  right: 0;
+  margin: 8px;
+}
+
+.tourCardRatingDiv {
+  position: absolute;
+  background: var(--card-color);
+  border-radius: 12px 12px 0 0;
+  height: 40px;
+  width: 100%;
+  padding: 12px 12px 0 12px;
+  bottom: 0;
+}
+
+.PinIcon path {
+  fill: var(--icon-color);
+}
+
+.tourCardContent {
+  padding: 12px;
+}
+
+.Link {
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+}
+/*# sourceMappingURL=TourCard.module.css.map */

@@ -1,0 +1,25 @@
+.homePage {
+  width: 100%;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 10px;
+  padding: 10px;
+  position: relative;
+}
+
+.DoneTripsCol {
+  width: 30%;
+}
+
+.UpcomingTrips {
+  width: 30%;
+}
+/*# sourceMappingURL=HomePage.module.css.map */

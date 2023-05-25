@@ -1,0 +1,32 @@
+.ThemeSwitcher {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  padding: 12px 16px;
+  gap: 12px;
+  margin-left: 12px;
+  cursor: pointer;
+}
+
+.ThemeSwitcher span {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--secondary-color);
+}
+
+.ThemeSwitcher svg path:first-child {
+  stroke: var(--switcher-color);
+  fill: var(--switcher-color);
+}
+
+.ThemeSwitcher svg path:last-child {
+  stroke: var(--icon-color);
+}
+/*# sourceMappingURL=ThemeSwitcher.module.css.map */
