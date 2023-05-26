@@ -8,8 +8,8 @@ import React, {
 } from 'react';
 import { classNames, Mods } from '../../lib/classNames/classNames';
 import CrossIcon from '../../assets/cross.svg';
-import cls from './Input.module.scss';
 import { Row, RowAlign } from '../Row/Row';
+import cls from './Input.module.scss';
 
 type HTMLInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -23,6 +23,7 @@ interface InputProps extends HTMLInputProps {
   reset?: () => void;
   autofocus?: boolean;
   readonly?: boolean;
+  error?: boolean;
 }
 
 export const Input = memo((props: InputProps) => {
@@ -34,6 +35,7 @@ export const Input = memo((props: InputProps) => {
     type = 'text',
     autofocus,
     readonly,
+    error,
     ...otherProps
   } = props;
 
@@ -51,7 +53,7 @@ export const Input = memo((props: InputProps) => {
     }
   }, [autofocus]);
 
-  const mods = useMemo(() => ({ [cls.readonly]: readonly }), [readonly]);
+  const mods = useMemo(() => ({ [cls.readonly]: readonly, [cls.error]: error }), [readonly, error]);
 
   return (
     <Row className={classNames(cls.InputWrapper, mods, [className ?? ''])} align={RowAlign.BETWEEN}>

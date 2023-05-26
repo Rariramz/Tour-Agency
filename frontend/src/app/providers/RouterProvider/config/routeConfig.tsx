@@ -7,6 +7,7 @@ import { ErrorPage } from '../../../../pages/ErrorPage';
 import { BookingPage } from '../../../../pages/BookingPage';
 import { AppRoutes, RoutePath } from '../../../../shared/config/route/route';
 import { TourPage } from '../../../../pages/TourPage';
+import { AuthorizationPage } from '../../../../pages/AuthorizationPage';
 
 export const routeConfig: RouteObject[] = [
   {
@@ -15,6 +16,10 @@ export const routeConfig: RouteObject[] = [
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <HomePage /> },
+      {
+        path: RoutePath[AppRoutes.AUTHORIZATION],
+        element: <AuthorizationPage />,
+      },
       {
         path: RoutePath[AppRoutes.EXPLORE],
         element: <ExplorePage />,

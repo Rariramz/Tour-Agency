@@ -1,0 +1,39 @@
+.authorizationPage {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  position: relative;
+}
+
+.authorizationPageCol {
+  width: 500px;
+}
+
+.authorizationPageCard {
+  padding: 40px 60px;
+  background-color: var(--sidebar-color);
+}
+
+.authorizationPageInput {
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05);
+          box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05);
+}
+
+.authorizationPageLink {
+  width: 100%;
+
+  strong {
+    color: var(--primary-color);
+    cursor: pointer;
+  }
+}
+
+.authorizationPageError {
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--red-color);
+}
