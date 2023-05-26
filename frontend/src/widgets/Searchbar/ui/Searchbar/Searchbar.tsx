@@ -32,8 +32,8 @@ const Searchbar = memo(({ className }: SearchbarProps) => {
           value={searchValue}
           onChange={setSearchValue}
         />
-        <div className={classNames(cls.relativeDiv)}>
-          <div className={classNames(cls.ScrollDiv)}>
+        <div className={cls.relativeDiv}>
+          <div className={cls.ScrollDiv}>
             <Col className={cls.results}>
               {filteredTours.map((item) => (
                 <PreviewCard

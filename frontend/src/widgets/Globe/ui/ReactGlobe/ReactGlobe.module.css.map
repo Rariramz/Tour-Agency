@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,eAAe,CAAC;EACd,QAAQ,EAAE,QAAQ;EAClB,gBAAgB,EAAE,qBAAqB;EACvC,GAAG,EAAE,CAAC;EACN,IAAI,EAAE,CAAC;EACP,KAAK,EAAE,IAAI;EACX,UAAU,EAAE,IAAI;EAChB,OAAO,EAAE,CAAC;CACX",
-    "sources": [
-        "ReactGlobe.module.scss"
-    ],
-    "names": [],
-    "file": "ReactGlobe.module.css"
-}
