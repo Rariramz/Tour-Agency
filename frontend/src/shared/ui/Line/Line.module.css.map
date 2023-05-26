@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,KAAK,CAAC;EACJ,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,GAAG;EACX,MAAM,EAAE,KAAK,CAAC,KAAK,CAAC,eAAe;EACnC,UAAU,EAAE,IAAI;EAChB,aAAa,EAAE,IAAI;CACpB",
-    "sources": [
-        "Line.module.scss"
-    ],
-    "names": [],
-    "file": "Line.module.css"
-}

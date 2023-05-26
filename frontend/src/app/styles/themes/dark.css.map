@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,eAAe,CAAC;EACd,gBAAgB,CAAA,QAAC;EACjB,oBAAoB,CAAA,QAAC;EACrB,sBAAsB,CAAA,QAAC;EACvB,mBAAmB,CAAA,QAAC;EAEpB,UAAU,CAAA,4BAAC;EACX,eAAe,CAAA,yBAAC;EAChB,YAAY,CAAA,0BAAC;EACb,cAAc,CAAA,yBAAC;EAEf,eAAe,CAAA,mBAAC;EAChB,iBAAiB,CAAA,sBAAC;EAClB,YAAY,CAAA,sBAAC;EACb,eAAe,CAAA,yBAAC;EAChB,gBAAgB,CAAA,sBAAC;EAEjB,gBAAgB,CAAA,sBAAC;EAEjB,gBAAgB,CAAA,kDAAC;CAIlB",
-    "sources": [
-        "dark.scss"
-    ],
-    "names": [],
-    "file": "dark.css"
-}
