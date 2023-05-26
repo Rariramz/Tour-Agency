@@ -4,12 +4,14 @@ import { Searchbar } from '../../../widgets/Searchbar';
 import { Globe } from '../../../widgets/Globe';
 import { TourCard } from '../../../widgets/TourCard';
 import cls from './ExplorePage.module.scss';
+import { Navbar } from '../../../widgets/Navbar';
 
 const ExplorePage = () => {
   const { t } = useTranslation('places');
 
   return (
     <div className={classNames(cls.explorePage)}>
+      <Navbar />
       <Searchbar />
       {/* <div className={cls.mapDiv}>
         {t('Страница туров')}
