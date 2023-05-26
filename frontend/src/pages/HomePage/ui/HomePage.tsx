@@ -10,9 +10,7 @@ const HomePage = () => {
   return (
     <div className={classNames(cls.homePage)}>
       <Col className={classNames(cls.homePageCol)}>
-
         <Navbar />
-
         <Col className={cls.DoneTripsCol} gapSize={ColGapSize.XXL}>
           <Heading>Done trips</Heading>
           <DoneTours />
@@ -20,7 +18,6 @@ const HomePage = () => {
         <Col className={cls.UpcomingTrips} gapSize={ColGapSize.XXL}>
           <Heading>Upcoming trips</Heading>
         </Col>
-
       </Col>
     </div>
   );

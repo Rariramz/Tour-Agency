@@ -14,15 +14,15 @@ const Navbar = () => {
 
   return (
     <Row align={RowAlign.BETWEEN}>
-        <Col className={cls.navbarWelcomeCol}>
+      <Col className={cls.navbarWelcomeCol}>
         <Heading className={cls.navbarWelcomeName}>Hello Maria!</Heading>
         <Paragraph className={cls.navbarWelcomeText}>Welcome back and explore new trips</Paragraph>
-        </Col>
-        <Search className={cls.navbarSearch} value={searchValue} onChange={setSearchValue} />
-        <Row className={cls.navbarAccountIconsRow}>
+      </Col>
+      <Search className={cls.navbarSearch} value={searchValue} onChange={setSearchValue} />
+      <Row className={cls.navbarAccountIconsRow}>
         <IconBg className={cls.navbarIconBg}><NotificationIcon/></IconBg>
-        <AvatarIcon className={cls.navbarAvatar} />
-        </Row>
+        <AvatarIcon className={cls.navbarAvatar} width={'48'} height={'48'} />
+      </Row>
     </Row>
   );
 };

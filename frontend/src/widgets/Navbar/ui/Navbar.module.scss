@@ -1,39 +1,37 @@
 
 .navbarWelcomeCol {
-    width: max-content;
-   }
+  width: max-content;
+}
    
-   .navbarWelcomeName {
-     font-family: 'Work Sans';
-     font-style: normal;
-     font-weight: 700;
-     font-size: 24px;
-     line-height: 28px;
-   }
+.navbarWelcomeName {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+}
+
+.navbarWelcomeText {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.navbarSearch {
+  width: 560px;
+}
+
+.navbarAccountIconsRow {
+  width: fit-content;
+  gap: 12px;
+}
    
-   .navbarWelcomeText {
-     font-family: 'Work Sans';
-     font-style: normal;
-     font-weight: 400;
-     font-size: 14px;
-     line-height: 16px;
-   }
-   
-   .navbarSearch {
-     width: 560px;
-   }
-   
-   .navbarAccountIconsRow {
-     width: fit-content;
-     gap: 12px;
-   }
-   
-   .navbarIconBg {
-     background-color: var(--sidebar-color);
-   }
-   
-   .navbarAvatar {
-     width: 48px;
-     height: 48px;
-   }
-   
+.navbarIconBg {
+  background-color: var(--sidebar-color);
+  width: 48px;
+  height: 48px;
+}
+
+.navbarAvatar {}
