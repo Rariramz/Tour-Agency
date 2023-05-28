@@ -33,4 +33,3 @@ export class ToursController {
     return this.tourService.delete(id);
   }
 }
-

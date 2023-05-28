@@ -3,8 +3,9 @@ import { CreateTourDto } from './dto/create-tour.dto';
 import { Tour } from './tour.entity';
 import { TOURS_REPOSITORY } from '../constants';
 import { UpdateTourDto } from './dto/update-tour.dto';
-import { DeleteTourDto } from './dto/delete-tour.dto';
-const { Op } = require("sequelize");
+import { Op } from 'sequelize';
+import { v4 as uuidv4 } from 'uuid';
+
 
 
 @Injectable()
@@ -29,7 +30,8 @@ export class ToursService {
   }
 
   async create(createTourDto: CreateTourDto): Promise<Tour> {
-    return this.toursRepository.create<Tour>({...createTourDto});
+    const id = uuidv4();
+    return this.toursRepository.create<Tour>({id, ...createTourDto} as any);
   }
 
   async update(updateTourDto: UpdateTourDto): Promise<[affectedCount: number]> {
