@@ -11,11 +11,15 @@ import { TourRoute } from '../../../shared/ui/TourRoute/TourRoute';
 import { TourDates } from '../../../shared/ui/TourDates';
 import { Paragraph } from '../../../shared/ui/Paragraph/Paragraph';
 import { Counter } from '../../../shared/ui/Counter/Counter';
-import { Row, RowGapSize } from '../../../shared/ui/Row/Row';
+import { Row, RowAlign, RowGapSize } from '../../../shared/ui/Row/Row';
 import { Button, ButtonTheme } from '../../../shared/ui/Button/Button';
 import { getTour } from '../../../widgets/TourCard/model/selectors/getTour';
-import cls from './BookingPage.module.scss';
 import moment from 'moment';
+import { AddToWishlistButton } from '../../../features/wishlist/AddToWishlist/ui/AddToWishlistButton';
+import PinIcon from '../../../shared/assets/pin.svg';
+import { Image } from '../../../shared/ui/Image/Image';
+import { Rating } from '../../../shared/ui/Rating/Rating';
+import cls from './BookingPage.module.scss';
 
 const BookingPage = () => {
   const tour = getTour();
@@ -40,15 +44,11 @@ const BookingPage = () => {
 
   return (
     <div className={classNames(cls.bookingPage)}>
-      <Col className={cls.leftCol} gapSize={ColGapSize.XXL}>
-        <Heading>Liked tours</Heading>
-        <Wishlist className={cls.bookingWishlist} />
-      </Col>
-      <Col className={cls.rightCol} gapSize={ColGapSize.XXL}>
-        <Heading>Chosen tour</Heading>
+      <Col className={cls.bookingPageCol} gapSize={ColGapSize.XXL}>
+        <Heading>Book tour</Heading>
         <Card className={cls.BookingTourCard}>
           <Col>
-            {/* <Col className={cls.tourCardImageContainer}>
+            <Col className={cls.tourCardImageContainer}>
               <div className={cls.tourCardLikeDiv}>
                 <AddToWishlistButton tourId={id} />
               </div>
@@ -60,17 +60,21 @@ const BookingPage = () => {
                 </Row>
                 <Rating rating={rating} />
               </Row>
-            </Col> */}
-            <Col className={cls.tourCardContent} gapSize={ColGapSize.XL}>
+            </Col>
+            <Col className={cls.tourCardContent} gapSize={ColGapSize.XXL}>
               <TourRoute cityDeparture={cityDeparture} cityArrival={cityArrival} />
               <TourDates dateDeparture={datesDeparture[0]} dateArrival={moment(datesDeparture[0]).add(nightsAmounts[0], 'days').format('YYYY-MM-DD')} />
               <Paragraph>{description}</Paragraph>
-              <Row gapSize={RowGapSize.XL}>
+              <Row gapSize={RowGapSize.XL} align={RowAlign.BETWEEN}>
                 <Heading>{currency} {tourPrice}</Heading>
                 <Counter count={guestsAmount} setCount={setGuestsAmount} unit={'guest(s)'} min={1} />
               </Row>
-              <DatePicker availableDepartureDates={datesDeparture} availableNightsAmounts={nightsAmounts} />
-              <Button fullwidth={true} theme={ButtonTheme.CONTAIN}>BOOK</Button>
+              <Row className={cls.bookingPageDatePickerRow} align={RowAlign.CENTER}>
+                <DatePicker availableDepartureDates={datesDeparture} availableNightsAmounts={nightsAmounts} />
+              </Row>
+              <Row align={RowAlign.CENTER}>
+                <Button className={cls.bookingPageButton} theme={ButtonTheme.CONTAIN}>BOOK</Button>
+              </Row>
             </Col>
           </Col>
         </Card>

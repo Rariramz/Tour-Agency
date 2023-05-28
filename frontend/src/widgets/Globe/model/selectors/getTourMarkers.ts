@@ -11,9 +11,9 @@ export const getTourMarkersOld = () => {
 
 export const getTourMarkers = () => {
   const tourMarkersList: TourMarkerType[] = [
-    { lng: -74.00597, lat: 40.71427, size: 40, color: '#ffd910' },
-    { lng: -0.118092, lat: 51.509865, size: 40, color: '#ffd910' },
-    { lng: 139.691711, lat: 35.689487, size: 40, color: '#ffd910' }
+    { lng: 33.996939, lat: 34.986732, size: 40, color: '#ff3d3d' }, // Aya Napa
+    // { lng: 31.369942, lat: 36.774290, size: 40, color: '#ffd910' }, // Orensehir, Side
+    { lng: 31.091777, lat: 36.849623, size: 40, color: '#ffd910' }  // Belek
   ];
   return tourMarkersList;
 };

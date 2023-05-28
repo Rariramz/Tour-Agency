@@ -19,7 +19,7 @@ const AuthorizationPage = () => {
   const [surname, setSurname] = useState('');
   const [mobile, setMobile] = useState('');
 
-  const [isErrorShown, setIsErrorShown] = useState(true);
+  const [isErrorShown, setIsErrorShown] = useState(false);
 
   const signIn = () => console.log('SIGN IN');
 

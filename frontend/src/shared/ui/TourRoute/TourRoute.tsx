@@ -23,7 +23,7 @@ const TourRoute = memo(({ cityDeparture, cityArrival, className, shorten }: Tour
         shorten ? (
           <Paragraph className={cls.FromTo}><strong>{cityDeparture}</strong> - <strong>{cityArrival}</strong></Paragraph>
         ) : (
-          <Paragraph className={cls.FromTo}>From <strong>{cityDeparture} (Russia)</strong> to <strong>{cityArrival} (Russia)</strong></Paragraph>
+          <Paragraph className={cls.FromTo}>From <strong>{cityDeparture} (Poland)</strong> to <strong>{cityArrival} (Cyprus)</strong></Paragraph>
         )
       }
     </Row>

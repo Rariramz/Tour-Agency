@@ -7,7 +7,7 @@ export const getDoneTours = () => {
     {
       id: 1,
       name: 'AKTEA BEACH VILLAGE',
-      cityDeparture: 'Moscow',
+      cityDeparture: 'Warsaw',
       cityArrival: 'Ayia Napa',
       hotel: 'AKTEA BEACH VILLAGE',
       datesDeparture: ['2023.05.20', '2023.05.23'],
@@ -23,7 +23,7 @@ export const getDoneTours = () => {
     {
       id: 2,
       name: 'THRONE BEACH RESORT & SPA',
-      cityDeparture: 'Moscow',
+      cityDeparture: 'Warsaw',
       cityArrival: 'Orensehir, Side',
       hotel: 'THRONE BEACH RESORT & SPA',
       datesDeparture: ['2023.05.19', '2023.05.22', '2023.05.27'],

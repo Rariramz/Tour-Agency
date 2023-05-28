@@ -40,10 +40,11 @@ const Sidebar = memo(({ className }: SidebarProps) => {
       <Logo />
       <Line />
       <div className={cls.items}>
-        {sidebarItems.slice(0, sidebarItems.length - 1).map((item) => (
+        {sidebarItems.slice(0, sidebarItems.length - 1).map((item, index) => (
           <SidebarItem
             key={item.path}
             item={item}
+            notification={index === 1}
           />
         ))}
       </div>

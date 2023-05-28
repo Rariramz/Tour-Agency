@@ -2,13 +2,15 @@ import { memo } from 'react';
 import { NavLink } from 'react-router-dom';
 import { SidebarItemType } from '../../model/types/sidebar';
 import { classNames } from '../../../../shared/lib/classNames/classNames';
+import CircleIcon from '../../../../shared/assets/circle.svg';
 import cls from './SidebarItem.module.scss';
 
 interface SidebarItemProps {
   item: SidebarItemType;
+  notification?: boolean;
 }
 
-const SidebarItem = memo(({ item }: SidebarItemProps) => {
+const SidebarItem = memo(({ item, notification }: SidebarItemProps) => {
   const { Icon, path, text } = item;
   return (
     <NavLink
@@ -23,6 +25,7 @@ const SidebarItem = memo(({ item }: SidebarItemProps) => {
       <div className={cls.item}>
         <Icon className={cls.icon} />
         <span className={cls.link}>{text}</span>
+        {notification && <CircleIcon />}
       </div>
     </NavLink>
   );

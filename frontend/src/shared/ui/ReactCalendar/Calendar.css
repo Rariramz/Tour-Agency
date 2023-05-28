@@ -144,7 +144,7 @@
   }
   
   .react-calendar__tile--now {
-    border: 2px solid var(--primary-color) !important;
+    /* border: 2px solid var(--primary-color) !important; */
   }
   
   .react-calendar__tile--now:enabled:hover {}

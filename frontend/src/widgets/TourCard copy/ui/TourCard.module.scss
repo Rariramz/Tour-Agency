@@ -1,27 +1,13 @@
-.bookingPage {
-  width: 100%;
-  min-height: 100vh;
+.TourCard {
+  padding: 8px;
+}
+
+.TourCard.horizontal {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  padding: 10px;
-  position: relative;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
-
-.bookingPageCol {
-  max-width: 1000px;
-}
-
-.bookingTourCard {
-  width: 100%;
-}
-
-.bookingPageDatePickerRow {
-  width: 100%;
-}
-
-
 
 .tourCardImageContainer {
   max-height: 400px;
@@ -51,9 +37,11 @@
 }
 
 .tourCardContent {
-  padding: 30px 140px;
+  padding: 12px;
 }
 
-.bookingPageButton {
-  width: 400px;
+.Link {
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
 }

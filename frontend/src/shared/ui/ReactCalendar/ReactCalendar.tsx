@@ -18,7 +18,7 @@ const ReactCalendar = memo((props: ReactCalendarProps) => {
 
   return (
     <Card className={classNames(cls.ReactCalendar)}>
-      <Calendar {...calendarProps}/>
+      <Calendar {...calendarProps} locale={'en'}/>
     </Card>
   );
 })

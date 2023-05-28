@@ -39,7 +39,7 @@ const Searchbar = memo(({ className }: SearchbarProps) => {
                 <PreviewCard
                   key={item.id}
                   item={item}
-                  className={cls.card}
+                  className={classNames(cls.card, {}, [item.id === 1 ? cls.tourChosen : ''])}
                 />
               ))}
             </Col>
