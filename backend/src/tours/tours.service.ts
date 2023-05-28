@@ -1,43 +1,54 @@
-import { Injectable } from '@nestjs/common';
-import { CreateTourDto, UpdateTourDto, ListAllEntities } from './dto/tours.dto';
-import { Tour } from './interfaces/tour.interface';
+import { Injectable, Inject } from '@nestjs/common';
+import { CreateTourDto } from './dto/create-tour.dto';
+import { Tour } from './tour.entity';
+import { TOURS_REPOSITORY } from '../constants';
+import { UpdateTourDto } from './dto/update-tour.dto';
+import { DeleteTourDto } from './dto/delete-tour.dto';
+const { Op } = require("sequelize");
+
 
 @Injectable()
 export class ToursService {
-  private readonly tours: Tour[] = [
-    { id: '1', name: 'first' },
-    { id: '2', name: 'second' }
-  ];
+  constructor(
+    @Inject(TOURS_REPOSITORY)
+    private toursRepository: typeof Tour
+  ) {}
 
-  findAll(): Tour[] {
-    return this.tours;
+  async findAll(): Promise<Tour[]> {
+    return this.toursRepository.findAll<Tour>();
   }
 
-  findOne(id: string): Tour {
-    return this.tours.find(t => t.id === id);
+  async findOne(id: string): Promise<Tour> {
+    return this.toursRepository.findOne({
+      where: {
+        id: {
+          [Op.eq]: id
+        }
+      }
+    })
   }
 
-  create(tour: Tour) {
-    this.tours.push(tour);
+  async create(createTourDto: CreateTourDto): Promise<Tour> {
+    return this.toursRepository.create<Tour>({...createTourDto});
   }
 
-  update(updateTourDto: UpdateTourDto): boolean {
-    const tourToUpdate = this.tours.find(t => t.id === updateTourDto.id);
-    if (tourToUpdate) {
-      tourToUpdate.name = updateTourDto.name;
-      return true;
-    } else {
-      return false;
-    }
-  }
+  async update(updateTourDto: UpdateTourDto): Promise<[affectedCount: number]> {
+    return this.toursRepository.update(updateTourDto, {
+      where: {
+        id: {
+          [Op.eq]: updateTourDto.id
+        }
+      }
+    })
+  };
 
-  delete(id: string): boolean {
-    let tourToDeleteIndex = this.tours.findIndex((t) => t.id === id);
-    if (tourToDeleteIndex > -1) {
-      this.tours.splice(tourToDeleteIndex, 1);
-      return true;
-    } else {
-      return false;
-    }
+  async delete(id: string): Promise<number> {
+    return this.toursRepository.destroy({
+      where: {
+        id: {
+          [Op.eq]: id
+        }
+      }
+    })
   }
 }

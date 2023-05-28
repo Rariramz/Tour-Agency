@@ -1,7 +1,8 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { ToursService } from './tours.service';
-import { CreateTourDto, UpdateTourDto, ListAllEntities } from 'src/tours/dto/tours.dto';
-import { Tour } from './interfaces/tour.interface';
+import { Tour } from './tour.entity';
+import { CreateTourDto } from './dto/create-tour.dto';
+import { UpdateTourDto } from './dto/update-tour.dto';
 
 @Controller('tours')
 export class ToursController {
@@ -18,12 +19,12 @@ export class ToursController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     return this.tourService.findOne(id);
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateTourDto: UpdateTourDto) {
+  update(@Body() updateTourDto: UpdateTourDto) {
     return this.tourService.update(updateTourDto);
   }
 
