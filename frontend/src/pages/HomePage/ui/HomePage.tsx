@@ -8,12 +8,16 @@ import cls from './HomePage.module.scss';
 import { Row } from '../../../shared/ui/Row/Row';
 import { TourCard } from '../../../widgets/TourCard';
 import { ReactCalendar } from '../../../shared/ui/ReactCalendar/ReactCalendar';
+import { ToursList } from '../../../widgets/ToursList';
+import { CreateNewTour } from '../../../widgets/CreateNewTour';
 
 const HomePage = () => {
   return (
     <div className={classNames(cls.homePage)}>
       <Col className={classNames(cls.homePageCol)}>
         <Navbar />
+        <CreateNewTour />
+        <ToursList />
         {/* <Row>
           <Col className={cls.UpcomingTrips} gapSize={ColGapSize.XXL}>
             <Heading>Upcoming trips</Heading>

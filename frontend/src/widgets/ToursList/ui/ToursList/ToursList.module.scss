@@ -1,0 +1,44 @@
+.Searchbar {
+  width: 400px;
+  height: 100%;
+  z-index: 10;
+}
+
+.relativeDiv {
+  position: relative;
+  width: 100%;
+}
+
+.ScrollDiv {
+  position: fixed;
+  height: calc(100% - 20px - 48px - 16px);
+  width: calc(400px + 6px);
+
+  overflow: hidden;
+  &:hover {
+    overflow-y: auto;
+  }
+}
+
+.tourChosen {
+  border: 3px solid var(--mustard-color) !important;
+}
+
+.card {
+  width: inherit;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  background-color: none;
+}
+
+::-webkit-scrollbar-track {
+  background-color: none;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--switcher-color);
+  border-radius: 10px;
+}

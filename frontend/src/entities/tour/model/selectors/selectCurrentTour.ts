@@ -1,0 +1,1 @@
+export const selectCurrentTour = (state: any) => state.tours.currentTour
