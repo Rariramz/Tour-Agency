@@ -1,4 +1,4 @@
-import { Table, Column, Model, PrimaryKey, AutoIncrement } from 'sequelize-typescript';
+import { Table, Column, Model, PrimaryKey, AutoIncrement, DataType } from 'sequelize-typescript';
 
 @Table
 export class Tour extends Model {
@@ -21,10 +21,10 @@ export class Tour extends Model {
   @Column
   hotel_id: string;
 
-  @Column
+  @Column(DataType.ARRAY(DataType.STRING))
   dates_departure: string[];
 
-  @Column
+  @Column(DataType.ARRAY(DataType.INTEGER))
   nights_amounts: number[];
 
   @Column
@@ -44,5 +44,4 @@ export class Tour extends Model {
 
   @Column
   image_id: string;
-
 }
