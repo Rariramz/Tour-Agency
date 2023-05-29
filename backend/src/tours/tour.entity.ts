@@ -24,8 +24,8 @@ export class Tour extends Model {
   @Column(DataType.ARRAY(DataType.STRING))
   dates_departure: string[];
 
-  @Column(DataType.ARRAY(DataType.INTEGER))
-  nights_amounts: number[];
+  @Column
+  nights_amount: number;
 
   @Column
   price: number;

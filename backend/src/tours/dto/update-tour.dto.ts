@@ -6,7 +6,7 @@ export class UpdateTourDto {
     country_arrival_id: string;
     hotel_id: string;
     dates_departure: string[];
-    nights_amounts: number[];
+    nights_amount: number;
     price: number;
     currency: string;
     guests: number;
