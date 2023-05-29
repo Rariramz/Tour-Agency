@@ -6,8 +6,6 @@ import { UpdateTourDto } from './dto/update-tour.dto';
 import { Op } from 'sequelize';
 import { v4 as uuidv4 } from 'uuid';
 
-
-
 @Injectable()
 export class ToursService {
   constructor(
