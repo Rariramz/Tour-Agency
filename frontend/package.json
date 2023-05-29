@@ -54,6 +54,7 @@
     "webpack-dev-server": "^4.13.2"
   },
   "dependencies": {
+    "@amir04lm26/react-modern-calendar-date-picker": "^1.0.1",
     "@react-three/drei": "^9.66.4",
     "@react-three/fiber": "^8.13.0",
     "@reduxjs/toolkit": "^1.9.5",
@@ -73,9 +74,11 @@
     "react-calendar": "^4.2.1",
     "react-dom": "^18.2.0",
     "react-globe.gl": "^2.24.1",
+    "react-hook-form": "^7.44.2",
     "react-i18next": "^12.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.10.0",
+    "react-select": "^5.7.3",
     "style-loader": "^3.3.2",
     "three": "^0.152.2",
     "three-fbxloader-offical": "^1.0.0"

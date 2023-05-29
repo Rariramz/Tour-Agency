@@ -1,8 +1,8 @@
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { TourType } from '../types/types';
+import { type Tour } from '../types/types';
 
 type ToursSliceState = {
-  currentTour: TourType | null;
+  currentTour: Tour | null;
 }
 
 const initialState: ToursSliceState = {
@@ -13,7 +13,7 @@ export const toursSlice = createSlice({
   name: 'tours',
   initialState,
   reducers: {
-    setCurrentTour: (state, action: PayloadAction<TourType>) => {
+    setCurrentTour: (state, action: PayloadAction<Tour>) => {
       state.currentTour = action.payload
     },
   },

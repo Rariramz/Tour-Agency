@@ -1,4 +1,26 @@
 .CreateNewTour {
-  width: 400px;
+  width: 100%;
   padding: 12px;
+  background-color: var(--sidebar-color);
+}
+
+.createNewTourRow {
+  align-items: flex-start;
+}
+
+.customInput {
+  color: var(--heading-color);
+  background: var(--card-color);
+  border: 1px solid var(--secondary-color);
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 14px;
+  line-height: 16px;
+}
+.customInput:focus {
+  border: 2px solid var(--primary-color);
+  outline: none;
+}
+.customInputError {
+  border: 1px solid var(--red-color);
 }

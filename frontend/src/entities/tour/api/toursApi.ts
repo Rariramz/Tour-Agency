@@ -1,22 +1,24 @@
 
-import { TourType, baseApi } from '../../../shared/api/baseApi'
+import { baseApi } from '../../../shared/api/baseApi'
+import { type Tour } from '../model/types/types';
+import { type TourDto } from './types';
 
 export const toursApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
-        getTourById: builder.query<TourType, string>({
+        getTourById: builder.query<TourDto, string>({
             query: (id) => `tours/${id}`,
         }),
-        getTours: builder.query<TourType[], void>({
+        getTours: builder.query<TourDto[], void>({
             query: () => `tours`,
         }),
-        createTour: builder.mutation<TourType, Partial<TourType>>({
+        createTour: builder.mutation<TourDto, Tour>({
             query: (newTour) => ({
                 url: 'tours',
                 method: 'POST',
                 body: newTour,
             }),
         }),
-        updateTour: builder.mutation<TourType, Partial<TourType>>({
+        updateTour: builder.mutation<TourDto, {id: string, patch: Partial<Tour>}>({
             query: ({id, ...patch}) => ({
                 url: `tours/${id}`,
                 method: 'PATCH',
