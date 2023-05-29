@@ -7,5 +7,42 @@ export class Tour extends Model {
   id: string;
 
   @Column
-  name: string;
+  city_departure_id: string;
+
+  @Column
+  city_arrival_id: string;
+
+  @Column
+  country_departure_id: string;
+
+  @Column
+  country_arrival_id: string;
+
+  @Column
+  hotel_id: string;
+
+  @Column
+  dates_departure: string[];
+
+  @Column
+  nights_amounts: number[];
+
+  @Column
+  price: number;
+
+  @Column
+  currency: string;
+
+  @Column
+  guests: number;
+
+  @Column
+  description: string;
+
+  @Column
+  rating: number;
+
+  @Column
+  image_id: string;
+
 }
