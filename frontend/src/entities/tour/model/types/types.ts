@@ -1,9 +1,9 @@
 export type Tour = {
-    cityDeparture: string;
-    cityArrival: string;
-    countryDeparture: string;
-    countryArrival: string;
-    hotel: string;
+    cityDepartureId: string;
+    cityArrivalId: string;
+    countryDepartureId: string;
+    countryArrivalId: string;
+    hotelId: string;
     datesDeparture: string[];
     nightsAmount: number;
     price: number;
