@@ -8,6 +8,7 @@ import { BookingPage } from '../../../../pages/BookingPage';
 import { AppRoutes, RoutePath } from '../../../../shared/config/route/route';
 import { TourPage } from '../../../../pages/TourPage';
 import { AuthorizationPage } from '../../../../pages/AuthorizationPage';
+import { AdminPage } from '../../../../pages/AdminPage';
 
 export const routeConfig: RouteObject[] = [
   {
@@ -16,6 +17,10 @@ export const routeConfig: RouteObject[] = [
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <HomePage /> },
+      {
+        path: RoutePath[AppRoutes.ADMIN],
+        element: <AdminPage />,
+      },
       {
         path: RoutePath[AppRoutes.AUTHORIZATION],
         element: <AuthorizationPage />,
