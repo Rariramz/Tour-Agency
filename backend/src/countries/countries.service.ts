@@ -3,7 +3,6 @@ import { City, Country } from './interfaces/country.interface';
 import { countries } from './json/countries';
 import { cities } from './json/cities';
 
-console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', countries)
 @Injectable()
 export class CountriesService {
   private readonly countries: Country[] = countries;
