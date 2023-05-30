@@ -7,8 +7,6 @@ export const baseApi = createApi({
     mode: "cors",
     prepareHeaders: (headers) => {
       headers.set('Access-Control-Allow-Origin', '*');
-      // headers.set('Access-Control-Allow-Methods', 'GET') //
-      // headers.set('Access-Control-Allow-Headers', '*') //
       return headers
     },
   }),
