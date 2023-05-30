@@ -1,5 +1,5 @@
 import { Api, createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { Hotel } from './types';
+import { HotelDto } from './types';
 
 export const hotelsApi = createApi({
   reducerPath: 'hotelsApi',
@@ -14,16 +14,16 @@ export const hotelsApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getAllHotels: builder.query<Hotel[], void>({
+    getAllHotels: builder.query<HotelDto[], void>({
         query: () => `hotels`,
     }),
-    getHotelById: builder.query<Hotel, string>({
+    getHotelById: builder.query<HotelDto, string>({
       query: (id) => `hotels/${id}`,
     }),
-    getHotelsByCity: builder.query<Hotel, string>({
+    getHotelsByCity: builder.query<HotelDto, string>({
         query: (cityId) => `hotels/cities/${cityId}`,
     }),
-    getHotelsByCountry: builder.query<Hotel, string>({
+    getHotelsByCountry: builder.query<HotelDto, string>({
       query: (countryId) => `hotels/countries/${countryId}`,
     }),
   }),
