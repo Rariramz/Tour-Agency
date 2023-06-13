@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { City, Country } from './interfaces/country.interface';
+import { Country } from './interfaces/country.interface';
+import { City } from './interfaces/city.interface';
 import { countries } from './json/countries';
 import { cities } from './json/cities';
 

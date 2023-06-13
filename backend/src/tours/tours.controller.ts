@@ -9,7 +9,7 @@ export class ToursController {
   constructor(private readonly tourService: ToursService) {}
 
   @Post()
-  async create(@Body() createTourDto: CreateTourDto) {
+  async create(@Body() createTourDto: CreateTourDto): Promise<Tour> {
     return this.tourService.create(createTourDto);
   }
 
