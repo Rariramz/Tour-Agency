@@ -4,7 +4,6 @@ import { Tour } from './tour.entity';
 import { TOURS_REPOSITORY } from '../constants';
 import { UpdateTourDto } from './dto/update-tour.dto';
 import { Op } from 'sequelize';
-import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class ToursService {
@@ -28,8 +27,7 @@ export class ToursService {
   }
 
   async create(createTourDto: CreateTourDto): Promise<Tour> {
-    const id = uuidv4();
-    return this.toursRepository.create<Tour>({id, ...createTourDto} as any);
+    return this.toursRepository.create<Tour>(createTourDto);
   }
 
   async update(updateTourDto: UpdateTourDto): Promise<[affectedCount: number]> {

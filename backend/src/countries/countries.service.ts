@@ -1,23 +1,23 @@
 import { Injectable } from '@nestjs/common';
-import { Country } from './interfaces/country.interface';
-import { City } from './interfaces/city.interface';
+import { ICountry } from './interfaces/country.interface';
+import { ICity } from './interfaces/city.interface';
 import { countries } from './json/countries';
 import { cities } from './json/cities';
 
 @Injectable()
 export class CountriesService {
-  private readonly countries: Country[] = countries;
-  private readonly cities: City[] = cities;
+  private readonly countries: ICountry[] = countries;
+  private readonly cities: ICity[] = cities;
 
-  findAllCountries(): Country[] {
+  findAllCountries(): ICountry[] {
     return this.countries;
   }
 
-  findCountryById(id: number): Country {
-    return this.countries.find((country: Country) => country.id === id);
+  findCountryById(id: number): ICountry {
+    return this.countries.find((country: ICountry) => country.id === id);
   }
 
-  findCitiesByCountry(countryId: number): City[] {
-    return this.cities.filter((city: City) => city.country_id === countryId);
+  findCitiesByCountry(countryId: number): ICity[] {
+    return this.cities.filter((city: ICity) => city.country_id === countryId);
   }
 }
