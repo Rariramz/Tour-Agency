@@ -6,6 +6,7 @@ import { ToursModule } from './tours/tours.module';
 import { CountriesController } from './countries/countries.controller';
 import { CountriesService } from './countries/countries.service';
 import { UsersModule } from './users/users.module';
+import { RolesModule } from './roles/roles.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { UsersModule } from './users/users.module';
     }),
     ToursModule,
     UsersModule,
+    RolesModule,
   ],
   controllers: [AppController, CountriesController],
   providers: [AppService, CountriesService],

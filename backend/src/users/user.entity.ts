@@ -1,6 +1,7 @@
-import { Column, DataType, Model, Table } from "sequelize-typescript";
+import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { ApiProperty } from "@nestjs/swagger";
+import { Role } from "src/roles/role.entity";
 
 @Table({ tableName: 'users'})
 export class User extends Model<User, CreateUserDto> {
@@ -23,4 +24,11 @@ export class User extends Model<User, CreateUserDto> {
   @ApiProperty({ example: 'spam', description: 'Ban reason'})
   @Column({ type: DataType.STRING, allowNull: true})
   banReason: string;
+
+  @BelongsTo(() => Role)
+  role: Role;
+
+  @ForeignKey(() => Role)
+  @Column({ type: DataType.INTEGER })
+  roleId: number;
 }
