@@ -3,6 +3,7 @@ import { SEQUELIZE_PROVIDER } from '../constants';
 import { Tour } from '../tours/tour.entity';
 import { User } from 'src/users/user.entity';
 import { Role } from 'src/roles/role.entity';
+import { seedDatabase } from './database.seed';
 
 export const databaseProviders = [
   {
@@ -18,6 +19,7 @@ export const databaseProviders = [
       });
       sequelize.addModels([Tour, User, Role]);
       await sequelize.sync();
+      await seedDatabase(sequelize);
       return sequelize;
     },
   },
