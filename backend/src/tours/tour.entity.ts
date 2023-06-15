@@ -4,9 +4,9 @@ import { ApiProperty } from '@nestjs/swagger';
 
 @Table({ tableName: 'tours' })
 export class Tour extends Model<Tour, CreateTourDto> {
-  @ApiProperty({ example: '1', description: 'Unique identifier'})
-  @Column({ type: DataType.STRING, unique: true, autoIncrement: true, primaryKey: true})
-  id: string;
+  @ApiProperty({ example: 1, description: 'Unique identifier'})
+  @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true})
+  id: number;
 
   @ApiProperty({ example: '22', description: 'Unique identifier of departure city'})
   @Column

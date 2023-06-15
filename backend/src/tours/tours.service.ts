@@ -16,13 +16,9 @@ export class ToursService {
     return this.toursRepository.findAll<Tour>();
   }
 
-  async findOne(id: string): Promise<Tour> {
+  async findOne(id: number): Promise<Tour> {
     return this.toursRepository.findOne({
-      where: {
-        id: {
-          [Op.eq]: id
-        }
-      }
+      where: { id }
     })
   }
 
@@ -30,23 +26,15 @@ export class ToursService {
     return this.toursRepository.create<Tour>(createTourDto);
   }
 
-  async update(updateTourDto: UpdateTourDto): Promise<[affectedCount: number]> {
+  async update(id: number, updateTourDto: UpdateTourDto): Promise<[affectedCount: number]> {
     return this.toursRepository.update(updateTourDto, {
-      where: {
-        id: {
-          [Op.eq]: updateTourDto.id
-        }
-      }
+      where: { id }
     })
   };
 
-  async delete(id: string): Promise<number> {
+  async delete(id: number): Promise<number> {
     return this.toursRepository.destroy({
-      where: {
-        id: {
-          [Op.eq]: id
-        }
-      }
+      where: { id }
     })
   }
 }

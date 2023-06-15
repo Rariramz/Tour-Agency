@@ -1,9 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 
 export class UpdateTourDto {
-  @ApiProperty({ example: '1', description: 'Unique identifier'})
-  id: string;
-
   @ApiProperty({ example: '22', description: 'Unique identifier of departure city'})
   city_departure_id: string;
 

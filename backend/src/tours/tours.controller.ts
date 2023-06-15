@@ -28,20 +28,20 @@ export class ToursController {
   @ApiResponse( { status: 200, type: Tour })
   @Get(':id')
   async findOne(@Param('id') id: string) {
-    return this.tourService.findOne(id);
+    return this.tourService.findOne(Number(id));
   }
 
   @ApiOperation({ summary: 'Tour updating' })
   @ApiResponse( { status: 200, type: Tour })
   @Put(':id')
-  update(@Body() updateTourDto: UpdateTourDto) {
-    return this.tourService.update(updateTourDto);
+  update(@Param('id') id: string, @Body() updateTourDto: UpdateTourDto) {
+    return this.tourService.update(Number(id), updateTourDto);
   }
 
   @ApiOperation({ summary: 'Tour deleting' })
   @ApiResponse( { status: 200, type: Tour })
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.tourService.delete(id);
+    return this.tourService.delete(Number(id));
   }
 }
