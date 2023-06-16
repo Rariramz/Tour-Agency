@@ -10,6 +10,7 @@ import { User } from 'src/users/user.entity';
     RolesService,
     ...rolesProviders,
     User
-  ]
+  ],
+  exports: [RolesService]
 })
 export class RolesModule {}

@@ -5,7 +5,7 @@ import { Role } from "src/roles/role.entity";
 
 @Table({ tableName: 'users'})
 export class User extends Model<User, CreateUserDto> {
-  @ApiProperty({ example: '1', description: 'Unique identifier'})
+  @ApiProperty({ example: 1, description: 'Unique identifier'})
   @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true})
   id: number;
 
@@ -29,6 +29,8 @@ export class User extends Model<User, CreateUserDto> {
   role: Role;
 
   @ForeignKey(() => Role)
-  @Column({ type: DataType.INTEGER })
+  @Column({
+    type: DataType.INTEGER,
+  })
   roleId: number;
 }
