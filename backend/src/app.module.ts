@@ -7,6 +7,7 @@ import { CountriesController } from './countries/countries.controller';
 import { CountriesService } from './countries/countries.service';
 import { UsersModule } from './users/users.module';
 import { RolesModule } from './roles/roles.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { RolesModule } from './roles/roles.module';
     ToursModule,
     UsersModule,
     RolesModule,
+    AuthModule,
   ],
   controllers: [AppController, CountriesController],
   providers: [AppService, CountriesService],

@@ -21,8 +21,13 @@ export class UsersService {
     return user;
   }
 
-  async findAllUsers() {
+  async findAllUsers(): Promise<User[]> {
     const users = await this.usersRepository.findAll({ include: { all: true }});
     return users;
+  }
+
+  async getUserByEmail(email: string) {
+    const user = await this.usersRepository.findOne({ where: { email }, include: { all: true }});
+    return user;
   }
 }
