@@ -7,6 +7,7 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { Roles } from 'src/auth/roles-auth.decorator';
 import { ADMIN_ROLE } from 'src/constants';
 import { RolesGuard } from 'src/auth/roles.guard';
+import { AddRoleDto } from './dto/add-role.dto';
 
 @ApiTags('Users')
 @Controller('users')
@@ -27,5 +28,14 @@ export class UsersController {
   @Get()
   findAll(): Promise<User[]> {
     return this.usersService.findAllUsers();
+  }
+
+  @ApiOperation({ summary: 'Add role' })
+  @ApiResponse( { status: 200 })
+  @Roles(ADMIN_ROLE)
+  @UseGuards(RolesGuard)
+  @Post('/role')
+  addRole(@Body() addRoleDto: AddRoleDto) {
+    return this.usersService.addRole(addRoleDto);
   }
 }
