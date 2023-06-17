@@ -32,7 +32,7 @@ export class UsersController {
     return this.usersService.findAllUsers();
   }
 
-  @ApiOperation({ summary: 'Add role' })
+  @ApiOperation({ summary: 'Adding role' })
   @ApiResponse( { status: 200 })
   @Roles(ADMIN_ROLE)
   @UseGuards(RolesGuard)
