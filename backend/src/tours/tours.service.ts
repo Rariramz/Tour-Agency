@@ -6,6 +6,8 @@ import { UpdateTourDto } from './dto/update-tour.dto';
 import { UsersService } from 'src/users/users.service';
 import { UserTour } from './user-tours.entity';
 import { BookTourDto } from './dto/book-tour.dto';
+import { LikeTourDto } from './dto/like-tour.dto';
+import { PayUserTourDto } from './dto/pay-user-tour.dto';
 
 @Injectable()
 export class ToursService {
@@ -42,6 +44,8 @@ export class ToursService {
     })
   }
 
+  async likeTour(id: number, likeTourDto: LikeTourDto) {}
+
   async bookTour(tourId: number, bookTourDto: BookTourDto): Promise<UserTour> {
     const user = await this.usersService.getUserByEmail(bookTourDto.userEmail);
     const tour = await this.findOneTour(tourId);
@@ -61,4 +65,6 @@ export class ToursService {
     }
     throw new HttpException('User or tour is not found', HttpStatus.NOT_FOUND);
   }
+
+  async payTour(payUserTourDto: PayUserTourDto) {}
 }
