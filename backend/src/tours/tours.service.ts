@@ -1,40 +1,64 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, HttpException, HttpStatus } from '@nestjs/common';
 import { CreateTourDto } from './dto/create-tour.dto';
 import { Tour } from './tour.entity';
-import { TOURS_REPOSITORY } from '../constants';
+import { TOURS_REPOSITORY, UserTourStatuses } from '../constants';
 import { UpdateTourDto } from './dto/update-tour.dto';
-import { Op } from 'sequelize';
+import { UsersService } from 'src/users/users.service';
+import { UserTour } from './user-tours.entity';
+import { BookTourDto } from './dto/book-tour.dto';
 
 @Injectable()
 export class ToursService {
   constructor(
     @Inject(TOURS_REPOSITORY)
-    private toursRepository: typeof Tour
+    private toursRepository: typeof Tour,
+    private usersService: UsersService
   ) {}
 
-  async findAll(): Promise<Tour[]> {
+  async findAllTours(): Promise<Tour[]> {
     return this.toursRepository.findAll<Tour>();
   }
 
-  async findOne(id: number): Promise<Tour> {
+  async findOneTour(id: number): Promise<Tour> {
     return this.toursRepository.findOne({
       where: { id }
     })
   }
 
-  async create(createTourDto: CreateTourDto): Promise<Tour> {
-    return this.toursRepository.create<Tour>(createTourDto);
+  async createTour(createTourDto: CreateTourDto): Promise<Tour> {
+    const tour = await this.toursRepository.create<Tour>(createTourDto);
+    return tour;
   }
 
-  async update(id: number, updateTourDto: UpdateTourDto): Promise<[affectedCount: number]> {
+  async updateTour(id: number, updateTourDto: UpdateTourDto): Promise<[affectedCount: number]> {
     return this.toursRepository.update(updateTourDto, {
       where: { id }
     })
   };
 
-  async delete(id: number): Promise<number> {
+  async deleteTour(id: number): Promise<number> {
     return this.toursRepository.destroy({
       where: { id }
     })
+  }
+
+  async bookTour(tourId: number, bookTourDto: BookTourDto): Promise<UserTour> {
+    const user = await this.usersService.getUserByEmail(bookTourDto.userEmail);
+    const tour = await this.findOneTour(tourId);
+    if (user && tour) {
+      const userTour = new UserTour();
+      userTour.userId = user.id;
+      userTour.tourId = tour.id;
+      userTour.departureDate = bookTourDto.dateDeparture;
+      userTour.nightsAmount = bookTourDto.nightsAmount;
+      userTour.price = bookTourDto.price;
+      userTour.currency = bookTourDto.currency;
+      userTour.guests = bookTourDto.guests;
+      userTour.status = UserTourStatuses.NOT_PAYED;
+      await userTour.save();
+
+      return userTour;
+    }
+    throw new HttpException('User or tour is not found', HttpStatus.NOT_FOUND);
   }
 }

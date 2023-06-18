@@ -1,7 +1,9 @@
-import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
+import { BelongsTo, BelongsToMany, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { ApiProperty } from "@nestjs/swagger";
 import { Role } from "src/roles/role.entity";
+import { Tour } from "src/tours/tour.entity";
+import { UserTour } from "src/tours/user-tours.entity";
 
 @Table({ tableName: 'users'})
 export class User extends Model<User, CreateUserDto> {
@@ -33,4 +35,7 @@ export class User extends Model<User, CreateUserDto> {
     type: DataType.INTEGER,
   })
   roleId: number;
+
+  @BelongsToMany(() => Tour, () => UserTour)
+  tours: Tour[];
 }

@@ -4,6 +4,7 @@ import { Tour } from '../tours/tour.entity';
 import { User } from 'src/users/user.entity';
 import { Role } from 'src/roles/role.entity';
 import { seedDatabase } from './database.seed';
+import { UserTour } from 'src/tours/user-tours.entity';
 
 export const databaseProviders = [
   {
@@ -17,7 +18,7 @@ export const databaseProviders = [
         password: process.env.DB_PASSWORD,
         database: process.env.DB_NAME,
       });
-      sequelize.addModels([Tour, User, Role]);
+      sequelize.addModels([Tour, User, Role, UserTour]);
       await sequelize.sync();
       await seedDatabase(sequelize);
       return sequelize;

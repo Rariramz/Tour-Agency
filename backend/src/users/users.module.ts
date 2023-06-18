@@ -5,13 +5,17 @@ import { usersProviders } from './users.providers';
 import { Role } from 'src/roles/role.entity';
 import { RolesModule } from 'src/roles/roles.module';
 import { AuthModule } from 'src/auth/auth.module';
+import { Tour } from 'src/tours/tour.entity';
+import { UserTour } from 'src/tours/user-tours.entity';
 
 @Module({
   controllers: [UsersController],
   providers: [
     UsersService,
     ...usersProviders,
-    Role
+    Role,
+    Tour,
+    UserTour
   ],
   imports: [
     RolesModule,
