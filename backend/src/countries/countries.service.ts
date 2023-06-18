@@ -20,4 +20,8 @@ export class CountriesService {
   findCitiesByCountry(countryId: number): ICity[] {
     return this.cities.filter((city: ICity) => city.country_id === countryId);
   }
+
+  findCityById(id: number): ICity {
+    return this.cities.find((city: ICity) => city.id === id);
+  }
 }
