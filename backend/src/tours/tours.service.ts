@@ -8,13 +8,17 @@ import { UserTour } from './user-tours.entity';
 import { BookTourDto } from './dto/book-tour.dto';
 import { LikeTourDto } from './dto/like-tour.dto';
 import { PayUserTourDto } from './dto/pay-user-tour.dto';
+import { CountriesService } from 'src/countries/countries.service';
+import { FilesService } from 'src/files/files.service';
 
 @Injectable()
 export class ToursService {
   constructor(
     @Inject(TOURS_REPOSITORY)
     private toursRepository: typeof Tour,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private countriesService: CountriesService,
+    private filesService: FilesService
   ) {}
 
   async findAllTours(): Promise<Tour[]> {
@@ -27,8 +31,9 @@ export class ToursService {
     })
   }
 
-  async createTour(createTourDto: CreateTourDto): Promise<Tour> {
-    const tour = await this.toursRepository.create<Tour>(createTourDto);
+  async createTour(createTourDto: CreateTourDto, image: any): Promise<Tour> {
+    const fileName = await this.filesService.createFile(image);
+    const tour = await this.toursRepository.create<Tour>({...createTourDto, image: fileName});
     return tour;
   }
 

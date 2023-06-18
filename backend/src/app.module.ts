@@ -8,6 +8,7 @@ import { CountriesService } from './countries/countries.service';
 import { UsersModule } from './users/users.module';
 import { RolesModule } from './roles/roles.module';
 import { AuthModule } from './auth/auth.module';
+import { FilesModule } from './files/files.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { AuthModule } from './auth/auth.module';
     UsersModule,
     RolesModule,
     AuthModule,
+    FilesModule,
   ],
   controllers: [AppController, CountriesController],
   providers: [AppService, CountriesService],

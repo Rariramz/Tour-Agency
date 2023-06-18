@@ -5,7 +5,7 @@ import { User } from 'src/users/user.entity';
 import { UserTour } from './user-tours.entity';
 
 @Table({ tableName: 'tours' })
-export class Tour extends Model<Tour, CreateTourDto> {
+export class Tour extends Model<Tour> {
   @ApiProperty({ example: 1, description: 'Unique identifier'})
   @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true})
   id: number;
@@ -68,7 +68,7 @@ export class Tour extends Model<Tour, CreateTourDto> {
 
   @ApiProperty({ example: '23', description: 'Unique identifier of image'})
   @Column({ type: DataType.STRING })
-  imageId: string;
+  image: string;
 
   @BelongsToMany(() => User, () => UserTour)
   users: User[];

@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { ToursService } from './tours.service';
 import { Tour } from './tour.entity';
 import { CreateTourDto } from './dto/create-tour.dto';
@@ -6,6 +6,7 @@ import { UpdateTourDto } from './dto/update-tour.dto';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BookTourDto } from './dto/book-tour.dto';
 import { UserTour } from './user-tours.entity';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @ApiTags('Tours')
 @Controller('tours')
@@ -15,8 +16,11 @@ export class ToursController {
   @ApiOperation({ summary: 'Tour creation' })
   @ApiResponse( { status: 200, type: Tour })
   @Post()
-  create(@Body() createTourDto: CreateTourDto): Promise<Tour> {
-    return this.toursService.createTour(createTourDto);
+  @UseInterceptors(FileInterceptor('image'))
+  create(@Body() createTourDto: CreateTourDto,
+    @UploadedFile() image: any): Promise<Tour> {
+      // TODO: fix form data
+    return this.toursService.createTour({...createTourDto, datesDeparture: ['12.06.2023, 14.06.2023']}, image);
   }
 
   @ApiOperation({ summary: 'Getting all tours' })

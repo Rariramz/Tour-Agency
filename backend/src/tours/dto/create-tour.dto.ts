@@ -40,6 +40,6 @@ export class CreateTourDto {
   @ApiProperty({ example: 5, description: 'Rating from 1 to 5'})
   readonly rating: number;
 
-  @ApiProperty({ example: '23', description: 'Unique identifier of image'})
-  readonly imageId: string;
+  // @ApiProperty({ example: '12313', description: 'Image name'})
+  // readonly image: string;
 }
