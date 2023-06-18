@@ -26,15 +26,19 @@ export class AuthService {
   private async generateToken(user) {
     const payload = { email: user.email, id: user.id, role: user.role };
     return {
-      token: this.jwtService.sign(payload)
+      token: this.jwtService.sign(payload),
+      userId: user.id
     }
   }
 
   private async validateUser(createUserDto: CreateUserDto) {
     const user = await this.userService.getUserByEmail(createUserDto.email);
-    const passwordEquals = await bcrypt.compare(createUserDto.password, user.password);
-    if (user && passwordEquals) {
-      return user;
+    if (user) {
+      const passwordEquals = await bcrypt.compare(createUserDto.password, user.password);
+      if (passwordEquals)
+      {
+        return user;
+      }
     }
     throw new UnauthorizedException({ message: 'Incorrect email or password' });
   }

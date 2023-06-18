@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@nestjs/config": "^2.3.3",
-    "cross-env": "^7.0.3"
-  }
-}
