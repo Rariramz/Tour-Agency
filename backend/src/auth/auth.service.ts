@@ -6,9 +6,7 @@ import { CreateUserDto } from 'src/users/dto/create-user.dto';
 
 @Injectable()
 export class AuthService {
-  constructor(private userService: UsersService, private jwtService: JwtService) {
-
-  }
+  constructor(private userService: UsersService, private jwtService: JwtService) {}
 
   async login(createUserDto: CreateUserDto) {
     const user = await this.validateUser(createUserDto);
