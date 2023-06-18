@@ -1,8 +1,9 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { RolesController } from './roles.controller';
 import { RolesService } from './roles.service';
 import { rolesProviders } from './roles.providers';
 import { User } from 'src/users/user.entity';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   controllers: [RolesController],
@@ -11,6 +12,9 @@ import { User } from 'src/users/user.entity';
     ...rolesProviders,
     User
   ],
-  exports: [RolesService]
+  exports: [RolesService],
+  imports: [
+    forwardRef(() => AuthModule)
+  ]
 })
 export class RolesModule {}
