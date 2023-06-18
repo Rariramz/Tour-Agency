@@ -17,7 +17,8 @@ export class UsersController {
 
   @ApiOperation({ summary: 'User creation' })
   @ApiResponse( { status: 200, type: User })
-  // @UsePipes(ValidationPipe)
+  @Roles(ADMIN_ROLE)
+  @UseGuards(RolesGuard)
   @Post()
   create(@Body() createUserDto: CreateUserDto): Promise<User> {
     return this.usersService.createUser(createUserDto);
@@ -25,8 +26,8 @@ export class UsersController {
 
   @ApiOperation({ summary: 'Getting all users' })
   @ApiResponse( { status: 200, type: [User] })
-  // @Roles(ADMIN_ROLE)
-  // @UseGuards(RolesGuard)
+  @Roles(ADMIN_ROLE)
+  @UseGuards(RolesGuard)
   @Get()
   findAll(): Promise<User[]> {
     return this.usersService.findAllUsers();
@@ -34,6 +35,8 @@ export class UsersController {
 
   @ApiOperation({ summary: 'Adding role' })
   @ApiResponse( { status: 200 })
+  @Roles(ADMIN_ROLE)
+  @UseGuards(RolesGuard)
   @Roles(ADMIN_ROLE)
   @UseGuards(RolesGuard)
   @Post('/role')

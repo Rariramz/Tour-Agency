@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { ToursService } from './tours.service';
 import { Tour } from './tour.entity';
 import { CreateTourDto } from './dto/create-tour.dto';
@@ -7,6 +7,9 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BookTourDto } from './dto/book-tour.dto';
 import { UserTour } from './user-tours.entity';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { Roles } from 'src/auth/roles-auth.decorator';
+import { RolesGuard } from 'src/auth/roles.guard';
+import { ADMIN_ROLE, CLIENT_ROLE } from 'src/constants';
 
 @ApiTags('Tours')
 @Controller('tours')
@@ -15,6 +18,8 @@ export class ToursController {
 
   @ApiOperation({ summary: 'Tour creation' })
   @ApiResponse( { status: 200, type: Tour })
+  @Roles(ADMIN_ROLE)
+  @UseGuards(RolesGuard)
   @Post()
   @UseInterceptors(FileInterceptor('image'))
   create(@Body() createTourDto: CreateTourDto,
@@ -39,6 +44,8 @@ export class ToursController {
 
   @ApiOperation({ summary: 'Tour updating' })
   @ApiResponse( { status: 200, type: Tour })
+  @Roles(ADMIN_ROLE)
+  @UseGuards(RolesGuard)
   @Put(':id')
   update(@Param('id') id: string, @Body() updateTourDto: UpdateTourDto) {
     return this.toursService.updateTour(Number(id), updateTourDto);
@@ -46,6 +53,8 @@ export class ToursController {
 
   @ApiOperation({ summary: 'Tour deleting' })
   @ApiResponse( { status: 200, type: Tour })
+  @Roles(ADMIN_ROLE)
+  @UseGuards(RolesGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.toursService.deleteTour(Number(id));
@@ -53,6 +62,8 @@ export class ToursController {
 
   @ApiOperation({ summary: 'Booking tour' })
   @ApiResponse( { status: 200, type: UserTour })
+  @Roles(CLIENT_ROLE)
+  @UseGuards(RolesGuard)
   @Post(':tourId')
   book(@Param('tourId') tourId: string, @Body() bookTourDto: BookTourDto): Promise<UserTour> {
     return this.toursService.bookTour(Number(tourId), bookTourDto);
