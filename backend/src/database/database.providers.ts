@@ -1,4 +1,5 @@
 import { Sequelize } from 'sequelize-typescript';
+import { ConfigService } from '@nestjs/config';
 import { SEQUELIZE_PROVIDER } from '../constants';
 import { Tour } from '../tours/tour.entity';
 import { User } from 'src/users/user.entity';
@@ -9,14 +10,15 @@ import { UserTour } from 'src/tours/user-tours.entity';
 export const databaseProviders = [
   {
     provide: SEQUELIZE_PROVIDER,
-    useFactory: async () => {
+    inject: [ConfigService],
+    useFactory: async (config: ConfigService) => {
       const sequelize = new Sequelize({
         dialect: 'postgres',
-        host: process.env.DB_HOST,
-        port: Number(process.env.DB_PORT),
-        username: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME,
+        host: config.getOrThrow<string>('DB_HOST'),
+        port: config.getOrThrow<number>('DB_PORT'),
+        username: config.getOrThrow<string>('DB_USER'),
+        password: config.getOrThrow<string>('DB_PASSWORD'),
+        database: config.getOrThrow<string>('DB_NAME'),
       });
       sequelize.addModels([Tour, User, Role, UserTour]);
       await sequelize.sync();

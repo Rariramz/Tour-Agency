@@ -2,7 +2,7 @@ import { Module, forwardRef } from '@nestjs/common';
 import { RolesController } from './roles.controller';
 import { RolesService } from './roles.service';
 import { rolesProviders } from './roles.providers';
-import { User } from 'src/users/user.entity';
+import { DatabaseModule } from '../database/database.module';
 import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
@@ -10,10 +10,10 @@ import { AuthModule } from 'src/auth/auth.module';
   providers: [
     RolesService,
     ...rolesProviders,
-    User
   ],
   exports: [RolesService],
   imports: [
+    DatabaseModule,
     forwardRef(() => AuthModule)
   ]
 })
