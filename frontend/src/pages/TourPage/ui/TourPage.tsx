@@ -1,36 +1,29 @@
-import { useState } from 'react';
-import { classNames } from '../../../shared/lib/classNames/classNames';
+import { Link, useParams } from 'react-router-dom';
+import { useGetTourByIdQuery } from '../../../entities/tour/api/toursApi';
+import { TourCard } from '../../../widgets/TourCard';
 import cls from './TourPage.module.scss';
-import { DatePicker } from '../../../shared/ui/DatePicker/DatePicker';
-import { useParams } from 'react-router-dom';
-import { getTour } from '../../../widgets/TourCard/model/selectors/getTour';
 
 const TourPage = () => {
-  const [date, setDate] = useState(new Date());
-  const { tourId } = useParams();
-  const tour = getTour();
-  const {
-    id,
-    name,
-    cityDeparture,
-    cityArrival,
-    hotel,
-    datesDeparture,
-    nightsAmounts,
-    price,
-    currency,
-    description,
-    image,
-    guests,
-    rating,
-  } = tour;
-
+  const { tourId = '' } = useParams();
+  const { data: tour, isLoading, error, refetch } = useGetTourByIdQuery(tourId);
+  const missing =
+    error &&
+    'status' in error &&
+    (error.status === 404 || error.status === 400);
   return (
-    <div className={classNames(cls.TourPage)}>
-      {/* <TourCard className={cls.exploreTourCard}/> */}
-      
-    </div>
+    <main className={cls.tourPage}>
+      <Link to='/explore'>← Back to tours</Link>
+      {isLoading && <p role='status'>Loading tour…</p>}
+      {error && (
+        <div role='alert'>
+          <h1>{missing ? 'Tour not found' : 'Unable to load this tour'}</h1>
+          {!missing && (
+            <button onClick={() => void refetch()}>Try again</button>
+          )}
+        </div>
+      )}
+      {!error && tour && <TourCard tour={tour} />}
+    </main>
   );
 };
-
 export default TourPage;

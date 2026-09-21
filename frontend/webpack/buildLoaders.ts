@@ -43,10 +43,6 @@ const buildLoaders = ({ isDev }: BuildOptions): webpack.RuleSetRule[] => {
     {
       test: /\.(woff(2)?|eot|ttf|otf)$/i,
       type: 'asset/inline'
-    },
-    {
-      test: /\.json$/,
-      loader: 'json-loader'
     }
   ];
 };

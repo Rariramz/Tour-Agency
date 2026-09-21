@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, ParseIntPipe, UploadedFile, UseGuards, UseInterceptors, ValidationPipe, ParseFilePipeBuilder, HttpStatus } from '@nestjs/common';
 import { ToursService } from './tours.service';
 import { Tour } from './tour.entity';
 import { CreateTourDto } from './dto/create-tour.dto';
@@ -21,25 +21,24 @@ export class ToursController {
   @Roles(ADMIN_ROLE)
   @UseGuards(RolesGuard)
   @Post()
-  @UseInterceptors(FileInterceptor('image'))
-  create(@Body() createTourDto: CreateTourDto,
-    @UploadedFile() image: any): Promise<Tour> {
-      // TODO: fix form data
-    return this.toursService.createTour({...createTourDto, datesDeparture: ['12.06.2023, 14.06.2023']}, image);
+  @UseInterceptors(FileInterceptor('image', { limits: { fileSize: 5 * 1024 * 1024 } }))
+  async create(@Body(new ValidationPipe({ transform: true, whitelist: true, forbidNonWhitelisted: true })) createTourDto: CreateTourDto,
+    @UploadedFile(new ParseFilePipeBuilder().addFileTypeValidator({ fileType: /image\/jpeg/ }).addMaxSizeValidator({ maxSize: 5 * 1024 * 1024 }).build({ errorHttpStatusCode: HttpStatus.BAD_REQUEST })) image: any) {
+    return this.toursService.toResponse(await this.toursService.createTour(createTourDto, image));
   }
 
   @ApiOperation({ summary: 'Getting all tours' })
   @ApiResponse( { status: 200, type: [Tour] })
   @Get()
-  findAll(): Promise<Tour[]> {
-    return this.toursService.findAllTours();
+  async findAll() {
+    return (await this.toursService.findAllTours()).map((tour) => this.toursService.toResponse(tour));
   }
 
   @ApiOperation({ summary: 'Getting one tour' })
   @ApiResponse( { status: 200, type: Tour })
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.toursService.findOneTour(Number(id));
+  async findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.toursService.toResponse(await this.toursService.findOneTour(id));
   }
 
   @ApiOperation({ summary: 'Tour updating' })
@@ -47,8 +46,8 @@ export class ToursController {
   @Roles(ADMIN_ROLE)
   @UseGuards(RolesGuard)
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateTourDto: UpdateTourDto) {
-    return this.toursService.updateTour(Number(id), updateTourDto);
+  async update(@Param('id', ParseIntPipe) id: number, @Body(new ValidationPipe({ transform: true, whitelist: true, forbidNonWhitelisted: true })) updateTourDto: UpdateTourDto) {
+    return this.toursService.toResponse(await this.toursService.updateTour(id, updateTourDto));
   }
 
   @ApiOperation({ summary: 'Tour deleting' })

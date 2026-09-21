@@ -53,3 +53,17 @@
     }
   }
 }
+
+@media (max-width: 600px) {
+  .Tab {
+    justify-content: center;
+    .item {
+      margin-left: 0;
+      padding: 12px;
+      gap: 0;
+    }
+    .link {
+      display: none;
+    }
+  }
+}

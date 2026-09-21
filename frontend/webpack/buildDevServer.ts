@@ -4,8 +4,12 @@ import { BuildOptions } from './types';
 const buildDevServer = (options: BuildOptions): DevServerConfiguration => {
   return {
     port: options.port,
-    open: true,
-    historyApiFallback: true
+    open: false,
+    historyApiFallback: true,
+    proxy: {
+      '/api': 'http://127.0.0.1:5001',
+      '/media': 'http://127.0.0.1:5001'
+    }
   };
 };
 

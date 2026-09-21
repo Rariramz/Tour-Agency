@@ -4,12 +4,14 @@
   "description": "Web App For Tour Agency (with Alean tour operator)",
   "private": true,
   "scripts": {
-    "start": "webpack serve --env port=7000",
+    "start": "webpack serve --env port=7001",
     "build:prod": "webpack --env mode=production",
+    "typecheck": "tsc --noEmit",
     "build:dev": "webpack --env mode=development",
     "lint": "npx eslint .",
     "lint:fix": "npx eslint . --fix",
-    "prepare": "husky install",
+    "prepare": "cd .. && husky install frontend/.husky",
+    "lint:staged": "lint-staged --cwd .",
     "test": "jest"
   },
   "repository": {

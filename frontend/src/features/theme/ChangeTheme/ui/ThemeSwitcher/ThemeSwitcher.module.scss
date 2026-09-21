@@ -26,3 +26,11 @@
     }
   }
 }
+.ThemeSwitcher {
+  @media (max-width: 600px) {
+    span {
+      display: none;
+    }
+    padding: 12px;
+  }
+}

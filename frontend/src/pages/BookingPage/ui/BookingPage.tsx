@@ -3,9 +3,6 @@ import { classNames } from '../../../shared/lib/classNames/classNames';
 import { Col, ColGapSize } from '../../../shared/ui/Col/Col';
 import { DatePicker } from '../../../shared/ui/DatePicker/DatePicker';
 import { Heading } from '../../../shared/ui/Heading/Heading';
-import { getTours } from '../../../widgets/Searchbar/model/selectors/getTours';
-import { TourCard } from '../../../widgets/TourCard';
-import { Wishlist } from '../../../widgets/Wishlist';
 import { Card } from '../../../shared/ui/Card/Card';
 import { TourRoute } from '../../../shared/ui/TourRoute/TourRoute';
 import { TourDates } from '../../../shared/ui/TourDates';
@@ -25,7 +22,6 @@ const BookingPage = () => {
   const tour = getTour();
   const {
     id,
-    name,
     cityDeparture,
     cityArrival,
     hotel,
@@ -36,15 +32,17 @@ const BookingPage = () => {
     description,
     image,
     guests,
-    rating,
+    rating
   } = tour;
-  const [date, setDate] = useState(new Date());
   const [guestsAmount, setGuestsAmount] = useState<number>(guests);
-  const [tourPrice, setTourPrice] = useState<number>(price);
+  const tourPrice = price;
 
   return (
     <div className={classNames(cls.bookingPage)}>
-      <Col className={cls.bookingPageCol} gapSize={ColGapSize.XXL}>
+      <Col
+        className={cls.bookingPageCol}
+        gapSize={ColGapSize.XXL}
+      >
         <Heading>Book tour</Heading>
         <Card className={cls.BookingTourCard}>
           <Col>
@@ -53,27 +51,62 @@ const BookingPage = () => {
                 <AddToWishlistButton tourId={id} />
               </div>
               <Image src={image} />
-              <Row className={cls.tourCardRatingDiv} align={RowAlign.BETWEEN}>
+              <Row
+                className={cls.tourCardRatingDiv}
+                align={RowAlign.BETWEEN}
+              >
                 <Row gapSize={RowGapSize.XL}>
-                  <PinIcon className={cls.PinIcon}/>
+                  <PinIcon className={cls.PinIcon} />
                   <Heading>{hotel}</Heading>
                 </Row>
                 <Rating rating={rating} />
               </Row>
             </Col>
-            <Col className={cls.tourCardContent} gapSize={ColGapSize.XXL}>
-              <TourRoute cityDeparture={cityDeparture} cityArrival={cityArrival} />
-              <TourDates dateDeparture={datesDeparture[0]} dateArrival={moment(datesDeparture[0]).add(nightsAmounts[0], 'days').format('YYYY-MM-DD')} />
+            <Col
+              className={cls.tourCardContent}
+              gapSize={ColGapSize.XXL}
+            >
+              <TourRoute
+                cityDeparture={cityDeparture}
+                cityArrival={cityArrival}
+              />
+              <TourDates
+                dateDeparture={datesDeparture[0]}
+                dateArrival={moment(datesDeparture[0])
+                  .add(nightsAmounts[0], 'days')
+                  .format('YYYY-MM-DD')}
+              />
               <Paragraph>{description}</Paragraph>
-              <Row gapSize={RowGapSize.XL} align={RowAlign.BETWEEN}>
-                <Heading>{currency} {tourPrice}</Heading>
-                <Counter count={guestsAmount} setCount={setGuestsAmount} unit={'guest(s)'} min={1} />
+              <Row
+                gapSize={RowGapSize.XL}
+                align={RowAlign.BETWEEN}
+              >
+                <Heading>
+                  {currency} {tourPrice}
+                </Heading>
+                <Counter
+                  count={guestsAmount}
+                  setCount={setGuestsAmount}
+                  unit={'guest(s)'}
+                  min={1}
+                />
               </Row>
-              <Row className={cls.bookingPageDatePickerRow} align={RowAlign.CENTER}>
-                <DatePicker availableDepartureDates={datesDeparture} availableNightsAmounts={nightsAmounts} />
+              <Row
+                className={cls.bookingPageDatePickerRow}
+                align={RowAlign.CENTER}
+              >
+                <DatePicker
+                  availableDepartureDates={datesDeparture}
+                  availableNightsAmounts={nightsAmounts}
+                />
               </Row>
               <Row align={RowAlign.CENTER}>
-                <Button className={cls.bookingPageButton} theme={ButtonTheme.CONTAIN}>BOOK</Button>
+                <Button
+                  className={cls.bookingPageButton}
+                  theme={ButtonTheme.CONTAIN}
+                >
+                  BOOK
+                </Button>
               </Row>
             </Col>
           </Col>

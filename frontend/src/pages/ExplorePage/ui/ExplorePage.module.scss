@@ -1,31 +1,23 @@
 .explorePage {
   width: 100%;
   min-height: 100vh;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 10px;
-  position: relative;
+  display: grid;
+  grid-template-columns: minmax(300px, 430px) minmax(0, 1fr);
+  gap: 16px;
+  padding: 16px;
 }
-
-.ScrollDiv {
-  z-index: 10;
-  width: calc(450px + 6px);
-  height: calc(100% - 20px);
-  position: fixed;
-  right: 4px;
+.globe {
+  min-width: 0;
+  position: sticky;
+  top: 16px;
+  height: 600px;
   overflow: hidden;
-  &:hover {
-    overflow-y: auto;
+}
+@media (max-width: 1000px) {
+  .explorePage {
+    grid-template-columns: minmax(0, 1fr);
   }
-}
-
-.exploreTourCard {
-  width: 450px;
-}
-
-.relativeDiv {
-  position: relative;
-  width: 100%;
+  .globe {
+    display: none;
+  }
 }

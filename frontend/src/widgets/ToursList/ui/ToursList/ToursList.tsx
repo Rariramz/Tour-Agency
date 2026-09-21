@@ -1,4 +1,4 @@
-import { memo, useMemo, useState } from 'react';
+import { memo } from 'react';
 import { classNames } from '../../../../shared/lib/classNames/classNames';
 import { Col, ColGapSize } from '../../../../shared/ui/Col/Col';
 import cls from './ToursList.module.scss';
@@ -11,7 +11,7 @@ interface ToursListProps {
 }
 
 const ToursList = memo(({ className }: ToursListProps) => {
-  const { data: tours = [], isLoading } = useGetToursQuery();
+  const { data: tours = [] } = useGetToursQuery();
 
   return (
     <div className={classNames(cls.TourToursListsList, {}, [className ?? ''])}>
@@ -19,9 +19,9 @@ const ToursList = memo(({ className }: ToursListProps) => {
         <div className={cls.relativeDiv}>
           <div className={cls.ScrollDiv}>
             <Col className={cls.results}>
-              {tours.map((item: any) => (
-                <Card>
-                  <Heading>{item.id} - {item.name}</Heading>
+              {tours.map((item) => (
+                <Card key={item.id}>
+                  <Heading>{item.cityArrival}</Heading>
                 </Card>
               ))}
             </Col>

@@ -1,33 +1,28 @@
-export const mapToCreateTourDto = (tourData: any) => {
-  const {
-    cityDeparture,
-    cityArrival,
-    countryDeparture,
-    countryArrival,
-    hotelId,
-    nightsAmount,
-    price,
-    currency,
-    guests,
-    description,
-    rating,
-    imageId,
-    datesDeparture
-  } = tourData;
-
-  return {
-    city_departure_id: cityDeparture,
-    city_arrival_id: cityArrival,
-    country_departure_id: countryDeparture,
-    country_arrival_id: countryArrival,
-    hotel_id: hotelId,
-    dates_departure: datesDeparture,
-    nights_amount: Number(nightsAmount),
-    price: Number(price),
-    currency,
-    guests: Number(guests),
-    description,
-    rating: Number(rating),
-    image_id: imageId
-  };
-}
+import { CreateTourDto } from '../../../entities/tour/api/types';
+export const mapToCreateTourDto = (data: {
+  cityDeparture: string;
+  cityArrival: string;
+  countryDeparture: string;
+  countryArrival: string;
+  hotelId: string;
+  datesDeparture: string[];
+  nightsAmount: string;
+  price: string;
+  currency: string;
+  guests: string;
+  description: string;
+  rating: string;
+}): CreateTourDto => ({
+  cityDepartureId: String(data.cityDeparture),
+  cityArrivalId: String(data.cityArrival),
+  countryDepartureId: String(data.countryDeparture),
+  countryArrivalId: String(data.countryArrival),
+  hotelId: data.hotelId,
+  datesDeparture: data.datesDeparture,
+  nightsAmount: Number(data.nightsAmount),
+  price: Number(data.price),
+  currency: data.currency.toUpperCase(),
+  guests: Number(data.guests),
+  description: data.description,
+  rating: Number(data.rating)
+});

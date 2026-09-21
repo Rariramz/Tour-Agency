@@ -13,3 +13,4 @@ coverage/
 *.stackdump
 backend/src/static/
 backend/dist/static/
+backend/uploads/

@@ -12,3 +12,9 @@
   line-height: 19px;
   color: var(--primary-color);
 }
+
+@media (max-width: 600px) {
+  .brandName {
+    display: none;
+  }
+}

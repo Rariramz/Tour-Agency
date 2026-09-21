@@ -3,15 +3,21 @@ import { classNames } from '../../../../shared/lib/classNames/classNames';
 import { Card } from '../../../../shared/ui/Card/Card';
 import { Heading } from '../../../../shared/ui/Heading/Heading';
 import { Input } from '../../../../shared/ui/Input/Input';
-import { Button, ButtonSize, ButtonTheme } from '../../../../shared/ui/Button/Button';
+import { Button, ButtonTheme } from '../../../../shared/ui/Button/Button';
 import { Col, ColAlign, ColGapSize } from '../../../../shared/ui/Col/Col';
 import { useCreateTourMutation } from '../../../../entities/tour/api/toursApi';
-import { Row, RowGapSize } from '../../../../shared/ui/Row/Row';
-import DatePicker, { Day, utils } from '@amir04lm26/react-modern-calendar-date-picker';
+import { Row } from '../../../../shared/ui/Row/Row';
+import DatePicker, {
+  Day,
+  utils
+} from '@amir04lm26/react-modern-calendar-date-picker';
 import '@amir04lm26/react-modern-calendar-date-picker/lib/DatePicker.css';
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller } from 'react-hook-form';
 import { dateToYyyyMmDd } from '../../lib/mapDate';
-import { useGetAllCountriesQuery, useGetCitiesByCountryIdQuery } from '../../../../entities/countries/api/countriesApi';
+import {
+  useGetAllCountriesQuery,
+  useGetCitiesByCountryIdQuery
+} from '../../../../entities/countries/api/countriesApi';
 import { City, Country } from '../../../../entities/countries/api/types';
 import { Select } from '../../../../shared/ui/Select/Select';
 import cls from './CreateNewTour.module.scss';
@@ -21,8 +27,21 @@ interface CreateNewTourProps {
   className?: string;
 }
 
+type TourForm = Omit<
+  Parameters<typeof mapToCreateTourDto>[0],
+  'datesDeparture'
+> & {
+  datesDeparture: Day[];
+};
+
 const CreateNewTour = memo(({ className }: CreateNewTourProps) => {
-  const { control, handleSubmit, formState: { errors }, watch } = useForm({
+  const [image, setImage] = useState<File | null>(null);
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    watch
+  } = useForm<TourForm>({
     defaultValues: {
       cityDeparture: '',
       cityArrival: '',
@@ -35,91 +54,151 @@ const CreateNewTour = memo(({ className }: CreateNewTourProps) => {
       guests: '',
       description: '',
       rating: '',
-      imageId: '',
       datesDeparture: []
     }
   });
 
-  const { data: countries = [], isLoading: isCountriesLoading, isFetching, isError } = useGetAllCountriesQuery();
-  const watchSelectedDepartureCountry = watch("countryDeparture");
-  const { data: citiesDeparture = [], isLoading: isCitiesDepartureLoading, isFetching: isCitiesDepartureFetching, isError: isCitiesDepartureError } = useGetCitiesByCountryIdQuery(watchSelectedDepartureCountry);
-  const watchSelectedArrivalCountry = watch("countryArrival");
-  const { data: citiesArrival = [], isLoading: isCitiesArrivalLoading, isFetching: isCitiesArrivalFetching, isError: isCitiesArrivalError } = useGetCitiesByCountryIdQuery(watchSelectedArrivalCountry);
+  const { data: countries = [] } = useGetAllCountriesQuery();
+  const watchSelectedDepartureCountry = watch('countryDeparture');
+  const { data: citiesDeparture = [] } = useGetCitiesByCountryIdQuery(
+    watchSelectedDepartureCountry
+  );
+  const watchSelectedArrivalCountry = watch('countryArrival');
+  const { data: citiesArrival = [] } = useGetCitiesByCountryIdQuery(
+    watchSelectedArrivalCountry
+  );
 
   const [createTour, result] = useCreateTourMutation();
-  
-  const onSubmit = (data: any) => {
-    data.datesDeparture = data.datesDeparture.map(dateToYyyyMmDd);
-    const createTourDto = mapToCreateTourDto(data)
-    console.log(createTourDto);
-    createTour(createTourDto);
-  }
+
+  const onSubmit = (data: TourForm) => {
+    const createTourDto = mapToCreateTourDto({
+      ...data,
+      datesDeparture: data.datesDeparture.map(dateToYyyyMmDd)
+    });
+    if (image) void createTour({ tour: createTourDto, image });
+  };
 
   return (
-    <Card className={classNames(cls.CreateNewTour, { }, [className ?? ''])}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Col gapSize={ColGapSize.XXL} align={ColAlign.CENTER}>
+    <Card className={classNames(cls.CreateNewTour, {}, [className ?? ''])}>
+      <form
+        onSubmit={(event) => {
+          void handleSubmit(onSubmit)(event);
+        }}
+      >
+        <Col
+          gapSize={ColGapSize.XXL}
+          align={ColAlign.CENTER}
+        >
           <Heading>Add tour</Heading>
           <Row className={cls.createNewTourRow}>
-            <Col gapSize={ColGapSize.XXL} align={ColAlign.CENTER}>
+            <Col
+              gapSize={ColGapSize.XXL}
+              align={ColAlign.CENTER}
+            >
               <Controller
-                name="countryDeparture"
+                name='countryDeparture'
                 control={control}
                 render={({ field }) => (
-                  <Select {...field} options={countries.map((country: Country) => ({ value: country.id, content: country.name }))} placeholder={'Country departure'} />
+                  <Select
+                    {...field}
+                    options={countries.map((country: Country) => ({
+                      value: country.id,
+                      content: country.name
+                    }))}
+                    placeholder={'Country departure'}
+                  />
                 )}
                 rules={{ required: true, maxLength: 20 }}
               />
               {watchSelectedDepartureCountry && (
                 <Controller
-                  name="cityDeparture"
+                  name='cityDeparture'
                   control={control}
                   render={({ field }) => (
-                    <Select {...field} options={citiesDeparture.map((city: City) => ({ value: city.id, content: city.name}))} placeholder={'City departure'} />
+                    <Select
+                      {...field}
+                      options={citiesDeparture.map((city: City) => ({
+                        value: city.id,
+                        content: city.name
+                      }))}
+                      placeholder={'City departure'}
+                    />
                   )}
                   rules={{ required: true, maxLength: 20 }}
                 />
               )}
               <Controller
-                name="countryArrival"
+                name='countryArrival'
                 control={control}
                 render={({ field }) => (
-                  <Select {...field} options={countries.map((country: Country) => ({ value: country.id, content: country.name }))} placeholder={'Country arrival'} />
+                  <Select
+                    {...field}
+                    options={countries.map((country: Country) => ({
+                      value: country.id,
+                      content: country.name
+                    }))}
+                    placeholder={'Country arrival'}
+                  />
                 )}
                 rules={{ required: true, maxLength: 20 }}
               />
               {watchSelectedArrivalCountry && (
                 <Controller
-                  name="cityArrival"
+                  name='cityArrival'
                   control={control}
                   render={({ field }) => (
-                    <Select {...field} options={citiesArrival.map((city: City) => ({ value: city.id, content: city.name}))} placeholder={'City arrival'} />
+                    <Select
+                      {...field}
+                      options={citiesArrival.map((city: City) => ({
+                        value: city.id,
+                        content: city.name
+                      }))}
+                      placeholder={'City arrival'}
+                    />
                   )}
                   rules={{ required: true, maxLength: 20 }}
                 />
               )}
             </Col>
-            <Col gapSize={ColGapSize.XXL} align={ColAlign.CENTER}>
+            <Col
+              gapSize={ColGapSize.XXL}
+              align={ColAlign.CENTER}
+            >
               <Controller
-                name="hotelId"
+                name='hotelId'
                 control={control}
-                render={({ field }) => <Input {...field} placeholder={'Hotel id'} error={!!errors.hotelId}/>}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    placeholder={'Hotel id'}
+                    error={!!errors.hotelId}
+                  />
+                )}
                 rules={{ required: true }}
               />
               <Controller
-                name="nightsAmount"
+                name='nightsAmount'
                 control={control}
-                render={({ field }) => <Input {...field} placeholder={'Nights amount'} error={!!errors.nightsAmount}/>}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    placeholder={'Nights amount'}
+                    error={!!errors.nightsAmount}
+                  />
+                )}
                 rules={{ required: true, min: 1 }}
               />
               <Controller
-                name="datesDeparture"
+                name='datesDeparture'
                 control={control}
                 render={({ field }) => (
                   <DatePicker
-                    inputPlaceholder="Select dates departure"
-                    minimumDate={utils('en').getToday()} {...field}
-                    inputClassName={classNames(cls.customInput, {}, [errors.datesDeparture ? cls.customInputError : ''])}
+                    inputPlaceholder='Select dates departure'
+                    minimumDate={utils('en').getToday()}
+                    {...field}
+                    inputClassName={classNames(cls.customInput, {}, [
+                      errors.datesDeparture ? cls.customInputError : ''
+                    ])}
                     shouldHighlightWeekends
                     calendarPopperPosition={'bottom'}
                   />
@@ -127,48 +206,102 @@ const CreateNewTour = memo(({ className }: CreateNewTourProps) => {
                 rules={{ required: true }}
               />
             </Col>
-            <Col gapSize={ColGapSize.XXL} align={ColAlign.CENTER}>
+            <Col
+              gapSize={ColGapSize.XXL}
+              align={ColAlign.CENTER}
+            >
               <Controller
-                name="price"
+                name='price'
                 control={control}
-                render={({ field }) => <Input {...field} placeholder={'Price'} error={!!errors.price}/>}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    placeholder={'Price'}
+                    error={!!errors.price}
+                  />
+                )}
                 rules={{ required: true, min: 0 }}
               />
               <Controller
-                name="currency"
+                name='currency'
                 control={control}
-                render={({ field }) => <Input {...field} placeholder={'Currency'} error={!!errors.currency}/>}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    placeholder={'Currency'}
+                    error={!!errors.currency}
+                  />
+                )}
                 rules={{ required: true, maxLength: 3 }}
               />
               <Controller
-                name="guests"
+                name='guests'
                 control={control}
-                render={({ field }) => <Input {...field} placeholder={'Guests'} error={!!errors.guests}/>}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    placeholder={'Guests'}
+                    error={!!errors.guests}
+                  />
+                )}
                 rules={{ required: true, min: 1 }}
               />
             </Col>
-            <Col gapSize={ColGapSize.XXL} align={ColAlign.CENTER}>
+            <Col
+              gapSize={ColGapSize.XXL}
+              align={ColAlign.CENTER}
+            >
               <Controller
-                name="description"
+                name='description'
                 control={control}
-                render={({ field }) => <Input {...field} placeholder={'Description'} error={!!errors.description}/>}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    placeholder={'Description'}
+                    error={!!errors.description}
+                  />
+                )}
                 rules={{ required: true }}
               />
-              <Controller
-                name="imageId"
-                control={control}
-                render={({ field }) => <Input {...field} placeholder={'Image id'} error={!!errors.imageId}/>}
-                rules={{ required: true }}
-              />
+              <label>
+                Tour photo (JPEG, up to 5 MB)
+                <input
+                  type='file'
+                  accept='image/jpeg'
+                  required
+                  onChange={(event) =>
+                    setImage(event.target.files?.[0] ?? null)
+                  }
+                />
+              </label>
             </Col>
             <Controller
-              name="rating"
+              name='rating'
               control={control}
-              render={({ field }) => <Input {...field} placeholder={field.name} error={!!errors.rating}/>}
+              render={({ field }) => (
+                <Input
+                  {...field}
+                  placeholder={field.name}
+                  error={!!errors.rating}
+                />
+              )}
               rules={{ required: true, min: 0, max: 5 }}
             />
           </Row>
-          <Button theme={ButtonTheme.CONTAIN} type="submit">CREATE</Button>
+          {result.isError && (
+            <p role='alert'>
+              Could not create the tour. An administrator login and valid tour
+              details are required.
+            </p>
+          )}
+          {result.isSuccess && <p role='status'>Tour created.</p>}
+          <Button
+            theme={ButtonTheme.CONTAIN}
+            type='submit'
+            disabled={result.isLoading}
+          >
+            CREATE
+          </Button>
         </Col>
       </form>
     </Card>

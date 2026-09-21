@@ -1,67 +1,37 @@
-import { memo } from 'react';
-import { classNames } from '../../../../shared/lib/classNames/classNames';
-import { Image } from '../../../../shared/ui/Image/Image';
-import { Heading } from '../../../../shared/ui/Heading/Heading';
-import { Paragraph } from '../../../../shared/ui/Paragraph/Paragraph';
-import { Rating } from '../../../../shared/ui/Rating/Rating';
-import { TourType } from '../../model/types/searchbar';
+import { Tour } from '../../../../entities/tour/model/types/types';
 import { Card } from '../../../../shared/ui/Card/Card';
-import { TourRoute } from '../../../../shared/ui/TourRoute/TourRoute';
-import { TourDates } from '../../../../shared/ui/TourDates';
-import { Col } from '../../../../shared/ui/Col/Col';
-import { ColGapSize } from '../../../../shared/ui/Col/Col';
-import { Row, RowAlign } from '../../../../shared/ui/Row/Row';
+import { Image } from '../../../../shared/ui/Image/Image';
+import { classNames } from '../../../../shared/lib/classNames/classNames';
 import cls from './PreviewCard.module.scss';
-import moment from 'moment';
 
-interface PreviewCardProps {
-  item: TourType;
+export const PreviewCard = ({
+  item,
+  className
+}: {
+  item: Tour;
   className?: string;
-}
-
-const PreviewCard = memo(({ item, className }: PreviewCardProps) => {
-  const {
-    id,
-    name,
-    cityDeparture,
-    cityArrival,
-    hotel,
-    datesDeparture,
-    nightsAmounts,
-    price,
-    currency,
-    description,
-    image,
-    guests,
-    rating,
-  } = item;
-
-  return (
-    <Card className={classNames(cls.PreviewCard, {}, [className ?? ''])}>
-      <Row className={cls.PreviewCardRow}>
-        <Image
-          src={image}
-          className={cls.previewImage}
-        />
-        <Col className={cls.previewContent} gapSize={ColGapSize.XL}>
-          <Row className={cls.previewHeader} align={RowAlign.BETWEEN}>
-            <Heading className={cls.previewTitle}>{hotel}</Heading>
-            <Rating rating={rating} shorten={true} />
-          </Row>
-          <Col gapSize={ColGapSize.L}>
-            <TourDates dateDeparture={datesDeparture[0]} dateArrival={moment(datesDeparture[0]).add(nightsAmounts[0], 'days').format('YYYY-MM-DD')} />
-            <TourRoute cityDeparture={cityDeparture} cityArrival={cityArrival} shorten={true} />
-          </Col>
-          <Row className={cls.previewFooter} align={RowAlign.BETWEEN}>
-            <Paragraph className={cls.previewGuests}>{guests} guests</Paragraph>
-            <Heading className={cls.previewPrice}>{currency} {price}</Heading>
-          </Row>
-        </Col>
-      </Row>
-    </Card>
-  );
-});
-
-PreviewCard.displayName = 'PreviewCard';
-
-export { PreviewCard };
+}) => (
+  <Card className={classNames(cls.PreviewCard, {}, [className ?? ''])}>
+    <Image
+      src={item.image}
+      className={cls.previewImage}
+      alt=''
+    />
+    <div className={cls.previewContent}>
+      <h2>
+        {item.cityArrival}, {item.countryArrival}
+      </h2>
+      <p>
+        From {item.cityDeparture} · {item.nightsAmount} nights
+      </p>
+      <p>{item.datesDeparture[0] ?? 'No departures available'}</p>
+      <p>
+        {new Intl.NumberFormat('en', {
+          style: 'currency',
+          currency: item.currency
+        }).format(item.price)}{' '}
+        · {item.guests} guest(s)
+      </p>
+    </div>
+  </Card>
+);

@@ -26,3 +26,9 @@
 
   --button-text-color: var(--white-color);
 }
+
+@media (max-width: 600px) {
+  :root {
+    --sidebar-width: 72px;
+  }
+}

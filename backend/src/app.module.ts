@@ -21,7 +21,8 @@ import { validateEnvironment } from './config/environment';
       validate: validateEnvironment,
     }),
     ServeStaticModule.forRoot({
-      rootPath: path.resolve(__dirname, 'static'),
+      rootPath: path.resolve(process.cwd(), 'uploads'),
+      serveRoot: '/media',
     }),
     ToursModule,
     UsersModule,

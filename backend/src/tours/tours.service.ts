@@ -1,4 +1,4 @@
-import { Injectable, Inject, HttpException, HttpStatus } from '@nestjs/common';
+import { Injectable, Inject, HttpException, HttpStatus, NotFoundException } from '@nestjs/common';
 import { CreateTourDto } from './dto/create-tour.dto';
 import { Tour } from './tour.entity';
 import { TOURS_REPOSITORY, UserTourStatuses } from '../constants';
@@ -26,9 +26,23 @@ export class ToursService {
   }
 
   async findOneTour(id: number): Promise<Tour> {
-    return this.toursRepository.findOne({
+    const tour = await this.toursRepository.findOne({
       where: { id }
-    })
+    });
+    if (!tour) throw new NotFoundException('Tour not found');
+    return tour;
+  }
+
+  toResponse(tour: Tour) {
+    const departure = this.countriesService.findCityById(Number(tour.cityDepartureId));
+    const arrival = this.countriesService.findCityById(Number(tour.cityArrivalId));
+    return {
+      ...tour.toJSON(),
+      cityDeparture: departure?.name ?? 'Unknown departure',
+      cityArrival: arrival?.name ?? 'Unknown destination',
+      countryArrival: arrival?.country_name ?? '',
+      destination: arrival ? { lat: Number(arrival.latitude), lng: Number(arrival.longitude) } : null,
+    };
   }
 
   async createTour(createTourDto: CreateTourDto, image: any): Promise<Tour> {
@@ -37,10 +51,9 @@ export class ToursService {
     return tour;
   }
 
-  async updateTour(id: number, updateTourDto: UpdateTourDto): Promise<[affectedCount: number]> {
-    return this.toursRepository.update(updateTourDto, {
-      where: { id }
-    })
+  async updateTour(id: number, updateTourDto: UpdateTourDto): Promise<Tour> {
+    const tour = await this.findOneTour(id);
+    return tour.update(updateTourDto);
   };
 
   async deleteTour(id: number): Promise<number> {
