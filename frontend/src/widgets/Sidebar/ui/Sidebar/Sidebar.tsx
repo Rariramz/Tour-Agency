@@ -9,6 +9,7 @@ import { Line } from '../../../../shared/ui/Line/Line';
 import { ThemeSwitcher } from '../../../../features/theme/ChangeTheme/ui/ThemeSwitcher/ThemeSwitcher';
 import LogoutIcon from '../../../../shared/assets/routes/logout.svg';
 import ExploreIcon from '../../../../shared/assets/routes/explore.svg';
+import BookingIcon from '../../../../shared/assets/routes/booking.svg';
 import cls from './Sidebar.module.scss';
 
 interface SidebarProps {
@@ -29,6 +30,11 @@ const Sidebar = memo(({ className }: SidebarProps) => {
             item={item}
           />
         ))}
+        {token && (
+          <SidebarItem
+            item={{ path: '/booking', Icon: BookingIcon, text: 'Bookings' }}
+          />
+        )}
         {user?.role === 'ADMIN' && (
           <SidebarItem
             item={{ path: '/admin', Icon: ExploreIcon, text: 'Admin' }}

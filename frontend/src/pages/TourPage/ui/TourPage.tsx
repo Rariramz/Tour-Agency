@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { useGetTourByIdQuery } from '../../../entities/tour/api/toursApi';
 import { TourCard } from '../../../widgets/TourCard';
+import { BookTourForm } from '../../../features/bookTour/ui/BookTourForm';
 import cls from './TourPage.module.scss';
 
 const TourPage = () => {
@@ -22,7 +23,12 @@ const TourPage = () => {
           )}
         </div>
       )}
-      {!error && tour && <TourCard tour={tour} />}
+      {!error && tour && (
+        <>
+          <TourCard tour={tour} />
+          <BookTourForm tour={tour} />
+        </>
+      )}
     </main>
   );
 };

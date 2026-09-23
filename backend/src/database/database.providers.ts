@@ -6,6 +6,7 @@ import { User } from 'src/users/user.entity';
 import { Role } from 'src/roles/role.entity';
 import { seedDatabase } from './database.seed';
 import { UserTour } from 'src/tours/user-tours.entity';
+import { migrateDatabase } from './database.migrations';
 
 export const databaseProviders = [
   {
@@ -22,6 +23,7 @@ export const databaseProviders = [
       });
       sequelize.addModels([Tour, User, Role, UserTour]);
       await sequelize.sync();
+      await migrateDatabase(sequelize);
       await seedDatabase(sequelize);
       return sequelize;
     },

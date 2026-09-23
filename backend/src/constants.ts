@@ -7,6 +7,5 @@ export const ADMIN_ROLE = 'ADMIN';
 export const CLIENT_ROLE = 'CLIENT';
 
 export enum UserTourStatuses {
-    NOT_PAYED = 'Not payed',
-    BOOKED = 'Booked'
+  BOOKED = 'Booked',
 }

@@ -1,59 +1,70 @@
-.bookingPage {
+.page {
   width: 100%;
+  max-width: 900px;
   min-height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px 24px;
+}
+
+.heading,
+.actions {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 10px;
-  padding: 10px;
-  position: relative;
+  gap: 16px;
 }
 
-.bookingPageCol {
-  max-width: 1000px;
+.list {
+  display: grid;
+  gap: 16px;
 }
 
-.bookingTourCard {
-  width: 100%;
+.reservation,
+.empty {
+  display: grid;
+  gap: 20px;
+  padding: 24px;
 }
 
-.bookingPageDatePickerRow {
-  width: 100%;
-}
+.details {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
 
+  div {
+    display: grid;
+    gap: 4px;
+  }
 
+  dt {
+    color: var(--secondary-color);
+  }
 
-.tourCardImageContainer {
-  max-height: 400px;
-  position: relative;
-}
-
-.tourCardLikeDiv {
-  position: absolute;
-  right: 0;
-  margin: 8px;
-}
-
-.tourCardRatingDiv {
-  position: absolute;
-  background: var(--card-color);
-  border-radius: 12px 12px 0 0;
-  height: 40px;
-  width: 100%;
-  padding: 12px 12px 0 12px;
-  bottom: 0;
-}
-
-.PinIcon {
-  path {
-    fill: var(--icon-color);
+  dd {
+    margin: 0;
   }
 }
 
-.tourCardContent {
-  padding: 30px 140px;
+.status {
+  margin-bottom: 4px;
+  color: var(--primary-color);
+  font-weight: 600;
 }
 
-.bookingPageButton {
-  width: 400px;
+.error {
+  color: #c43d3d;
+}
+
+@media (max-width: 700px) {
+  .heading,
+  .actions {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }

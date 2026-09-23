@@ -1,118 +1,120 @@
-import { useState } from 'react';
-import { classNames } from '../../../shared/lib/classNames/classNames';
-import { Col, ColGapSize } from '../../../shared/ui/Col/Col';
-import { DatePicker } from '../../../shared/ui/DatePicker/DatePicker';
-import { Heading } from '../../../shared/ui/Heading/Heading';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../app/store';
+import {
+  useCancelReservationMutation,
+  useGetReservationsQuery
+} from '../../../entities/reservation/api/reservationsApi';
+import { Button } from '../../../shared/ui/Button/Button';
 import { Card } from '../../../shared/ui/Card/Card';
-import { TourRoute } from '../../../shared/ui/TourRoute/TourRoute';
-import { TourDates } from '../../../shared/ui/TourDates';
-import { Paragraph } from '../../../shared/ui/Paragraph/Paragraph';
-import { Counter } from '../../../shared/ui/Counter/Counter';
-import { Row, RowAlign, RowGapSize } from '../../../shared/ui/Row/Row';
-import { Button, ButtonTheme } from '../../../shared/ui/Button/Button';
-import { getTour } from '../../../widgets/TourCard/model/selectors/getTour';
-import moment from 'moment';
-import { AddToWishlistButton } from '../../../features/wishlist/AddToWishlist/ui/AddToWishlistButton';
-import PinIcon from '../../../shared/assets/pin.svg';
-import { Image } from '../../../shared/ui/Image/Image';
-import { Rating } from '../../../shared/ui/Rating/Rating';
 import cls from './BookingPage.module.scss';
 
 const BookingPage = () => {
-  const tour = getTour();
+  const token = useSelector((state: RootState) => state.auth.token);
   const {
-    id,
-    cityDeparture,
-    cityArrival,
-    hotel,
-    datesDeparture,
-    nightsAmounts,
-    price,
-    currency,
-    description,
-    image,
-    guests,
-    rating
-  } = tour;
-  const [guestsAmount, setGuestsAmount] = useState<number>(guests);
-  const tourPrice = price;
+    data: reservations = [],
+    isLoading,
+    isError,
+    refetch
+  } = useGetReservationsQuery(undefined, { skip: !token });
+  const [cancelReservation, cancelResult] = useCancelReservationMutation();
+
+  if (!token) {
+    return (
+      <main className={cls.page}>
+        <h1>Your bookings</h1>
+        <p>
+          <Link to='/authorization'>Sign in</Link> to view your reservations.
+        </p>
+      </main>
+    );
+  }
 
   return (
-    <div className={classNames(cls.bookingPage)}>
-      <Col
-        className={cls.bookingPageCol}
-        gapSize={ColGapSize.XXL}
-      >
-        <Heading>Book tour</Heading>
-        <Card className={cls.BookingTourCard}>
-          <Col>
-            <Col className={cls.tourCardImageContainer}>
-              <div className={cls.tourCardLikeDiv}>
-                <AddToWishlistButton tourId={id} />
-              </div>
-              <Image src={image} />
-              <Row
-                className={cls.tourCardRatingDiv}
-                align={RowAlign.BETWEEN}
-              >
-                <Row gapSize={RowGapSize.XL}>
-                  <PinIcon className={cls.PinIcon} />
-                  <Heading>{hotel}</Heading>
-                </Row>
-                <Rating rating={rating} />
-              </Row>
-            </Col>
-            <Col
-              className={cls.tourCardContent}
-              gapSize={ColGapSize.XXL}
-            >
-              <TourRoute
-                cityDeparture={cityDeparture}
-                cityArrival={cityArrival}
-              />
-              <TourDates
-                dateDeparture={datesDeparture[0]}
-                dateArrival={moment(datesDeparture[0])
-                  .add(nightsAmounts[0], 'days')
-                  .format('YYYY-MM-DD')}
-              />
-              <Paragraph>{description}</Paragraph>
-              <Row
-                gapSize={RowGapSize.XL}
-                align={RowAlign.BETWEEN}
-              >
-                <Heading>
-                  {currency} {tourPrice}
-                </Heading>
-                <Counter
-                  count={guestsAmount}
-                  setCount={setGuestsAmount}
-                  unit={'guest(s)'}
-                  min={1}
-                />
-              </Row>
-              <Row
-                className={cls.bookingPageDatePickerRow}
-                align={RowAlign.CENTER}
-              >
-                <DatePicker
-                  availableDepartureDates={datesDeparture}
-                  availableNightsAmounts={nightsAmounts}
-                />
-              </Row>
-              <Row align={RowAlign.CENTER}>
-                <Button
-                  className={cls.bookingPageButton}
-                  theme={ButtonTheme.CONTAIN}
-                >
-                  BOOK
-                </Button>
-              </Row>
-            </Col>
-          </Col>
+    <main className={cls.page}>
+      <div className={cls.heading}>
+        <div>
+          <h1>Your bookings</h1>
+          <p>Review upcoming trips or cancel a reservation.</p>
+        </div>
+        <Link to='/explore'>Explore tours</Link>
+      </div>
+
+      {isLoading && <p role='status'>Loading bookings…</p>}
+      {isError && (
+        <div role='alert'>
+          <p>Unable to load your bookings.</p>
+          <Button onClick={() => void refetch()}>Try again</Button>
+        </div>
+      )}
+      {!isLoading && !isError && !reservations.length && (
+        <Card className={cls.empty}>
+          <h2>No bookings yet</h2>
+          <p>Your reservations will appear here after you choose a tour.</p>
+          <Link to='/explore'>Find a tour</Link>
         </Card>
-      </Col>
-    </div>
+      )}
+      <div className={cls.list}>
+        {reservations.map((reservation) => (
+          <Card
+            className={cls.reservation}
+            key={reservation.id}
+          >
+            <div>
+              <p className={cls.status}>{reservation.status}</p>
+              <h2>
+                {reservation.tour.cityArrival},{' '}
+                {reservation.tour.countryArrival}
+              </h2>
+              <p>
+                {reservation.tour.cityDeparture} →{' '}
+                {reservation.tour.cityArrival}
+              </p>
+            </div>
+            <dl className={cls.details}>
+              <div>
+                <dt>Departure</dt>
+                <dd>{reservation.departureDate}</dd>
+              </div>
+              <div>
+                <dt>Duration</dt>
+                <dd>{reservation.nightsAmount} nights</dd>
+              </div>
+              <div>
+                <dt>Guests</dt>
+                <dd>{reservation.guests}</dd>
+              </div>
+              <div>
+                <dt>Total</dt>
+                <dd>
+                  {new Intl.NumberFormat('en', {
+                    style: 'currency',
+                    currency: reservation.currency
+                  }).format(reservation.price)}
+                </dd>
+              </div>
+            </dl>
+            <div className={cls.actions}>
+              <Link to={`/explore/${reservation.tourId}`}>View tour</Link>
+              <Button
+                disabled={cancelResult.isLoading}
+                onClick={() => void cancelReservation(reservation.id)}
+              >
+                Cancel booking
+              </Button>
+            </div>
+          </Card>
+        ))}
+      </div>
+      {cancelResult.isError && (
+        <p
+          className={cls.error}
+          role='alert'
+        >
+          Unable to cancel the booking. Please try again.
+        </p>
+      )}
+    </main>
   );
 };
 

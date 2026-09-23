@@ -1,29 +1,22 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsEmail, IsNumber, IsString } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsDateString, IsInt, Max, Min } from 'class-validator';
 
 export class BookTourDto {
-  @ApiProperty({ example: 'qwerty@qwerty.com', description: 'User email' })
-  @IsString({ message: 'Must be string' })
-  @IsEmail({},  { message: 'Email is incorrect' })
-  readonly userEmail: string;
+  @ApiProperty({
+    example: '2027-06-12',
+    description: 'One of the tour departure dates',
+  })
+  @IsDateString({}, { message: 'Departure date must be a valid date' })
+  readonly departureDate: string;
 
-  @ApiProperty({ example: '12.06.2023', description: 'Departure date formatted to string' })
-  @IsString({ message: 'Must be string' })
-  readonly dateDeparture: string;
-
-  @ApiProperty({ example: 7, description: 'Amount of nights'})
-  @IsNumber({}, { message: 'Must be integer' })
-  readonly nightsAmount: number;
-
-  @ApiProperty({ example: 1000, description: 'Price'})
-  @IsNumber({}, { message: 'Must be integer' })
-  readonly price: number;
-
-  @ApiProperty({ example: 'USD', description: 'Currency'})
-  @IsString({ message: 'Must be string' })
-  readonly currency: string;
-
-  @ApiProperty({ example: 2, description: 'Amount of guests'})
-  @IsNumber({}, { message: 'Must be integer' })
+  @ApiProperty({
+    example: 2,
+    minimum: 1,
+    maximum: 10,
+    description: 'Amount of guests',
+  })
+  @IsInt({ message: 'Guests must be an integer' })
+  @Min(1)
+  @Max(10)
   readonly guests: number;
 }
