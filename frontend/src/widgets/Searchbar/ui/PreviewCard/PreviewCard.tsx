@@ -1,4 +1,5 @@
 import { Tour } from '../../../../entities/tour/model/types/types';
+import { getNextDeparture } from '../../../../entities/tour/lib/getNextDeparture';
 import { Card } from '../../../../shared/ui/Card/Card';
 import { Image } from '../../../../shared/ui/Image/Image';
 import { classNames } from '../../../../shared/lib/classNames/classNames';
@@ -24,7 +25,12 @@ export const PreviewCard = ({
       <p>
         From {item.cityDeparture} · {item.nightsAmount} nights
       </p>
-      <p>{item.datesDeparture[0] ?? 'No departures available'}</p>
+      <p>
+        {getNextDeparture(
+          item.datesDeparture,
+          new Date().toISOString().slice(0, 10)
+        ) ?? 'No upcoming departures'}
+      </p>
       <p>
         {new Intl.NumberFormat('en', {
           style: 'currency',
