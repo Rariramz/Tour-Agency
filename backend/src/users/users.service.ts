@@ -4,6 +4,9 @@ import { User } from './user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { RolesService } from 'src/roles/roles.service';
 import { AddRoleDto } from './dto/add-role.dto';
+import * as bcrypt from 'bcryptjs';
+import { UniqueConstraintError } from 'sequelize';
+import { ConflictException, UnauthorizedException } from '@nestjs/common';
 
 @Injectable()
 export class UsersService {
@@ -14,12 +17,18 @@ export class UsersService {
   ) {}
 
   async createUser(createUserDto: CreateUserDto): Promise<User> {
-    const user = await this.usersRepository.create(createUserDto);
     const role = await this.rolesService.getRoleByName(CLIENT_ROLE);
-    user.role = role;
-    user.roleId = role.id;
-    await user.save();
-    return user;
+    if (!role) throw new Error('Client role is not configured');
+    try {
+      return await this.usersRepository.create({
+        email: createUserDto.email,
+        password: await bcrypt.hash(createUserDto.password, 12),
+        roleId: role.id,
+      } as User);
+    } catch (error) {
+      if (error instanceof UniqueConstraintError) throw new ConflictException('Account already exists');
+      throw error;
+    }
   }
 
   async findAllUsers(): Promise<User[]> {
@@ -29,6 +38,12 @@ export class UsersService {
 
   async getUserByEmail(email: string) {
     const user = await this.usersRepository.findOne({ where: { email }, include: { all: true }});
+    return user;
+  }
+
+  async getUserById(id: number): Promise<User> {
+    const user = await this.usersRepository.findByPk(id, { include: { all: true } });
+    if (!user || user.banned) throw new UnauthorizedException('Account is unavailable');
     return user;
   }
 

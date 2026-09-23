@@ -1,36 +1,34 @@
-import { CanActivate, ExecutionContext, HttpException, HttpStatus, UnauthorizedException } from "@nestjs/common";
-import { Injectable } from "@nestjs/common/decorators";
-import { Reflector } from "@nestjs/core";
-import { JwtService } from "@nestjs/jwt";
-import { Observable } from 'rxjs';
-import { ROLES_KEY } from "./roles-auth.decorator";
+import { CanActivate, ExecutionContext, ForbiddenException, Injectable, UnauthorizedException } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
+import { JwtService } from '@nestjs/jwt';
+import { User } from '../users/user.entity';
+import { ROLES_KEY } from './roles-auth.decorator';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
   constructor(private jwtService: JwtService, private reflector: Reflector) {}
 
-  canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
+  async canActivate(context: ExecutionContext): Promise<boolean> {
+    const requiredRoles = this.reflector.getAllAndOverride<string[]>(ROLES_KEY, [
+      context.getHandler(), context.getClass(),
+    ]);
+    if (!requiredRoles) return true;
+
+    const request = context.switchToHttp().getRequest();
+    const [scheme, token] = (request.headers.authorization ?? '').split(' ');
+    if (scheme !== 'Bearer' || !token) throw new UnauthorizedException();
+
+    let payload: { id: number };
     try {
-      const requiredRoles = this.reflector.getAllAndOverride<string[]>(ROLES_KEY, [
-        context.getHandler(), context.getClass()
-      ]);
-      if (!requiredRoles) {
-        return true;
-      }
-
-      const req = context.switchToHttp().getRequest();
-      const authHeader = req.headers.authorization;
-      const bearer = authHeader.split(' ')[0];
-      const token = authHeader.split(' ')[1];
-
-      if (bearer !== 'Bearer' || !token) {
-        throw new UnauthorizedException({ message: 'User unauthorized' });
-      }
-      const user = this.jwtService.verify(token);
-      req.user = user;
-      return requiredRoles.includes(user.role.name);
+      payload = await this.jwtService.verifyAsync<{ id: number }>(token);
     } catch {
-      throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
+      throw new UnauthorizedException();
     }
+    if (!Number.isInteger(payload.id)) throw new UnauthorizedException();
+    const user = await User.findByPk(payload.id, { include: ['role'] });
+    if (!user || user.banned) throw new UnauthorizedException();
+    if (!requiredRoles.includes(user.role?.name)) throw new ForbiddenException();
+    request.user = { id: user.id, email: user.email, role: user.role.name };
+    return true;
   }
 }

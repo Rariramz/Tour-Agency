@@ -4,12 +4,14 @@ import { classNames } from '../../../shared/lib/classNames/classNames';
 import { useTheme } from '../../../app/providers/ThemeProvider';
 import { Sidebar } from '../../../widgets/Sidebar';
 import cls from './RootPage.module.scss';
+import { SessionSync } from '../../../entities/auth/ui/SessionSync';
 
 export const RootPage = () => {
   const { theme } = useTheme();
 
   return (
     <div className={classNames('app', {}, [theme])}>
+      <SessionSync />
       <Suspense fallback='loading...'>
         <Sidebar className={cls.sidebar} />
         <div className={cls.content}>

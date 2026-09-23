@@ -8,20 +8,37 @@ import { IconBg } from '../../../shared/ui/IconBg/IconBg';
 import NotificationIcon from '../../../shared/assets/notification.svg';
 import AvatarIcon from '../../../shared/assets/avatar.svg';
 import cls from './Navbar.module.scss';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../app/store';
 
 const Navbar = () => {
+  const user = useSelector((state: RootState) => state.auth.user);
   const [searchValue, setSearchValue] = useState('');
 
   return (
     <Row align={RowAlign.BETWEEN}>
       <Col className={cls.navbarWelcomeCol}>
-        <Heading className={cls.navbarWelcomeName}>Hello Maria!</Heading>
-        <Paragraph className={cls.navbarWelcomeText}>Welcome back and explore new trips</Paragraph>
+        <Heading className={cls.navbarWelcomeName}>
+          {user ? `Hello ${user.email}` : 'Explore new trips'}
+        </Heading>
+        <Paragraph className={cls.navbarWelcomeText}>
+          Welcome back and explore new trips
+        </Paragraph>
       </Col>
-      <Search className={cls.navbarSearch} value={searchValue} onChange={setSearchValue} />
+      <Search
+        className={cls.navbarSearch}
+        value={searchValue}
+        onChange={setSearchValue}
+      />
       <Row className={cls.navbarAccountIconsRow}>
-        <IconBg className={cls.navbarIconBg}><NotificationIcon/></IconBg>
-        <AvatarIcon className={cls.navbarAvatar} width={'48'} height={'48'} />
+        <IconBg className={cls.navbarIconBg}>
+          <NotificationIcon />
+        </IconBg>
+        <AvatarIcon
+          className={cls.navbarAvatar}
+          width={'48'}
+          height={'48'}
+        />
       </Row>
     </Row>
   );
