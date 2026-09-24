@@ -13,7 +13,7 @@ export enum RowAlign {
   RIGHT = 'right',
   LEFT = 'left',
   CENTER = 'center',
-  BETWEEN = 'between',
+  BETWEEN = 'between'
 }
 
 interface RowProps {
@@ -31,8 +31,16 @@ export const Row = memo((props: RowProps) => {
     children
   } = props;
   return (
-    <div className={classNames(cls.Row, {}, [className ?? '', cls[align], cls[gapSize]])}>
+    <div
+      className={classNames(cls.Row, {}, [
+        className ?? '',
+        cls[align],
+        cls[gapSize]
+      ])}
+    >
       {children}
     </div>
   );
 });
+
+Row.displayName = 'Row';

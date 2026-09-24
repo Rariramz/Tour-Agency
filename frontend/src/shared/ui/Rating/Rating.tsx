@@ -13,7 +13,10 @@ const Rating = memo(({ rating, className, shorten }: RatingProps) => {
   return (
     <div className={classNames(cls.Rating, {}, [className ?? ''])}>
       {shorten && <span>(</span>}
-      <Star width={shorten ? 14 : 16} height={shorten ? 14 : 16} />
+      <Star
+        width={shorten ? 14 : 16}
+        height={shorten ? 14 : 16}
+      />
       <span>{rating}</span>
       {shorten && <span>)</span>}
     </div>

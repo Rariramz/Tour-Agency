@@ -3,10 +3,9 @@ import React, {
   memo,
   useEffect,
   useMemo,
-  useRef,
-  useState
+  useRef
 } from 'react';
-import { classNames, Mods } from '../../lib/classNames/classNames';
+import { classNames } from '../../lib/classNames/classNames';
 import CrossIcon from '../../assets/cross.svg';
 import { Row, RowAlign } from '../Row/Row';
 import cls from './Input.module.scss';
@@ -40,7 +39,6 @@ export const Input = memo((props: InputProps) => {
   } = props;
 
   const ref = useRef<HTMLInputElement>(null);
-  const [isFocused, setIsFocused] = useState(false);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange?.(e.target.value);
@@ -48,15 +46,20 @@ export const Input = memo((props: InputProps) => {
 
   useEffect(() => {
     if (autofocus) {
-      setIsFocused(true);
       ref.current?.focus();
     }
   }, [autofocus]);
 
-  const mods = useMemo(() => ({ [cls.readonly]: readonly, [cls.error]: error }), [readonly, error]);
+  const mods = useMemo(
+    () => ({ [cls.readonly]: readonly, [cls.error]: error }),
+    [readonly, error]
+  );
 
   return (
-    <Row className={classNames(cls.InputWrapper, mods, [className ?? ''])} align={RowAlign.BETWEEN}>
+    <Row
+      className={classNames(cls.InputWrapper, mods, [className ?? ''])}
+      align={RowAlign.BETWEEN}
+    >
       <input
         className={cls.Input}
         ref={ref}
@@ -70,3 +73,5 @@ export const Input = memo((props: InputProps) => {
     </Row>
   );
 });
+
+Input.displayName = 'Input';

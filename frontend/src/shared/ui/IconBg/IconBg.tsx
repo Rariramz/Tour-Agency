@@ -8,14 +8,15 @@ interface IconBgProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const IconBg = memo((props: IconBgProps) => {
-  const {
-    className,
-    children,
-    ...otherProps
-  } = props;
+  const { className, children, ...otherProps } = props;
   return (
-    <div className={classNames(cls.IconBg, {}, [className ?? ''])} {...otherProps}>
+    <div
+      className={classNames(cls.IconBg, {}, [className ?? ''])}
+      {...otherProps}
+    >
       {children}
     </div>
   );
 });
+
+IconBg.displayName = 'IconBg';

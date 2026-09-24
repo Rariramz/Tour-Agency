@@ -8,10 +8,7 @@ interface CardProps {
 }
 
 const Card = memo((props: CardProps) => {
-  const {
-    children,
-    className,
-  } = props;
+  const { children, className } = props;
   return (
     <div className={classNames(cls.Card, {}, [className ?? ''])}>
       {children}

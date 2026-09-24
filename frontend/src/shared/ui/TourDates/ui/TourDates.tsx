@@ -11,14 +11,21 @@ interface TourDatesProps {
   className?: string;
 }
 
-const TourDates = memo(({ dateDeparture, dateArrival, className }: TourDatesProps) => {
-  return (
-    <Row className={classNames(cls.TourDates, {}, [className ?? ''])} gapSize={RowGapSize.L} >
-      <CalendarIcon />
-      <Paragraph className={cls.FromTo} >{dateDeparture} - {dateArrival}</Paragraph>
-    </Row>
-  );
-});
+const TourDates = memo(
+  ({ dateDeparture, dateArrival, className }: TourDatesProps) => {
+    return (
+      <Row
+        className={classNames(cls.TourDates, {}, [className ?? ''])}
+        gapSize={RowGapSize.L}
+      >
+        <CalendarIcon />
+        <Paragraph className={cls.FromTo}>
+          {dateDeparture} - {dateArrival}
+        </Paragraph>
+      </Row>
+    );
+  }
+);
 
 TourDates.displayName = 'TourDates';
 

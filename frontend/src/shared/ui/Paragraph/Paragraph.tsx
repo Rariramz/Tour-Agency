@@ -22,3 +22,5 @@ export const Paragraph = memo((props: ParagraphProps) => {
     </p>
   );
 });
+
+Paragraph.displayName = 'Paragraph';

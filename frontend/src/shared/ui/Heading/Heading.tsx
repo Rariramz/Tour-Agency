@@ -28,9 +28,12 @@ export const Heading = memo((props: HeadingProps) => {
     variant = HeadingVariant.H2,
     children
   } = props;
+  const Tag = variant;
   return (
-    <p className={classNames(cls.Heading, {}, [className ?? '', cls[align]])}>
+    <Tag className={classNames(cls.Heading, {}, [className ?? '', cls[align]])}>
       {children}
-    </p>
+    </Tag>
   );
 });
+
+Heading.displayName = 'Heading';

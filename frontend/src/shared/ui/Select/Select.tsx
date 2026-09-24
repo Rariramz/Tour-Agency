@@ -1,5 +1,4 @@
 import { ChangeEvent, memo, useCallback, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
 import cls from './Select.module.scss';
 import { classNames } from '../../lib/classNames/classNames';
 
@@ -19,7 +18,6 @@ interface SelectProps {
 
 export const Select = memo((props: SelectProps) => {
   const { className, options, value, onChange, readonly, placeholder } = props;
-  const { t } = useTranslation();
 
   const optionsList = useMemo(
     () =>
@@ -50,9 +48,11 @@ export const Select = memo((props: SelectProps) => {
         value={value}
         disabled={readonly}
       >
-        {placeholder && <option value="">{placeholder}</option>}
+        {placeholder && <option value=''>{placeholder}</option>}
         {optionsList}
       </select>
     </div>
   );
 });
+
+Select.displayName = 'Select';
