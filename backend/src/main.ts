@@ -1,11 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { ValidationPipe } from './pipes/validation.pipe';
+import { ConfigService } from '@nestjs/config';
+import { Logger } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const PORT = process.env.PORT || 5000;
+  const configService = app.get(ConfigService);
+  const port = configService.get<number>('PORT', 5000);
 
   const config = new DocumentBuilder()
     .setTitle('Tour Agency')
@@ -16,9 +18,15 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('/api/docs', app, document);
 
-  // app.useGlobalPipes(new ValidationPipe())
   app.setGlobalPrefix('api');
-  app.enableCors();
-  await app.listen(PORT, () => console.log(`server started on port = ${PORT}`));
+  const corsOrigins = configService
+    .get<string>('CORS_ORIGIN', '')
+    .split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean);
+  if (corsOrigins.length) app.enableCors({ origin: corsOrigins });
+  app.enableShutdownHooks();
+  await app.listen(port, '0.0.0.0');
+  Logger.log(`API listening on port ${port}`, 'Bootstrap');
 }
 bootstrap();

@@ -33,11 +33,11 @@ describe('AppController (e2e)', () => {
     }
   });
 
-  it('/api (GET)', () => {
+  it('/api/health (GET)', () => {
     return request(app.getHttpServer())
-      .get('/api')
+      .get('/api/health')
       .expect(200)
-      .expect('Hello World!');
+      .expect({ status: 'ok' });
   });
 
   it('can read tours from the configured database', async () => {
