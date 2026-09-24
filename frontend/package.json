@@ -57,21 +57,15 @@
   },
   "dependencies": {
     "@amir04lm26/react-modern-calendar-date-picker": "^1.0.1",
-    "@react-three/drei": "^9.66.4",
-    "@react-three/fiber": "^8.13.0",
     "@reduxjs/toolkit": "^1.9.5",
     "@svgr/webpack": "^7.0.0",
     "@types/react": "^18.0.35",
     "@types/react-dom": "^18.0.11",
     "@types/three": "^0.152.0",
-    "fs": "^0.0.1-security",
-    "gltf-loader": "^1.0.0",
     "i18next": "^22.4.14",
     "i18next-browser-languagedetector": "^7.0.1",
     "i18next-http-backend": "^2.2.0",
-    "image-switcher": "^1.0.2",
     "moment": "^2.29.4",
-    "next": "^13.4.3",
     "react": "^18.2.0",
     "react-calendar": "^4.2.1",
     "react-dom": "^18.2.0",
@@ -82,7 +76,6 @@
     "react-router-dom": "^6.10.0",
     "react-select": "^5.7.3",
     "style-loader": "^3.3.2",
-    "three": "^0.152.2",
-    "three-fbxloader-offical": "^1.0.0"
+    "three": "^0.152.2"
   }
 }
