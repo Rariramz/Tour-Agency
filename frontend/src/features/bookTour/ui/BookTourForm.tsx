@@ -88,6 +88,7 @@ export const BookTourForm = ({ tour }: { tour: Tour }) => {
         </p>
       ) : (
         <Button
+          type='submit'
           theme={ButtonTheme.CONTAIN}
           disabled={
             !departureDate ||

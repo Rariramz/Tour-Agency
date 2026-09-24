@@ -1,5 +1,7 @@
 .GlobeContainer {
   width: 100%;
-  height: 600px;
+  height: 100vh;
+  min-height: 600px;
   background-image: var(--gradient-color);
+  transform: translateX(clamp(48px, 7vw, 120px));
 }

@@ -1,11 +1,12 @@
 .page {
   width: 100%;
-  max-width: 900px;
+  max-width: var(--page-max-width);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding: 32px 24px;
+  padding-block: 40px;
+  padding-inline: var(--page-inline-padding);
 }
 
 .heading,
@@ -16,6 +17,11 @@
   gap: 16px;
 }
 
+.heading > div {
+  display: grid;
+  gap: 6px;
+}
+
 .list {
   display: grid;
   gap: 16px;
@@ -24,8 +30,10 @@
 .reservation,
 .empty {
   display: grid;
+  justify-items: start;
   gap: 20px;
   padding: 24px;
+  text-align: left;
 }
 
 .details {
@@ -53,11 +61,23 @@
   font-weight: 600;
 }
 
-.error {
-  color: #c43d3d;
+.errorState {
+  width: min(480px, 100%);
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+  padding: 18px 20px;
+  border-left: 4px solid var(--red-color);
+  border-radius: 12px;
+  color: var(--heading-color);
+  background: var(--card-color);
 }
 
 @media (max-width: 700px) {
+  .page {
+    padding-block: 24px;
+  }
+
   .heading,
   .actions {
     align-items: flex-start;

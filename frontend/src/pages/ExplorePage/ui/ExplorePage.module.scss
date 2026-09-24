@@ -1,23 +1,23 @@
 .explorePage {
   width: 100%;
-  min-height: 100vh;
-  display: grid;
-  grid-template-columns: minmax(300px, 430px) minmax(0, 1fr);
-  gap: 16px;
-  padding: 16px;
-}
-.globe {
-  min-width: 0;
-  position: sticky;
-  top: 16px;
-  height: 600px;
+  height: 100vh;
+  position: relative;
   overflow: hidden;
+  padding-block: 40px;
+  padding-inline: var(--page-inline-padding);
 }
-@media (max-width: 1000px) {
+
+.globe {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  min-height: 100%;
+  overflow: hidden;
+  background-image: var(--gradient-color);
+}
+
+@media (max-width: 700px) {
   .explorePage {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .globe {
-    display: none;
+    padding-block: 24px;
   }
 }

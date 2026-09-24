@@ -1,15 +1,40 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search } from '../../../../features/search/Search/ui/Search';
 import { PreviewCard } from '../PreviewCard/PreviewCard';
 import { useGetToursQuery } from '../../../../entities/tour/api/toursApi';
 import { filterTours } from '../../../../entities/tour/lib/filterTours';
+import { classNames } from '../../../../shared/lib/classNames/classNames';
 import cls from './Searchbar.module.scss';
 
-export const Searchbar = () => {
+interface SearchbarProps {
+  selectedTourId?: number;
+  onTourSelectionClear: () => void;
+}
+
+export const Searchbar = ({
+  selectedTourId,
+  onTourSelectionClear
+}: SearchbarProps) => {
   const { data: tours = [], isLoading, isError, refetch } = useGetToursQuery();
   const [searchValue, setSearchValue] = useState('');
+  const cardRefs = useRef<Record<number, HTMLAnchorElement | null>>({});
   const filteredTours = filterTours(tours, searchValue);
+
+  useEffect(() => {
+    if (selectedTourId === undefined) return;
+    if (searchValue) {
+      setSearchValue('');
+      return;
+    }
+    requestAnimationFrame(() =>
+      cardRefs.current[selectedTourId]?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest'
+      })
+    );
+  }, [selectedTourId, searchValue]);
+
   return (
     <section
       className={cls.Searchbar}
@@ -18,7 +43,10 @@ export const Searchbar = () => {
       <h1>Explore tours</h1>
       <Search
         value={searchValue}
-        onChange={setSearchValue}
+        onChange={(value) => {
+          setSearchValue(value);
+          onTourSelectionClear();
+        }}
       />
       {isLoading && <p role='status'>Loading tours…</p>}
       {isError && (
@@ -40,8 +68,13 @@ export const Searchbar = () => {
             {filteredTours.map((tour) => (
               <Link
                 key={tour.id}
+                ref={(element) => {
+                  cardRefs.current[tour.id] = element;
+                }}
                 to={`/explore/${tour.id}`}
-                className={cls.card}
+                className={classNames(cls.card, {
+                  [cls.selected]: tour.id === selectedTourId
+                })}
               >
                 <PreviewCard item={tour} />
               </Link>

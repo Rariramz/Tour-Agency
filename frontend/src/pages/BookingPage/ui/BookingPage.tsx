@@ -42,7 +42,10 @@ const BookingPage = () => {
 
       {isLoading && <p role='status'>Loading bookings…</p>}
       {isError && (
-        <div role='alert'>
+        <div
+          className={cls.errorState}
+          role='alert'
+        >
           <p>Unable to load your bookings.</p>
           <Button onClick={() => void refetch()}>Try again</Button>
         </div>
@@ -108,7 +111,7 @@ const BookingPage = () => {
       </div>
       {cancelResult.isError && (
         <p
-          className={cls.error}
+          className={cls.errorState}
           role='alert'
         >
           Unable to cancel the booking. Please try again.

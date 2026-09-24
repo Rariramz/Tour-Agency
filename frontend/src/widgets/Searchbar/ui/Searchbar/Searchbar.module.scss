@@ -1,20 +1,47 @@
 .Searchbar {
   width: min(430px, 100%);
+  height: 100%;
+  min-height: 0;
   position: relative;
   z-index: 1;
-  padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 .results {
+  min-height: 0;
+  flex: 1;
   display: grid;
+  align-content: start;
   gap: 16px;
+  padding: 4px 8px 4px 4px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: var(--switcher-color) transparent;
+}
+.results::-webkit-scrollbar {
+  width: 7px;
+}
+.results::-webkit-scrollbar-track {
+  background: transparent;
+}
+.results::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: var(--switcher-color);
 }
 .card {
   display: block;
+  border-radius: 12px;
   color: inherit;
   text-decoration: none;
+  scroll-margin-block: 8px;
+  transition: box-shadow 0.2s ease;
+}
+.selected {
+  box-shadow: 0 0 0 4px var(--selection-color);
 }
 .card:focus-visible {
   outline: 3px solid var(--mustard-color);
