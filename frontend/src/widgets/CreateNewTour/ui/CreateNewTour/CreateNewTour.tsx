@@ -89,7 +89,10 @@ const CreateNewTour = memo(({ className }: CreateNewTourProps) => {
           gapSize={ColGapSize.XXL}
           align={ColAlign.CENTER}
         >
-          <Heading>Add tour</Heading>
+          <div className={cls.heading}>
+            <Heading>Add a tour</Heading>
+            <p>Complete the trip details and upload a JPEG cover image.</p>
+          </div>
           <Row className={cls.createNewTourRow}>
             <Col
               gapSize={ColGapSize.XXL}
@@ -263,7 +266,7 @@ const CreateNewTour = memo(({ className }: CreateNewTourProps) => {
                 )}
                 rules={{ required: true }}
               />
-              <label>
+              <label className={cls.fileField}>
                 Tour photo (JPEG, up to 5 MB)
                 <input
                   type='file'
@@ -289,18 +292,29 @@ const CreateNewTour = memo(({ className }: CreateNewTourProps) => {
             />
           </Row>
           {result.isError && (
-            <p role='alert'>
+            <p
+              className={cls.error}
+              role='alert'
+            >
               Could not create the tour. An administrator login and valid tour
               details are required.
             </p>
           )}
-          {result.isSuccess && <p role='status'>Tour created.</p>}
+          {result.isSuccess && (
+            <p
+              className={cls.success}
+              role='status'
+            >
+              Tour created and added to the catalogue.
+            </p>
+          )}
           <Button
             theme={ButtonTheme.CONTAIN}
             type='submit'
             disabled={result.isLoading}
+            fullwidth
           >
-            CREATE
+            {result.isLoading ? 'Publishing…' : 'Publish tour'}
           </Button>
         </Col>
       </form>

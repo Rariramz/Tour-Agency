@@ -2,23 +2,69 @@
   width: 100%;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 10px;
+  gap: 24px;
   padding-block: 40px;
   padding-inline: var(--page-inline-padding);
   position: relative;
 }
 
+.header {
+  width: 100%;
+
+  h1 {
+    margin-bottom: 6px;
+    color: var(--heading-color);
+    font-size: clamp(30px, 4vw, 44px);
+    line-height: 1.1;
+  }
+
+  > p:last-child {
+    color: var(--paragraph-color);
+  }
+}
+
+.eyebrow {
+  margin-bottom: 8px;
+  color: var(--primary-color);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .adminPageRow {
   width: 100%;
-  gap: 12px;
+  align-items: flex-start;
+  gap: 20px;
 }
 
 .adminPageToursListCol {
-  width: 400px;
+  width: min(340px, 32%);
+  flex: 0 0 min(340px, 32%);
 }
 
 .adminPageTourEditingCol {
-  width: calc(100% - 400px);
+  min-width: 0;
+  flex: 1;
+}
+
+@media (max-width: 1000px) {
+  .adminPageRow {
+    flex-direction: column;
+  }
+
+  .adminPageToursListCol,
+  .adminPageTourEditingCol {
+    width: 100%;
+    flex-basis: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .AdminPage {
+    padding-block: 24px;
+  }
 }
