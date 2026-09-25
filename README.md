@@ -80,5 +80,5 @@ CI runs the same unit, integration, type and production-build checks with an eph
 - Passwords are hashed with bcrypt; JWT secrets and database credentials are required environment configuration.
 - Client DTOs are allow-listed and role checks protect administrator and reservation endpoints.
 - The current upload volume is appropriate for a single-instance demonstration. An object store would be the next step for horizontal scaling.
-- The bundled globe and imagery make the production assets relatively large. Asset compression and more aggressive lazy loading are the next performance priority.
+- The globe texture is losslessly compressed, loaded with the lazy Explore route, content-hashed, and served with immutable production caching. It remains the largest first-visit asset; further reduction would trade away the original visual fidelity.
 - The project uses a compact startup migration for its restored legacy schema. A versioned migration framework should replace this before multi-environment production use.
