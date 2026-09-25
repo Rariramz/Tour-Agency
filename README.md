@@ -2,6 +2,12 @@
 
 A full-stack travel booking application built as a 2023 diploma project and refreshed as a production-minded portfolio project. It demonstrates typed React state and API integration, a NestJS REST API, role-based authorization, relational data modelling, and a reproducible PostgreSQL environment.
 
+## Project preview
+
+| Home dashboard | Interactive tour explorer |
+| --- | --- |
+| [![Tour Agency home dashboard with featured tours](docs/screenshots/home.png)](docs/screenshots/home.png) | [![Interactive globe showing available European tours](docs/screenshots/explore.png)](docs/screenshots/explore.png) |
+
 ## What it does
 
 - Browse and search tours on a responsive catalogue and interactive 3D globe.
