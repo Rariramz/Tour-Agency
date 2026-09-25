@@ -1,5 +1,5 @@
 .Line {
-  width: 106px;
+  width: calc(100% - 24px);
   height: 0px;
   border: 1.5px solid var(--bg-color);
   margin-top: 32px;

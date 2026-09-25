@@ -8,15 +8,14 @@ interface SearchProps {
   className?: string;
   value: string;
   onChange: (value: string) => void;
-  onSubmit?: (value: string) => void;
 }
 
-const Search = memo(({ className, value, onChange, onSubmit }: SearchProps) => {
+const Search = memo(({ className, value, onChange }: SearchProps) => {
   return (
     <div className={classNames(cls.Search, {}, [className ?? ''])}>
       <SearchIcon
         className={cls.SearchIcon}
-        onClick={onSubmit ? () => onSubmit(value) : () => false}
+        aria-hidden='true'
       />
       <Input
         placeholder='Search destinations or departure cities'

@@ -1,5 +1,5 @@
 .Searchbar {
-  width: min(430px, 100%);
+  width: min(460px, 100%);
   height: 100%;
   min-height: 0;
   position: relative;
@@ -7,6 +7,117 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  padding: clamp(20px, 2.4vw, 32px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 20px 60px rgba(9, 30, 66, 0.18);
+  backdrop-filter: blur(18px);
+
+  h1 {
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+  }
+}
+
+:global(.app_dark_theme) .Searchbar {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(18, 18, 18, 0.5);
+}
+
+.resultCount {
+  color: var(--paragraph-color);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.feedback {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid rgba(255, 61, 61, 0.22);
+  border-radius: 14px;
+  background: rgba(255, 61, 61, 0.08);
+
+  strong {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 15px;
+  }
+
+  p {
+    color: var(--paragraph-color);
+    font-size: 13px;
+    line-height: 1.45;
+  }
+}
+
+.feedbackCopy {
+  min-width: 0;
+  flex: 1;
+}
+
+.errorIcon,
+.spinner {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  border-radius: 50%;
+}
+
+.errorIcon {
+  display: grid;
+  place-items: center;
+  background: var(--red-color);
+  color: var(--white-color);
+  font-weight: 700;
+}
+
+.spinner {
+  border: 3px solid rgba(0, 204, 203, 0.22);
+  border-top-color: var(--primary-color);
+  animation: spin 0.8s linear infinite;
+}
+
+.retryButton {
+  min-height: 38px;
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--red-color);
+  color: var(--white-color);
+  cursor: pointer;
+  font-weight: 700;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+
+  &:hover {
+    opacity: 0.88;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--mustard-color);
+    outline-offset: 2px;
+  }
+}
+
+.emptyState {
+  padding: 20px;
+  border: 1px dashed var(--switcher-color);
+  border-radius: 14px;
+  color: var(--paragraph-color);
+  line-height: 1.5;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 .results {
   min-height: 0;
@@ -46,4 +157,20 @@
 .card:focus-visible {
   outline: 3px solid var(--mustard-color);
   outline-offset: 4px;
+}
+
+@media (max-width: 700px) {
+  .Searchbar {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .feedback {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .retryButton {
+    width: 100%;
+  }
 }

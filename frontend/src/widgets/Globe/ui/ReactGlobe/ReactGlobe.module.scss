@@ -5,3 +5,9 @@
   background-image: var(--gradient-color);
   transform: translateX(clamp(48px, 7vw, 120px));
 }
+
+@media (max-width: 700px) {
+  .GlobeContainer {
+    transform: translateX(28%);
+  }
+}

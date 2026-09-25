@@ -48,21 +48,60 @@ export const Searchbar = ({
           onTourSelectionClear();
         }}
       />
-      {isLoading && <p role='status'>Loading tours…</p>}
+      {isLoading && (
+        <div
+          className={cls.feedback}
+          role='status'
+        >
+          <span className={cls.spinner} />
+          <div>
+            <strong>Finding available tours</strong>
+            <p>This should only take a moment.</p>
+          </div>
+        </div>
+      )}
       {isError && (
-        <div role='alert'>
-          <p>We couldn&apos;t load tours.</p>
-          <button onClick={() => void refetch()}>Try again</button>
+        <div
+          className={cls.feedback}
+          role='alert'
+        >
+          <span
+            className={cls.errorIcon}
+            aria-hidden='true'
+          >
+            !
+          </span>
+          <div className={cls.feedbackCopy}>
+            <strong>Tours are temporarily unavailable</strong>
+            <p>Check your connection, then try once more.</p>
+          </div>
+          <button
+            className={cls.retryButton}
+            type='button'
+            onClick={() => void refetch()}
+          >
+            Try again
+          </button>
         </div>
       )}
       {!isLoading && !isError && (
         <>
-          <p role='status'>{filteredTours.length} tour(s) found</p>
+          <p
+            className={cls.resultCount}
+            role='status'
+          >
+            {filteredTours.length}{' '}
+            {filteredTours.length === 1 ? 'tour' : 'tours'} found
+          </p>
           {!tours.length && (
-            <p>No tours are available yet. Please check back soon.</p>
+            <p className={cls.emptyState}>
+              No tours are available yet. Please check back soon.
+            </p>
           )}
           {!!tours.length && !filteredTours.length && (
-            <p>No tours match your search. Try another destination.</p>
+            <p className={cls.emptyState}>
+              No tours match your search. Try another destination.
+            </p>
           )}
           <div className={cls.results}>
             {filteredTours.map((tour) => (

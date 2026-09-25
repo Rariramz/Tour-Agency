@@ -5,6 +5,7 @@
   overflow: hidden;
   padding-block: 40px;
   padding-inline: var(--page-inline-padding);
+  isolation: isolate;
 }
 
 .globe {
@@ -19,5 +20,10 @@
 @media (max-width: 700px) {
   .explorePage {
     padding-block: 24px;
+    overflow-y: auto;
+  }
+
+  .globe {
+    opacity: 0.48;
   }
 }
