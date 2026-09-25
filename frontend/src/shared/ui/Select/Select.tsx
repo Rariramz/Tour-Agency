@@ -1,4 +1,10 @@
-import { ChangeEvent, memo, useCallback, useMemo } from 'react';
+import {
+  ChangeEvent,
+  memo,
+  SelectHTMLAttributes,
+  useCallback,
+  useMemo
+} from 'react';
 import cls from './Select.module.scss';
 import { classNames } from '../../lib/classNames/classNames';
 
@@ -7,7 +13,12 @@ export interface SelectOption {
   content: string | number;
 }
 
-interface SelectProps {
+type HTMLSelectProps = Omit<
+  SelectHTMLAttributes<HTMLSelectElement>,
+  'value' | 'onChange' | 'readOnly'
+>;
+
+interface SelectProps extends HTMLSelectProps {
   className?: string;
   placeholder?: string;
   options: SelectOption[];
@@ -17,7 +28,15 @@ interface SelectProps {
 }
 
 export const Select = memo((props: SelectProps) => {
-  const { className, options, value, onChange, readonly, placeholder } = props;
+  const {
+    className,
+    options,
+    value,
+    onChange,
+    readonly,
+    placeholder,
+    ...otherProps
+  } = props;
 
   const optionsList = useMemo(
     () =>
@@ -47,6 +66,7 @@ export const Select = memo((props: SelectProps) => {
         className={cls.Select}
         value={value}
         disabled={readonly}
+        {...otherProps}
       >
         {placeholder && <option value=''>{placeholder}</option>}
         {optionsList}
