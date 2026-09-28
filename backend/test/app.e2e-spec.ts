@@ -118,13 +118,10 @@ describe('AppController (e2e)', () => {
         );
       }
       const response = await creation
-        .attach(
-          'image',
-          path.resolve(
-            __dirname,
-            '../../frontend/src/shared/assets/hotels/111.jpg',
-          ),
-        )
+        .attach('image', Buffer.from('integration-test-image'), {
+          filename: 'contract-test.jpg',
+          contentType: 'image/jpeg',
+        })
         .expect(201);
       tour = response.body;
       expect(response.body).toMatchObject({
