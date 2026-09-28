@@ -1,0 +1,90 @@
+.page {
+  width: 100%;
+  max-width: var(--page-max-width);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-block: 40px;
+  padding-inline: var(--page-inline-padding);
+}
+
+.heading,
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.heading > div {
+  display: grid;
+  gap: 6px;
+}
+
+.list {
+  display: grid;
+  gap: 16px;
+}
+
+.reservation,
+.empty {
+  display: grid;
+  justify-items: start;
+  gap: 20px;
+  padding: 24px;
+  text-align: left;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+
+  div {
+    display: grid;
+    gap: 4px;
+  }
+
+  dt {
+    color: var(--secondary-color);
+  }
+
+  dd {
+    margin: 0;
+  }
+}
+
+.status {
+  margin-bottom: 4px;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.errorState {
+  width: min(480px, 100%);
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+  padding: 18px 20px;
+  border-left: 4px solid var(--red-color);
+  border-radius: 12px;
+  color: var(--heading-color);
+  background: var(--card-color);
+}
+
+@media (max-width: 700px) {
+  .page {
+    padding-block: 24px;
+  }
+
+  .heading,
+  .actions {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

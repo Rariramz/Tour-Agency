@@ -1,0 +1,36 @@
+import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { ToursModule } from './tours/tours.module';
+import { CountriesController } from './countries/countries.controller';
+import { CountriesService } from './countries/countries.service';
+import { UsersModule } from './users/users.module';
+import { RolesModule } from './roles/roles.module';
+import { AuthModule } from './auth/auth.module';
+import { FilesModule } from './files/files.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import * as path from 'path';
+import { validateEnvironment } from './config/environment';
+
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+      validate: validateEnvironment,
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: path.resolve(process.cwd(), 'uploads'),
+      serveRoot: '/media',
+    }),
+    ToursModule,
+    UsersModule,
+    RolesModule,
+    AuthModule,
+    FilesModule,
+  ],
+  controllers: [AppController, CountriesController],
+  providers: [AppService, CountriesService],
+})
+export class AppModule {}

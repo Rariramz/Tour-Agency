@@ -1,0 +1,75 @@
+.Tab {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+
+  .rectangle {
+    display: none;
+    left: -16px;
+    width: 4px;
+    height: 28px;
+    background: var(--primary-color);
+    border-radius: 5px;
+    position: absolute;
+  }
+
+  .item {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 13px 14px;
+    gap: 14px;
+  }
+
+  .link {
+    opacity: 1;
+    color: var(--heading-color);
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .icon path {
+    stroke: var(--icon-color);
+  }
+
+  &.active {
+    background: rgba(0, 204, 203, 0.08);
+
+    .icon path {
+      stroke: var(--primary-color);
+    }
+
+    .link {
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    .rectangle {
+      display: block;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .Tab {
+    justify-content: center;
+    .item {
+      margin-left: 0;
+      padding: 12px;
+      gap: 0;
+    }
+    .link {
+      display: none;
+    }
+  }
+}

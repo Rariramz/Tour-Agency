@@ -1,0 +1,15 @@
+@import 'reset';
+@import 'variables/global';
+@import 'themes/dark';
+@import 'themes/light';
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600&display=swap');
+
+.app {
+  font: var(--font-m);
+  color: var(--heading-color);
+  background: var(--bg-color);
+  min-height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}

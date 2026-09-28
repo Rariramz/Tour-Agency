@@ -1,0 +1,24 @@
+.app_dark_theme {
+  --darkmode-color: #dadada;
+  --gray-darkest-color: #1e1e1e;
+  --black-lightest-color: #121212;
+  --black-light-color: #0a0a0a;
+
+  --bg-color: var(--black-lightest-color);
+  --sidebar-color: var(--black-light-color);
+  --card-color: var(--gray-darkest-color);
+  --search-color: var(--black-light-color);
+
+  --heading-color: var(--white-color);
+  --paragraph-color: var(--darkmode-color);
+  --icon-color: var(--darkmode-color);
+  --icon-bg-color: var(--black-light-color);
+  --switcher-color: var(--darkmode-color);
+
+  --weekdays-color: var(--darkmode-color);
+
+  --gradient-color: linear-gradient(to top, #cc208e 0%, #6713d2 100%);
+  // --gradient-color: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+  // --gradient-color: linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%);
+  // --gradient-color: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #35eb93 100%);
+}

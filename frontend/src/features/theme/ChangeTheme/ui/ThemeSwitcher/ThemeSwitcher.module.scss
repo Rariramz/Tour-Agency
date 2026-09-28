@@ -1,0 +1,36 @@
+.ThemeSwitcher {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 13px 14px;
+  gap: 14px;
+  cursor: pointer;
+  border-radius: 12px;
+
+  span {
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: var(--heading-color);
+  }
+
+  svg {
+    path:first-child {
+      stroke: var(--switcher-color);
+      fill: var(--switcher-color);
+    }
+    path:last-child {
+      stroke: var(--icon-color);
+    }
+  }
+}
+.ThemeSwitcher {
+  @media (max-width: 600px) {
+    span {
+      display: none;
+    }
+    padding: 12px;
+  }
+}

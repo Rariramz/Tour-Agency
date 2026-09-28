@@ -1,0 +1,50 @@
+.InputWrapper {
+  width: 100%;
+  background-color: var(--card-color);
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  padding: 12px;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    path {
+      stroke: var(--red-color);
+    }
+  }
+}
+
+.Input {
+  width: 100%;
+  outline: none;
+  border: none;
+  background: none;
+
+  color: var(--heading-color);
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+
+  &::placeholder {
+    color: var(--primary-color);
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  &::selection {
+    background: var(--primary-color);
+  }
+}
+
+.readonly {
+  opacity: 0.5;
+}
+
+.error {
+  outline: 1px solid var(--red-color);
+}
