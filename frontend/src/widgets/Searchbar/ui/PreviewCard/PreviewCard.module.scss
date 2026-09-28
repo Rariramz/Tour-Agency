@@ -1,59 +1,21 @@
 .PreviewCard {
-  height: min-content;
-  cursor: pointer;
-}
-
-.PreviewCardRow {
+  display: flex;
+  flex-direction: column;
   gap: 12px;
+  height: auto;
 }
-
 .previewImage {
-  height: 120px;
-  width: 200px;
-}
-
-.previewDate {
-  font-family: 'Work Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 14px;
-}
-
-.previewContent {
-  height: 120px;
-}
-
-.previewHeader {
-  align-items: flex-start;
-}
-
-.previewTitle {
-  font-family: 'Work Sans';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 16px;
-}
-
-.previewGuests {
-  font-family: 'Work Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 18px;
-}
-
-.previewPrice {
-  font-family: 'Work Sans';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 18px;
-}
-
-.previewFooter {
   width: 100%;
-  position: absolute;
-  bottom: 0;
+  height: 160px;
+}
+.previewContent {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+.previewContent h2 {
+  font-size: 20px;
+  line-height: 1.3;
 }

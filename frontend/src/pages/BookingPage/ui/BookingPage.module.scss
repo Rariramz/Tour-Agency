@@ -1,59 +1,90 @@
-.bookingPage {
+.page {
   width: 100%;
+  max-width: var(--page-max-width);
   min-height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 24px;
+  padding-block: 40px;
+  padding-inline: var(--page-inline-padding);
+}
+
+.heading,
+.actions {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 10px;
-  padding: 10px;
-  position: relative;
+  gap: 16px;
 }
 
-.bookingPageCol {
-  max-width: 1000px;
+.heading > div {
+  display: grid;
+  gap: 6px;
 }
 
-.bookingTourCard {
-  width: 100%;
+.list {
+  display: grid;
+  gap: 16px;
 }
 
-.bookingPageDatePickerRow {
-  width: 100%;
+.reservation,
+.empty {
+  display: grid;
+  justify-items: start;
+  gap: 20px;
+  padding: 24px;
+  text-align: left;
 }
 
+.details {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
 
+  div {
+    display: grid;
+    gap: 4px;
+  }
 
-.tourCardImageContainer {
-  max-height: 400px;
-  position: relative;
-}
+  dt {
+    color: var(--secondary-color);
+  }
 
-.tourCardLikeDiv {
-  position: absolute;
-  right: 0;
-  margin: 8px;
-}
-
-.tourCardRatingDiv {
-  position: absolute;
-  background: var(--card-color);
-  border-radius: 12px 12px 0 0;
-  height: 40px;
-  width: 100%;
-  padding: 12px 12px 0 12px;
-  bottom: 0;
-}
-
-.PinIcon {
-  path {
-    fill: var(--icon-color);
+  dd {
+    margin: 0;
   }
 }
 
-.tourCardContent {
-  padding: 30px 140px;
+.status {
+  margin-bottom: 4px;
+  color: var(--primary-color);
+  font-weight: 600;
 }
 
-.bookingPageButton {
-  width: 400px;
+.errorState {
+  width: min(480px, 100%);
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+  padding: 18px 20px;
+  border-left: 4px solid var(--red-color);
+  border-radius: 12px;
+  color: var(--heading-color);
+  background: var(--card-color);
+}
+
+@media (max-width: 700px) {
+  .page {
+    padding-block: 24px;
+  }
+
+  .heading,
+  .actions {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }

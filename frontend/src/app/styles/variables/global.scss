@@ -10,7 +10,9 @@
   --font-line-xl: 40px;
   --font-xl: var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
 
-  --sidebar-width: 170px;
+  --sidebar-width: 220px;
+  --page-max-width: 1120px;
+  --page-inline-padding: clamp(20px, 4vw, 40px);
   //h1,h2,h3
 
   // index
@@ -19,10 +21,17 @@
   --primary-color: #00cccb;
   --secondary-color: #6c6c6c;
   --red-color: #ff3d3d;
+  --selection-color: var(--mustard-color);
   --white-color: #ffffff;
   --black-color: #000000;
   --mustard-color: #ffd910;
   --light-blue-color: #deffff;
 
   --button-text-color: var(--white-color);
+}
+
+@media (max-width: 600px) {
+  :root {
+    --sidebar-width: 72px;
+  }
 }

@@ -30,8 +30,16 @@ export const Col = memo((props: ColProps) => {
     children
   } = props;
   return (
-    <div className={classNames(cls.Col, {}, [className ?? '', cls[align], cls[gapSize]])}>
+    <div
+      className={classNames(cls.Col, {}, [
+        className ?? '',
+        cls[align],
+        cls[gapSize]
+      ])}
+    >
       {children}
     </div>
   );
 });
+
+Col.displayName = 'Col';

@@ -15,6 +15,7 @@ const SidebarItem = memo(({ item, notification }: SidebarItemProps) => {
   return (
     <NavLink
       to={path}
+      aria-label={text}
       className={({ isActive, isPending }) =>
         classNames(cls.Tab, {}, [
           isActive ? cls.active : isPending ? cls.pending : ''

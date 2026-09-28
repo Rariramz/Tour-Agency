@@ -12,7 +12,7 @@
 }
 
 .SearchIcon {
-  cursor: pointer;
+  flex: 0 0 auto;
 
   path {
     stroke: var(--icon-color);

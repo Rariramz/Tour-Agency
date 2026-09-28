@@ -11,7 +11,10 @@ interface LogoProps {
 const Logo = memo(({ className, showName = true }: LogoProps) => {
   return (
     <div className={classNames(cls.Logo, {}, [className ?? ''])}>
-      <img src={logo} />
+      <img
+        src={logo}
+        alt=''
+      />
       {showName && <span className={cls.brandName}>Traveloo</span>}
     </div>
   );

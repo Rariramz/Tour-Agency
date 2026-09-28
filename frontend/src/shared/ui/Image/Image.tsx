@@ -5,12 +5,19 @@ import cls from './Image.module.scss';
 interface ImageProps {
   className?: string;
   src: string;
+  alt?: string;
 }
 
-const Image = memo(({ src, className }: ImageProps) => {
+const Image = memo(({ src, className, alt = '' }: ImageProps) => {
   return (
     <div className={classNames(cls.Image, {}, [className ?? ''])}>
-      <img src={src} />
+      {src && (
+        <img
+          src={src}
+          alt={alt}
+          loading='lazy'
+        />
+      )}
     </div>
   );
 });

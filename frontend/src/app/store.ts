@@ -1,18 +1,18 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { setupListeners } from '@reduxjs/toolkit/query'
-import { baseApi } from '../shared/api/baseApi'
-import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore'
-import { countriesApi } from '../entities/countries/api/countriesApi'
-import { hotelsApi } from '../entities/hotels/api/hotelsApi'
+import { configureStore } from '@reduxjs/toolkit';
+import { setupListeners } from '@reduxjs/toolkit/query';
+import { baseApi } from '../shared/api/baseApi';
+import { authReducer } from '../entities/auth/model/authSlice';
 
-export const store: ToolkitStore = configureStore({
+export const store = configureStore({
   reducer: {
-    [baseApi.reducerPath]: baseApi.reducer,
-    [hotelsApi.reducerPath]: hotelsApi.reducer,
-    [countriesApi.reducerPath]: countriesApi.reducer,
+    auth: authReducer,
+    [baseApi.reducerPath]: baseApi.reducer
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(baseApi.middleware, hotelsApi.middleware, countriesApi.middleware),
-})
+    getDefaultMiddleware().concat(baseApi.middleware)
+});
 
-setupListeners(store.dispatch)
+setupListeners(store.dispatch);
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

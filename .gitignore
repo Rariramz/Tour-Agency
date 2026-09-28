@@ -1,0 +1,16 @@
+# Local configuration and credentials (including legacy filenames)
+.env
+.env.*
+.*.env
+!.env.example
+!*.env.example
+
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+*.log
+*.stackdump
+backend/src/static/
+backend/dist/static/
+backend/uploads/

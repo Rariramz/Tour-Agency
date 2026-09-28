@@ -1,44 +1,176 @@
 .Searchbar {
-  width: 400px;
+  width: min(460px, 100%);
   height: 100%;
-  z-index: 10;
-}
-
-.relativeDiv {
+  min-height: 0;
   position: relative;
-  width: 100%;
-}
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: clamp(20px, 2.4vw, 32px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 20px 60px rgba(9, 30, 66, 0.18);
+  backdrop-filter: blur(18px);
 
-.ScrollDiv {
-  position: fixed;
-  height: calc(100% - 20px - 48px - 16px);
-  width: calc(400px + 6px);
-
-  overflow: hidden;
-  &:hover {
-    overflow-y: auto;
+  h1 {
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
   }
 }
 
-.tourChosen {
-  border: 3px solid var(--mustard-color) !important;
+:global(.app_dark_theme) .Searchbar {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(18, 18, 18, 0.5);
 }
 
-.card {
-  width: inherit;
+.resultCount {
+  color: var(--paragraph-color);
+  font-size: 14px;
+  font-weight: 600;
 }
 
-::-webkit-scrollbar {
+.feedback {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid rgba(255, 61, 61, 0.22);
+  border-radius: 14px;
+  background: rgba(255, 61, 61, 0.08);
+
+  strong {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 15px;
+  }
+
+  p {
+    color: var(--paragraph-color);
+    font-size: 13px;
+    line-height: 1.45;
+  }
+}
+
+.feedbackCopy {
+  min-width: 0;
+  flex: 1;
+}
+
+.errorIcon,
+.spinner {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  border-radius: 50%;
+}
+
+.errorIcon {
+  display: grid;
+  place-items: center;
+  background: var(--red-color);
+  color: var(--white-color);
+  font-weight: 700;
+}
+
+.spinner {
+  border: 3px solid rgba(0, 204, 203, 0.22);
+  border-top-color: var(--primary-color);
+  animation: spin 0.8s linear infinite;
+}
+
+.retryButton {
+  min-height: 38px;
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--red-color);
+  color: var(--white-color);
+  cursor: pointer;
+  font-weight: 700;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+
+  &:hover {
+    opacity: 0.88;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--mustard-color);
+    outline-offset: 2px;
+  }
+}
+
+.emptyState {
+  padding: 20px;
+  border: 1px dashed var(--switcher-color);
+  border-radius: 14px;
+  color: var(--paragraph-color);
+  line-height: 1.5;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.results {
+  min-height: 0;
+  flex: 1;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 4px 8px 4px 4px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: var(--switcher-color) transparent;
+}
+.results::-webkit-scrollbar {
   width: 7px;
-  background-color: none;
+}
+.results::-webkit-scrollbar-track {
+  background: transparent;
+}
+.results::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: var(--switcher-color);
+}
+.card {
+  display: block;
+  border-radius: 12px;
+  color: inherit;
+  text-decoration: none;
+  scroll-margin-block: 8px;
+  transition: box-shadow 0.2s ease;
+}
+.selected {
+  box-shadow: 0 0 0 4px var(--selection-color);
+}
+.card:focus-visible {
+  outline: 3px solid var(--mustard-color);
+  outline-offset: 4px;
 }
 
-::-webkit-scrollbar-track {
-  background-color: none;
-  border-radius: 10px;
-}
+@media (max-width: 700px) {
+  .Searchbar {
+    padding: 18px;
+    border-radius: 18px;
+  }
 
-::-webkit-scrollbar-thumb {
-  background-color: var(--switcher-color);
-  border-radius: 10px;
+  .feedback {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .retryButton {
+    width: 100%;
+  }
 }

@@ -1,6 +1,5 @@
 .Sidebar {
   box-sizing: border-box;
-  padding-top: 30px;
   width: var(--sidebar-width);
   height: 100%;
   position: fixed;
@@ -11,7 +10,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 32px 7px 15px 7px;
+  padding: 32px 16px 20px;
 
   .items {
     width: 100%;

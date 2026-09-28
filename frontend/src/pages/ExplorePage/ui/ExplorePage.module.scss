@@ -1,31 +1,29 @@
 .explorePage {
   width: 100%;
-  min-height: 100vh;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 10px;
+  height: 100vh;
   position: relative;
+  overflow: hidden;
+  padding-block: 40px;
+  padding-inline: var(--page-inline-padding);
+  isolation: isolate;
 }
 
-.ScrollDiv {
-  z-index: 10;
-  width: calc(450px + 6px);
-  height: calc(100% - 20px);
-  position: fixed;
-  right: 4px;
+.globe {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  min-height: 100%;
   overflow: hidden;
-  &:hover {
+  background-image: var(--gradient-color);
+}
+
+@media (max-width: 700px) {
+  .explorePage {
+    padding-block: 24px;
     overflow-y: auto;
   }
-}
 
-.exploreTourCard {
-  width: 450px;
-}
-
-.relativeDiv {
-  position: relative;
-  width: 100%;
+  .globe {
+    opacity: 0.48;
+  }
 }

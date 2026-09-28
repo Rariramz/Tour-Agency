@@ -9,6 +9,7 @@ import { AppRoutes, RoutePath } from '../../../../shared/config/route/route';
 import { TourPage } from '../../../../pages/TourPage';
 import { AuthorizationPage } from '../../../../pages/AuthorizationPage';
 import { AdminPage } from '../../../../pages/AdminPage';
+import { LogoutPage } from '../../../../pages/AuthorizationPage/ui/LogoutPage';
 
 export const routeConfig: RouteObject[] = [
   {
@@ -19,19 +20,20 @@ export const routeConfig: RouteObject[] = [
       { index: true, element: <HomePage /> },
       {
         path: RoutePath[AppRoutes.ADMIN],
-        element: <AdminPage />,
+        element: <AdminPage />
       },
+      { path: RoutePath[AppRoutes.LOGOUT], element: <LogoutPage /> },
       {
         path: RoutePath[AppRoutes.AUTHORIZATION],
-        element: <AuthorizationPage />,
+        element: <AuthorizationPage />
       },
       {
         path: RoutePath[AppRoutes.EXPLORE],
-        element: <ExplorePage />,
+        element: <ExplorePage />
       },
       {
         path: `${RoutePath[AppRoutes.EXPLORE]}/:tourId`,
-        element: <TourPage />,
+        element: <TourPage />
       },
       {
         path: RoutePath[AppRoutes.BOOKING],

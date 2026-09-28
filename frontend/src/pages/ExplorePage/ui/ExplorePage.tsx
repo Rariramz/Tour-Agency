@@ -1,25 +1,21 @@
-import { useTranslation } from 'react-i18next';
-import { classNames } from '../../../shared/lib/classNames/classNames';
+import { useState } from 'react';
 import { Searchbar } from '../../../widgets/Searchbar';
 import { Globe } from '../../../widgets/Globe';
-import { TourCard } from '../../../widgets/TourCard';
 import cls from './ExplorePage.module.scss';
 
 const ExplorePage = () => {
-  const { t } = useTranslation('places');
+  const [selectedTourId, setSelectedTourId] = useState<number>();
 
   return (
-    <div className={classNames(cls.explorePage)}>
-      <Searchbar />
-      {/* <div className={cls.mapDiv}>
-        {t('Страница туров')}
-      </div> */}
-      <div className={cls.ScrollDiv}>
-        <TourCard className={cls.exploreTourCard}/>
+    <div className={cls.explorePage}>
+      <Searchbar
+        selectedTourId={selectedTourId}
+        onTourSelectionClear={() => setSelectedTourId(undefined)}
+      />
+      <div className={cls.globe}>
+        <Globe onTourSelect={setSelectedTourId} />
       </div>
-      <Globe />
     </div>
   );
 };
-
 export default ExplorePage;

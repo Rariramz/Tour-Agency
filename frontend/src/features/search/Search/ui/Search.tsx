@@ -1,4 +1,4 @@
-import { memo, useState } from 'react';
+import { memo } from 'react';
 import { classNames } from '../../../../shared/lib/classNames/classNames';
 import SearchIcon from '../../../../shared/assets/search.svg';
 import { Input } from '../../../../shared/ui/Input/Input';
@@ -8,15 +8,18 @@ interface SearchProps {
   className?: string;
   value: string;
   onChange: (value: string) => void;
-  onSubmit?: (value: string) => void;
 }
 
-const Search = memo(({ className, value, onChange, onSubmit }: SearchProps) => {
+const Search = memo(({ className, value, onChange }: SearchProps) => {
   return (
     <div className={classNames(cls.Search, {}, [className ?? ''])}>
-      <SearchIcon className={cls.SearchIcon} onClick={onSubmit ? (() => onSubmit(value)) : (() => false)} />
+      <SearchIcon
+        className={cls.SearchIcon}
+        aria-hidden='true'
+      />
       <Input
-        placeholder='Throne Beach Resort & SPA...'
+        placeholder='Search destinations or departure cities'
+        aria-label='Search tours'
         className={cls.searchInput}
         value={value}
         onChange={onChange}

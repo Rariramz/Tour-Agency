@@ -11,14 +11,18 @@ import { AuthModule } from './auth/auth.module';
 import { FilesModule } from './files/files.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import * as path from 'path';
+import { validateEnvironment } from './config/environment';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: `.${process.env.NODE_ENV}.env`,
+      isGlobal: true,
+      envFilePath: '.env',
+      validate: validateEnvironment,
     }),
     ServeStaticModule.forRoot({
-      rootPath: path.resolve(__dirname, 'static'),
+      rootPath: path.resolve(process.cwd(), 'uploads'),
+      serveRoot: '/media',
     }),
     ToursModule,
     UsersModule,

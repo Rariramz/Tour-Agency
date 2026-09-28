@@ -13,22 +13,30 @@ interface TourRouteProps {
   shorten?: boolean;
 }
 
-const TourRoute = memo(({ cityDeparture, cityArrival, className, shorten }: TourRouteProps) => {
-  return (
-    <Row className={classNames(cls.TourRoute, {}, [className ?? ''])} gapSize={RowGapSize.L}>
-      <IconBg className={classNames(cls.PlaneIcon)}>
-        <PlaneIcon />
-      </IconBg>
-      {
-        shorten ? (
-          <Paragraph className={cls.FromTo}><strong>{cityDeparture}</strong> - <strong>{cityArrival}</strong></Paragraph>
+const TourRoute = memo(
+  ({ cityDeparture, cityArrival, className, shorten }: TourRouteProps) => {
+    return (
+      <Row
+        className={classNames(cls.TourRoute, {}, [className ?? ''])}
+        gapSize={RowGapSize.L}
+      >
+        <IconBg className={classNames(cls.PlaneIcon)}>
+          <PlaneIcon />
+        </IconBg>
+        {shorten ? (
+          <Paragraph className={cls.FromTo}>
+            <strong>{cityDeparture}</strong> - <strong>{cityArrival}</strong>
+          </Paragraph>
         ) : (
-          <Paragraph className={cls.FromTo}>From <strong>{cityDeparture} (Poland)</strong> to <strong>{cityArrival} (Cyprus)</strong></Paragraph>
-        )
-      }
-    </Row>
-  );
-});
+          <Paragraph className={cls.FromTo}>
+            From <strong>{cityDeparture}</strong> to{' '}
+            <strong>{cityArrival}</strong>
+          </Paragraph>
+        )}
+      </Row>
+    );
+  }
+);
 
 TourRoute.displayName = 'TourRoute';
 

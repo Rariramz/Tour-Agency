@@ -1,55 +1,63 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsNumber, IsString } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { Transform, Type } from 'class-transformer';
+import { ArrayNotEmpty, IsArray, IsDateString, IsInt, IsString, Matches, Max, MaxLength, Min } from 'class-validator';
 
 export class CreateTourDto {
-  @ApiProperty({ example: '22', description: 'Unique identifier of departure city'})
-  @IsString({ message: 'Must be string' })
-  readonly cityDepartureId: string;
-
-  @ApiProperty({ example: '33', description: 'Unique identifier of arrival city'})
-  @IsString({ message: 'Must be string' })
-  readonly cityArrivalId: string;
-
-  @ApiProperty({ example: '2', description: 'Unique identifier of departure country'})
-  @IsString({ message: 'Must be string' })
-  readonly countryDepartureId: string;
-
-  @ApiProperty({ example: '3', description: 'Unique identifier of arrival country'})
-  @IsString({ message: 'Must be string' })
-  readonly countryArrivalId: string;
-
-  @ApiProperty({ example: '5', description: 'Unique identifier of hotel'})
-  @IsString({ message: 'Must be string' })
-  readonly hotelId: string;
-
-  @ApiProperty({
-    example: '["12.06.2023", "14.06.2023", "20.06.2023"]',
-    description: 'Array of departure dates formatted to string'
+  @ApiProperty()
+  @IsString()
+  @Matches(/^\d+$/)
+  cityDepartureId: string;
+  @ApiProperty()
+  @IsString()
+  @Matches(/^\d+$/)
+  cityArrivalId: string;
+  @ApiProperty()
+  @IsString()
+  @Matches(/^\d+$/)
+  countryDepartureId: string;
+  @ApiProperty()
+  @IsString()
+  @Matches(/^\d+$/)
+  countryArrivalId: string;
+  @ApiProperty()
+  @IsString()
+  @MaxLength(255)
+  hotelId: string;
+  @ApiProperty({ type: [String], example: ['2027-06-12'] })
+  @Transform(({ value }) => {
+    if (typeof value !== 'string') return value;
+    try { return JSON.parse(value); } catch { return value; }
   })
-  @IsString({ message: 'Must be string' })
-  readonly datesDeparture: string[];
-
-  @ApiProperty({ example: '7', description: 'Amount of nights for the provided price'})
-  @IsNumber({}, { message: 'Must be integer' })
-  readonly nightsAmount: number;
-
-  @ApiProperty({ example: '1000', description: 'Price'})
-  @IsNumber({}, { message: 'Must be integer' })
-  readonly price: number;
-
-  @ApiProperty({ example: 'USD', description: 'Currency'})
-  @IsString({ message: 'Must be string' })
-  readonly currency: string;
-
-  @ApiProperty({ example: '2', description: 'Amount of guests for the provided price'})
-  @IsNumber({}, { message: 'Must be integer' })
-  readonly guests: number;
-
-  @ApiProperty({ example: 'Warm sea, nice beach, cozy hotel', description: 'Description'})
-  @IsString({ message: 'Must be string' })
-  readonly description: string;
-
-  @ApiProperty({ example: 5, description: 'Rating from 1 to 5'})
-  @IsNumber({}, { message: 'Must be integer' })
-  readonly rating: number;
+  @IsArray()
+  @ArrayNotEmpty()
+  @IsDateString({ strict: true }, { each: true })
+  datesDeparture: string[];
+  @ApiProperty()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  nightsAmount: number;
+  @ApiProperty()
+  @Type(() => Number)
+  @IsInt()
+  @Min(0)
+  price: number;
+  @ApiProperty({ example: 'EUR' })
+  @Matches(/^[A-Z]{3}$/)
+  currency: string;
+  @ApiProperty()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  guests: number;
+  @ApiProperty()
+  @IsString()
+  @MaxLength(255)
+  description: string;
+  @ApiProperty()
+  @Type(() => Number)
+  @IsInt()
+  @Min(0)
+  @Max(5)
+  rating: number;
 }

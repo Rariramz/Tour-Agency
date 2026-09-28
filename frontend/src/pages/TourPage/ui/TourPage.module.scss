@@ -1,10 +1,25 @@
 .tourPage {
   width: 100%;
-  min-height: 100vh;
+  max-width: var(--page-max-width);
+  padding-block: 40px;
+  padding-inline: var(--page-inline-padding);
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 10px;
-  position: relative;
+  flex-direction: column;
+  gap: 24px;
+
+  [role='alert'] {
+    display: grid;
+    justify-items: start;
+    gap: 12px;
+    padding: 18px 20px;
+    border-left: 4px solid var(--red-color);
+    border-radius: 12px;
+    background: var(--card-color);
+  }
+}
+
+@media (max-width: 700px) {
+  .tourPage {
+    padding-block: 24px;
+  }
 }

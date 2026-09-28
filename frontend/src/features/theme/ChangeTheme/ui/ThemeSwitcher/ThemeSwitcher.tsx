@@ -6,11 +6,10 @@ import cls from './ThemeSwitcher.module.scss';
 
 interface ThemeSwitcherProps {
   className?: string;
-  disabled?: boolean;
 }
 
 const ThemeSwitcher = memo((props: ThemeSwitcherProps) => {
-  const { className, disabled, ...otherProps } = props;
+  const { className, ...otherProps } = props;
   const { toggleTheme } = useTheme();
 
   return (

@@ -5,16 +5,6 @@ import { BuildOptions } from './types';
 const buildLoaders = ({ isDev }: BuildOptions): webpack.RuleSetRule[] => {
   return [
     {
-      test: /\.(gltf)$/,
-      loader: 'gltf-loader',
-      /**
-       * @type {import("gltf-loader").GLTFLoaderOptions}
-       */
-      options: {
-        // ...
-      }
-    },
-    {
       test: /\.tsx?$/,
       exclude: /node_modules/,
       use: ['ts-loader']
@@ -43,10 +33,6 @@ const buildLoaders = ({ isDev }: BuildOptions): webpack.RuleSetRule[] => {
     {
       test: /\.(woff(2)?|eot|ttf|otf)$/i,
       type: 'asset/inline'
-    },
-    {
-      test: /\.json$/,
-      loader: 'json-loader'
     }
   ];
 };

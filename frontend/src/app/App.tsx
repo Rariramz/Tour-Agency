@@ -8,6 +8,5 @@ export const App: React.FC = () => {
     <Provider store={store}>
       <AppRouter />
     </Provider>
-    //test
   );
 };
