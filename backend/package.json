@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "0.0.1",
-  "description": "",
+  "description": "NestJS API for tour catalogues, authentication, and reservations",
   "author": "",
   "private": true,
   "license": "UNLICENSED",
@@ -33,7 +33,6 @@
     "class-validator": "^0.14.0",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
-    "mysql2": "^3.3.3",
     "pg": "^8.11.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
