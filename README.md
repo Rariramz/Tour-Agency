@@ -1,6 +1,8 @@
 # Tour Agency
 
-A full-stack travel booking application built as a 2023 diploma project and refreshed as a production-minded portfolio project. It demonstrates typed React state and API integration, a NestJS REST API, role-based authorization, relational data modelling, and a reproducible PostgreSQL environment.
+[![CI](https://github.com/Rariramz/Tour-Agency/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Rariramz/Tour-Agency/actions/workflows/ci.yml)
+
+Tour Agency is a modernized version of my 2023 bachelor's diploma project, a travel application centered on tour discovery and an interactive 3D globe. The original project and Git history date from 2023; the repository was revisited in 2026 to restore and complete the full-stack application, improve security and validation, add automated tests and CI, and make the project reproducible with Docker.
 
 ## Project preview
 
@@ -16,6 +18,11 @@ A full-stack travel booking application built as a 2023 diploma project and refr
 - Explore the REST contract through Swagger at `/api/docs`.
 
 The refresh deliberately preserves the original Git history while improving security, validation, tests, UX, and deployment. This is a full-stack engineering project rather than an AI model demo; it complements ML work by showing how data-backed products are designed and shipped.
+
+## Project history
+
+- **2023 — Bachelor's diploma project.** Designed the travel-service application and developed the original React and TypeScript client, including the interactive globe and tour-discovery UI. The repository continued evolving after the thesis submission with additional backend functionality.
+- **2026 — Portfolio refresh.** Restored and modernized the application, completed the current full-stack workflow, strengthened authentication, authorization, and validation, and added tests, Docker-based environments, CI, deployment configuration, and documentation.
 
 ## Architecture
 
